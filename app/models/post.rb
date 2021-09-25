@@ -13,4 +13,12 @@
 #  index_posts_on_poster_id  (poster_id)
 #
 class Post < ApplicationRecord
+    validates :body, :poster_id, presence: true
+    has_many :comments
+
+    has_many :likes, as: :likeable
+
+    belongs_to :poster,
+    foreign_key: :poster_id,
+    class_name: :User
 end

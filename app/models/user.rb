@@ -35,6 +35,31 @@ class User < ApplicationRecord
 
   after_initialize :ensure_session_token
 
+    has_many :comments
+
+    has_many :posts,
+    foreign_key: :poster_id,
+    class_name: :Post
+
+    has_many :sent_friend_requests,
+    foreign_key: :user_id,
+    class_name: :FriendRequest
+
+    has_many :received_friend_requests,
+    foreign_key: :requested_id,
+    class_name: :FriendRequest
+
+    has_many :friendships,
+    foreign_key: :user_id,
+    class_name: :friends
+
+    has_many :friends,
+    through: :friendships,
+    source: :friends
+
+
+    has_one :news_feed
+
 
   def self.find_by_credentials(username, password)
     user = User.find_by(username: username)

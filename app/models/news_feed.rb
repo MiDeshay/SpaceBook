@@ -14,4 +14,10 @@
 #  index_news_feeds_on_user_id  (user_id)
 #
 class NewsFeed < ApplicationRecord
+    validates :post_id, :user_id, presence: true
+    belongs_to :user
+
+    has_many :own_posts,
+    through: :user,
+    source: :posts
 end

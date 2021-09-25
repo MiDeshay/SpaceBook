@@ -14,4 +14,13 @@
 #  index_friend_requests_on_user_id       (user_id)
 #
 class FriendRequest < ApplicationRecord
+    validates :user_id, :requested_id, presence: true
+
+    belongs_to :receiver,
+    foreign_key: :requested_id,
+    class_name: :User
+
+    belongs_to :sender,
+    foreign_key: :user_id,
+    class_name: :User
 end
