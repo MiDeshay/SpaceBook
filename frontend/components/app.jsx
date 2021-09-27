@@ -1,15 +1,22 @@
-import React from "react";
-import { Route, Switch } from "react-router-dom";
+import React from 'react';
+import { Route } from 'react-router-dom';
+import GreetingContainer from './greeting/greeting_container';
+import LoginFormContainer from './session_form/login_form_container';
+import SignupFormContainer from './session_form/signup_form_container';
+import HomePage from "./home/home_page"
+import { AuthRoute } from '../util/route_util';
 
 const App = () => (
-  <div>
-    <h1>Test</h1>
-    {/* <Switch>
-      <Route exact path="/" component={PostIndexContainer} />
-      <Route exact path="/posts/:postId" component={PostShowContainer} />
-      <Route path="/posts/:postId/edit" component={EditPostFormContainer} />
-    </Switch> */}
-  </div>
+    <div>
+        <header>
+            <h1>Spacebook</h1>
+            <GreetingContainer/>
+        </header>
+        
+        <AuthRoute path="/login" component={LoginFormContainer}/>
+        <AuthRoute path="/signup" component={SignupFormContainer}/>
+        <Route exact path="/" component={HomePage}/>
+    </div>
 );
 
 export default App;
