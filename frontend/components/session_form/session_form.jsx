@@ -12,11 +12,21 @@ class SessionForm extends React.Component{
         }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.handleInput = this.handleInput.bind(this)
+        this.loginDemoUser = this.loginDemoUser.bind(this)
     }
 
     handleSubmit(e){
         e.preventDefault()
         this.props.processForm(this.state)
+    }
+
+    loginDemoUser(){
+        const demoUser = {
+            email: "demo",
+            password: "password"
+        }
+
+        this.props.processForm(demoUser)
     }
 
     handleInput(type){
@@ -26,44 +36,67 @@ class SessionForm extends React.Component{
     render(){
         const errors = this.props.errors ? this.props.errors[0] : ""
 
-        const signUpForm =  <div>
-        <h2>Sign Up</h2>
-        <Link to="/login"> Login</Link>
-        <h4>{errors}</h4>
-        <form>
-            <label>Email:
-                <input type="text" value={this.state.email} onChange={this.handleInput('email')}/>
-            </label>
-            <label>First Name:
-                <input type="text" value={this.state.first_name} onChange={this.handleInput('first_name')}/>
-            </label>
-            <label>Last Name:
-                <input type="text" value={this.state.last_name} onChange={this.handleInput('last_name')}/>
-            </label>
-            <label>Password:
-                <input type="password" value={this.state.password} onChange={this.handleInput('password')}/>
-            </label>
-            <button onClick={this.handleSubmit}>Sign Up</button>
-        </form>
+        const signUpForm =  
+        <div id="signup-modal-conatiner">
+            <div id="signup-modal">
+                <h4 className="session-errors">{errors}</h4>
+                <form>
+                    <label>Email:
+                        <input className="signup-input" type="text" value={this.state.email} onChange={this.handleInput('email')}/>
+                    </label>
+                    <label>First Name:
+                        <input className="signup-input" id="login-fname" type="text" value={this.state.first_name} onChange={this.handleInput('first_name')}/>
+                    </label>
+                    <label>Last Name:
+                        <input className="signup-input" id="login-lname"type="text" value={this.state.last_name} onChange={this.handleInput('last_name')}/>
+                    </label>
+                    <label>Password:
+                        <input className="signup-input" type="password" value={this.state.password} onChange={this.handleInput('password')}/>
+                    </label>
+                    <button onClick={this.handleSubmit}>Sign Up</button>
+                </form>
+            </div>
 
-    </div>
+            <div id="signup-footer">
+                <Link to="/login"> 
+                    <button id="login-button">
+                        Login
+                    </button>
+                </Link>
+            </div>
+        </div>
+        
+        
 
-    const loginForm = <div>
-        <form>
-        <h2>Login</h2>
-        <Link to="/signup"> Sign Up</Link>
-        <h4>{errors}</h4>
-            <label>Email:
-                <input type="text" value={this.state.email} onChange={this.handleInput('email')}/>
-            </label>
-            <label>Password:
-                <input type="password" value={this.state.password} onChange={this.handleInput('password')}/>
-            </label>
-            <button onClick={this.handleSubmit}>Login</button>
 
-        </form>
+
+    const loginForm = 
+    <div id="login-conatiner">
+        
+        <div id="login-modal">
+            <form>
+            <h4 className="session-errors">{errors}</h4>
+                <label>Email:
+                    <input className="login-input" type="text" value={this.state.email} onChange={this.handleInput('email')}/>
+                </label>
+                <label>Password:
+                    <input className="login-input" type="password" value={this.state.password} onChange={this.handleInput('password')}/>
+                </label>
+                <button id="login-button" onClick={this.handleSubmit}>Login</button>
+            </form>
+        </div>
+        <div id="login-footer">
+            <button onClick={this.loginDemoUser}>Demo User</button>
+            <Link to="/signup">
+                <button id="new-account-button">
+                    Create New Account
+                </button>
+            </Link>
+        </div>
+        
     </div>
     const form = this.props.formType === "Login" ? loginForm : signUpForm
+
         return(
            <>
            {form}
