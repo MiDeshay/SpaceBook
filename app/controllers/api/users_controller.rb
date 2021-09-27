@@ -8,7 +8,7 @@ class Api::UsersController < ApplicationController
           render :show
         else
           # Tell the user that something went wrong. Let them try again.
-          render json: @user.errors.full_messages
+          render json: @user.errors.full_messages, status: 404
        
         end
     end

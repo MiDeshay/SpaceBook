@@ -24,7 +24,7 @@ class SessionForm extends React.Component{
     }
 
     render(){
-        const errors = this.props.errors === [] ? this.props.errors : ""
+        const errors = this.props.errors ? this.props.errors[0] : ""
 
         const signUpForm =  <div>
         <h2>Sign Up</h2>
