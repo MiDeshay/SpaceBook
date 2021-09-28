@@ -3,13 +3,89 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #logo-text{
-    font-size: 100px;
+    font-size: 75px;
 }
 
 #logo{
     margin-bottom: 30px;
+    width: 396px;
+    text-align: center;
+    margin: 0 auto;
 }
 
 #app-header{
     margin-bottom: 70px;
+}
+
+#login-container{
+    align-items: center;
+    background-color: #fff;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 1px 0 28px 16px;
+    width: 396px;
+    
+}
+
+#login-footer{
+    width: 330px;
+}
+
+#login-form input{
+    height: 22px;
+    width: 330px;
+    padding: 14px 16px;
+    font-size: 17px;
+    border-radius: 6px;
+    border: 1px solid #dddfe2;
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+#login-button{
+    width: 364px;
+    height: 50px;
+    font-size: 20px;
+    padding-left: 0 16px;
+    border-radius: 6px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    background-color: #166fe5;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+
+#new-account-button{
+    width: 200px;
+    height: 50px;
+    font-size: 14px;
+    border-radius: 6px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    font-weight: bold;
+    margin-left: 85px;
+    background-color: #36a420;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+#demo-login-button{
+    width: 150px;
+    height: 50px;
+    font-size: 14px;
+    border-radius: 6px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    font-weight: bold;
+    margin-left: 110px;
+    background-color: #36a420;
+    color: #fff;
+    border: none;
+    cursor: pointer;
 }

@@ -58,7 +58,7 @@ class SessionForm extends React.Component{
             </div>
 
             <div id="signup-footer">
-                <Link to="/login"> 
+                <Link to="/"> 
                     <button id="login-button">
                         Login
                     </button>
@@ -71,22 +71,21 @@ class SessionForm extends React.Component{
 
 
     const loginForm = 
-    <div id="login-conatiner">
+    <div id="login-container">
         
-        <div id="login-modal">
+        <div id="login-form">
             <form>
             <h4 className="session-errors">{errors}</h4>
-                <label>Email:
-                    <input className="login-input" type="text" value={this.state.email} onChange={this.handleInput('email')}/>
-                </label>
-                <label>Password:
-                    <input className="login-input" type="password" value={this.state.password} onChange={this.handleInput('password')}/>
-                </label>
+                <input placeholder="Email" className="login-input" type="text" value={this.state.email} onChange={this.handleInput('email')}/>
+                <br/>
+                <input placeholder="Password" className="login-input" type="password" value={this.state.password} onChange={this.handleInput('password')}/>
+                <br/>
                 <button id="login-button" onClick={this.handleSubmit}>Login</button>
             </form>
         </div>
         <div id="login-footer">
-            <button onClick={this.loginDemoUser}>Demo User</button>
+            <button id="demo-login-button" onClick={this.loginDemoUser}>Demo User Login</button>
+            <br/>
             <Link to="/signup">
                 <button id="new-account-button">
                     Create New Account
