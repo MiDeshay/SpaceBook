@@ -1,9 +1,22 @@
 // Place all the styles related to the StaticPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@font-face{
+    font-family: "klavika_bold";
+    src: url('/assets/klavika_bold.otf');
+}
+
+body{
+    background: #f0f2f5;
+    min-width: 500px;
+}
 
 #logo-text{
+    margin-top: 20px;
     font-size: 75px;
+    text-decoration: none;
+    font-family: "klavika_bold";
+    color: #166fe5
 }
 
 #logo{
@@ -14,7 +27,8 @@
 }
 
 #app-header{
-    margin-bottom: 70px;
+    margin-bottom: 30px;
+    margin-top: 90px;
 }
 
 #login-container{
@@ -88,4 +102,93 @@
     color: #fff;
     border: none;
     cursor: pointer;
+}
+
+#signup-modal-conatainer{
+    display: block;
+    position: fixed;
+    background-color: rgba(255, 255, 255, .8);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+}
+
+#signup-modal{
+    position: absolute;
+    top: 170px;
+    left: 50%;
+    margin-left: -220px;
+    width: 432px;
+    padding: 16px;
+    background: #fff;
+    height: 450px;
+    z-index: 3;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+    border: none;
+}
+
+#signup-name{
+    width: 430px;
+    height: 41px;
+    display: flex;
+}
+
+#login-fname{
+    margin-right: 16px;
+}
+
+.signup-input{
+    width: 399px;
+    height: 41px;
+    border: 1px solid #ccd0d5;
+    background-color: #f5f6f7;
+    border-radius: 6px;
+    padding-left: 16px;
+}
+
+.signup-small-input{
+    height: 41px;
+    width: 181px;
+    border: none;
+    background-color: #f5f6f7;
+    border: 1px solid #ccd0d5;
+    border-radius: 6px;
+    padding-left: 16px;
+}
+
+#signup-password{
+    margin-top: 16px;
+}
+
+#signup-button{
+    background-color: #36a420;
+    color:#fff;
+    font-weight: bold;
+    width: 194px;
+    height: 36px;
+    margin-top: 30px;
+    margin-left: 110px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+}
+
+#signup-close-button{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    background-image: image-url('betterX.png');
+    background-size: 18px;
+    height: 18px;
+    width: 18px;
+    border: none;
+    background-color: transparent;
+    background-repeat: no-repeat;
+}
+
+#signup-title{
+    font-size: 32px;
 }
