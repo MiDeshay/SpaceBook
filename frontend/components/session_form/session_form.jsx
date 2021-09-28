@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import SignUpModal from "./signup_modal"
 
 class SessionForm extends React.Component{
     constructor(props){
@@ -90,34 +90,9 @@ class SessionForm extends React.Component{
                 
             </div>  
         </div>
-        {this.showSignUpForm ? 
-        (<div id="signup-modal-conatainer">
-            <div id="signup-modal">
-                <div id="signup-header">
-                    <div>
-                        <h2 id="signup-title"> Sign Up</h2>
-                    </div>
-                    <button id="signup-close-button" onClick={this.handleCloseSignUp}></button>
-                </div>
-                
-                <form>
-                    <h4 className="session-errors">{errors}</h4>
-                    <div id="signup-name">
-                        <input placeholder="First Name" className="signup-small-input" id="login-fname" type="text" value={this.state.first_name} onChange={this.handleInput('first_name')}/>
-                        <input placeholder="Last Name" className="signup-small-input" id="login-lname"type="text" value={this.state.last_name} onChange={this.handleInput('last_name')}/>
-                    </div>
-                    
-                    <br/>
-                    <input className="signup-input" placeholder="Email" className="signup-input" type="text" value={this.state.email} onChange={this.handleInput('email')}/>
-                    <br/>
-                    <input className="signup-input" placeholder="New Password" id="signup-password" className="signup-input" type="password" value={this.state.password} onChange={this.handleInput('password')}/>
-                  
-                    <br/>
-                    <button id="signup-button" onClick={this.handleSignUp}>Sign Up</button>
-                </form>
 
-            </div>
-            </div>) : ("")}
+        {this.showSignUpForm ? 
+        (<SignUpModal errors={this.props.errors} handleSignUp={this.handleSignUp} handleInput={this.handleInput} handleCloseSignUp={this.handleCloseSignUp} state={this.state}/>) : ("")}
         </div>
          
 
