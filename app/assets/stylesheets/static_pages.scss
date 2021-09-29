@@ -77,6 +77,10 @@ h5{
     cursor: pointer;
 }
 
+#login-button:hover{
+    background-color: #1f6cd1;
+}
+
 #new-account-button{
     width: 200px;
     height: 50px;
@@ -86,10 +90,14 @@ h5{
     margin-bottom: 6px;
     font-weight: bold;
     margin-left: 85px;
-    background-color: #36a420;
+    background-color: #42b72a;
     color: #fff;
     border: none;
     cursor: pointer;
+}
+
+#new-account-button:hover{
+    background-color: #36a420;
 }
 
 #demo-login-button{
@@ -99,10 +107,15 @@ h5{
     margin-bottom: 6px;
     font-weight: bold;
     margin-left: 124px;
+
     
     color: #1877f2;
     border: none;
     cursor: pointer;
+}
+
+#demo-login-button:hover{
+    text-decoration: underline;
 }
 
 #signup-modal-conatainer{
@@ -186,7 +199,7 @@ h5{
 }
 
 #signup-button{
-    background-color: #36a420;
+    background-color: #42b72a;
     color:#fff;
     font-weight: bold;
     width: 194px;
@@ -200,6 +213,11 @@ h5{
     border: none;
     cursor: pointer;
 }
+
+#signup-button:hover{
+    background-color: #36a420;
+}
+
 
 #signup-close-button{
     position: absolute;
