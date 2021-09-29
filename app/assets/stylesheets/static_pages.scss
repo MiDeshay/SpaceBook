@@ -69,7 +69,7 @@ h5{
     padding-left: 0 16px;
     border-radius: 6px;
     margin-top: 6px;
-    margin-bottom: 6px;
+    margin-bottom: 15px;
     background-color: #166fe5;
     color: #fff;
     font-weight: bold;
@@ -80,9 +80,9 @@ h5{
 #new-account-button{
     width: 200px;
     height: 50px;
-    font-size: 14px;
+    font-size: 17px;
     border-radius: 6px;
-    margin-top: 6px;
+    margin-top: 25px;
     margin-bottom: 6px;
     font-weight: bold;
     margin-left: 85px;
@@ -93,16 +93,14 @@ h5{
 }
 
 #demo-login-button{
-    width: 150px;
-    height: 50px;
     font-size: 14px;
     border-radius: 6px;
     margin-top: 6px;
     margin-bottom: 6px;
     font-weight: bold;
-    margin-left: 110px;
-    background-color: #36a420;
-    color: #fff;
+    margin-left: 124px;
+    
+    color: #1877f2;
     border: none;
     cursor: pointer;
 }
@@ -153,6 +151,13 @@ h5{
 
 #login-fname{
     margin-right: 16px;
+}
+
+#login-style-line{
+    margin-top: 16px;
+    width: 364px;
+    display: block;
+    border-bottom: 1px solid #dadde1;
 }
 
 .signup-input{

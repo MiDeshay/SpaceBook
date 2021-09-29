@@ -91,12 +91,13 @@ class SessionForm extends React.Component{
                     <br/>
                     <input placeholder="Password" className="login-input" type="password" value={this.state.password} onChange={this.handleInput('password')}/>
                     <br/>
-                    <button id="login-button" onClick={this.handleLogin}>Login</button>
+                    <button id="login-button" onClick={this.handleLogin}>Log In</button>
                 </form>
             </div>
             <div id="login-footer">
-                <button id="demo-login-button" onClick={this.loginDemoUser}>Demo User Login</button>
+                <a id="demo-login-button" onClick={this.loginDemoUser}>Demo User Login</a>
                 <br/>
+                <div id="login-style-line"></div>
                 <button id="new-account-button" onClick={this.handleShowSignUp}>
                     Create New Account
                 </button>
