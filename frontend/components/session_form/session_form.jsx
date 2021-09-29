@@ -1,5 +1,7 @@
 import React from "react";
 import SignUpModal from "./signup_modal"
+import { Link } from 'react-router-dom';
+
 
 class SessionForm extends React.Component{
     constructor(props){
@@ -8,17 +10,24 @@ class SessionForm extends React.Component{
             email: "",
             first_name: "",
             last_name: "",
-            password: ""  
+            password: "",  
+            birthday: null,
+            gender: "",
+            pronouns: null,
         }
         
-        this.showSignUpForm = false
-        this.handleSignUp = this.handleSignUp.bind(this)
-        this.handleLogin =  this.handleLogin.bind(this)
-        this.handleInput = this.handleInput.bind(this)
-        this.loginDemoUser = this.loginDemoUser.bind(this)
-        this.handleShowSignUp = this.handleShowSignUp.bind(this)
-        this.handleCloseSignUp = this.handleCloseSignUp.bind(this)
+        this.showSignUpForm = false;
+        
+
+        
+        this.handleLogin =  this.handleLogin.bind(this);
+        this.handleInput = this.handleInput.bind(this);
+        this.loginDemoUser = this.loginDemoUser.bind(this);
+        this.handleShowSignUp = this.handleShowSignUp.bind(this);
+        this.handleCloseSignUp = this.handleCloseSignUp.bind(this);
+        
     }
+
 
     handleShowSignUp(){
         this.showSignUpForm = true;
@@ -43,14 +52,13 @@ class SessionForm extends React.Component{
         console.log(this.state)
     }
 
-    handleSignUp(e){
-        e.preventDefault()
-        this.props.signup(this.state)
-    }
+    
 
     handleLogin(e){
         e.preventDefault()
         this.props.login(this.state)
+
+
     }
 
     loginDemoUser(){
@@ -70,10 +78,15 @@ class SessionForm extends React.Component{
         const errors = this.props.errors ? this.props.errors[0] : ""
         const form =
         <div>
+            <header id="app-header">
+            <div id="logo">
+                <Link id="logo-text" to="/">Spacebook</Link>
+            </div>
+        </header>
         <div id="login-container">
             <div id="login-form">
                 <form>
-                <h4 className="session-errors">{errors}</h4>
+                <h4 id="form-errors">{errors}</h4>
                     <input placeholder="Email" className="login-input" type="text" value={this.state.email} onChange={this.handleInput('email')}/>
                     <br/>
                     <input placeholder="Password" className="login-input" type="password" value={this.state.password} onChange={this.handleInput('password')}/>
@@ -92,7 +105,10 @@ class SessionForm extends React.Component{
         </div>
 
         {this.showSignUpForm ? 
-        (<SignUpModal errors={this.props.errors} handleSignUp={this.handleSignUp} handleInput={this.handleInput} handleCloseSignUp={this.handleCloseSignUp} state={this.state}/>) : ("")}
+        (<SignUpModal 
+            errors={this.props.errors} 
+            signup={this.props.signup}  
+            handleCloseSignUp={this.handleCloseSignUp}/>) : ("")}
         </div>
          
 

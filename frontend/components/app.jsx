@@ -1,21 +1,16 @@
 import React from 'react';
-import { Link, Route } from 'react-router-dom';
-import GreetingContainer from './greeting/greeting_container';
+
 import LoginFormContainer from './session_form/login_form_container';
-import HomePage from "./home/home_page"
-import { AuthRoute } from '../util/route_util';
+import HomePageContainer from "./home/home_page_container"
+import { Switch } from 'react-router-dom/cjs/react-router-dom.min';
+import { AuthRoute, HomeAuthRoute } from '../util/route_util';
 
 const App = () => (
     <div>
-        <header id="app-header">
-            <div id="logo">
-                <Link id="logo-text" to="/">Spacebook</Link>
-            </div>
-            <GreetingContainer/>
-        </header>
-        
-        <AuthRoute exact path="/" component={LoginFormContainer}/>
-        <AuthRoute  path="/home" component={HomePage}/>
+        <Switch>
+            <AuthRoute path="/login" component={LoginFormContainer}/>
+            <HomeAuthRoute path="/" component={HomePageContainer}/>
+        </Switch>
     </div>
 );
 

@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/session_actions";
-import HomePage from "./session_form";
+import HomePage from "./home_page";
 
 const mSTP = (state, ownProps) => ({
     currentUser: state.entities.users[state.session.id]

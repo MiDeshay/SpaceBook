@@ -28,6 +28,6 @@ private
   def user_params
     # params.require(:user).permit(:username, :email)
     # Add password
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :birthday, :gender)
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :birthday, :gender, :pronouns)
   end
 end

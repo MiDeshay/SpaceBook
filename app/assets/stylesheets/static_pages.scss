@@ -6,6 +6,12 @@
 body{
     background: #f0f2f5;
     min-width: 500px;
+    font-family: sans-serif;
+}
+
+h5{
+    margin-top: 14px;
+    margin-bottom: 3px
 }
 
 #logo-text{
@@ -114,21 +120,33 @@ body{
 
 #signup-modal{
     position: absolute;
-    top: 170px;
+    top: 100px;
     left: 50%;
     margin-left: -220px;
     width: 432px;
     padding: 16px;
     background: #fff;
-    height: 450px;
+    height: 470px;
     z-index: 3;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
     border: none;
 }
 
+#modal-errors{
+    position: absolute;
+    top: 40px;
+    right: 60px;
+    color: red;
+}
+
+#form-errors{
+    color: red;
+}
+
+
 #signup-name{
-    width: 430px;
+    width: 450px;
     height: 41px;
     display: flex;
 }
@@ -138,8 +156,9 @@ body{
 }
 
 .signup-input{
-    width: 399px;
+    width: 411px;
     height: 41px;
+    font-size: 17px;
     border: 1px solid #ccd0d5;
     background-color: #f5f6f7;
     border-radius: 6px;
@@ -148,7 +167,8 @@ body{
 
 .signup-small-input{
     height: 41px;
-    width: 181px;
+    width: 188px;
+    font-size: 17px;
     border: none;
     background-color: #f5f6f7;
     border: 1px solid #ccd0d5;
@@ -169,6 +189,8 @@ body{
     margin-top: 30px;
     margin-left: 110px;
     border-radius: 6px;
+    position: absolute;
+    bottom: 20px;
     border: none;
     cursor: pointer;
 }
@@ -189,3 +211,83 @@ body{
 #signup-title{
     font-size: 32px;
 }
+
+#custom-options{
+    display: none;
+    width: 450px;
+}
+
+#gender-div{
+    display: flex;
+    flex-direction: column;
+    width: 450px;
+}
+
+#gender-container{
+    display: flex;
+}
+
+#birthday-dropdowns{
+    width: 450px;
+}
+
+.birthday-input{
+    height: 41px;
+    width: 136px;
+    font-size: 17px;
+    margin-right: 12px;
+    border: 1px solid #ccd0d5;
+    border-radius: 6px;
+    padding-left: 12px;
+}
+
+.signup-subheader{
+    font-weight: normal;
+    color: #606770;
+}
+
+.gender-dropdowns{
+    height: 41px;
+    width: 127px;
+    font-size: 15px;
+    margin-right: 12px;
+    border: 1px solid #ccd0d5;
+    border-radius: 6px;
+    padding-left: 12px;
+    position: relative;
+}
+
+#male-block{
+    width: 111px;
+}
+
+.gender-label{
+    position: absolute;
+    top: 10px;
+}
+
+.gender-radio-input{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+#pronouns-dropdown{
+    height: 41px;
+    width: 432px;
+    margin-top: 18px;
+    border: 1px solid #ccd0d5;
+    border-radius: 6px;
+    padding-left: 12px;
+}
+
+#gender-input{
+    height: 41px;
+    width: 416px;
+    margin-top: 18px;
+    border: 1px solid #ccd0d5;
+    background-color: #f5f6f7;
+    border-radius: 6px;
+    padding-left: 12px;
+}
+

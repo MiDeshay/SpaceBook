@@ -12,6 +12,7 @@
 #  last_name       :string           not null
 #  location        :string
 #  password_digest :string           not null
+#  pronouns        :string
 #  school          :string
 #  session_token   :string           not null
 #  work            :string
