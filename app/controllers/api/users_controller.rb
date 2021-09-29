@@ -1,5 +1,4 @@
 class Api::UsersController < ApplicationController
-    skip_before_action :verify_authenticity_token
   
     def create
         @user = User.new(user_params)
@@ -7,18 +6,17 @@ class Api::UsersController < ApplicationController
           login!(@user)
           render :show
         else
-          # Tell the user that something went wrong. Let them try again.
           render json: @user.errors.full_messages, status: 404
        
         end
     end
 
     def show
-        @user = User.find(params[:id])
+        @user = User.find_by(id: params[:id])
         if @user
           render :show
         else
-          render json: @user.errors.full_messages, status: 404
+          render json: ['User not found'], status: 401
         end
       end
     
@@ -26,8 +24,6 @@ class Api::UsersController < ApplicationController
 private
 
   def user_params
-    # params.require(:user).permit(:username, :email)
-    # Add password
     params.require(:user).permit(:first_name, :last_name, :email, :password, :birthday, :gender, :pronouns)
   end
 end
