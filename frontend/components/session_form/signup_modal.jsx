@@ -53,23 +53,24 @@ class SignUpModal extends React.Component{
         } else if (this.state.gender === "Male"){
             this.state["pronouns"] = 'he';
             this.hideCustomOptions()
-        } else{
-            this.state["pronouns"] = ''
-        }
+        } 
         
-        console.log(this.state)
+    
         this.setState({state: this.state})
     }
 
     updatePronouns(e){
-        console.log(this.state)
+
         this.state['pronouns'] = e.currentTarget.value;
     }
 
     hideCustomOptions(){
         const options = document.getElementById("custom-options");
         const modal = document.getElementById("signup-modal")
+        const pronounsDropdown = document.getElementById("pronouns-dropdown")
+        pronounsDropdown.options[0].selected = "selected"
         modal.style.height = "470px"
+        modal.style.top = "100px"
         if(options){
             options.style.display = "none"
 
@@ -81,11 +82,11 @@ class SignUpModal extends React.Component{
         options.style.display = "block"
         const modal = document.getElementById("signup-modal")
         modal.style.height = "585px"
+        modal.style.top = "50px"
 
         this.state['gender'] = ""
         this.state['pronouns'] = ""
         this.setState({state: this.state})
-        console.log(this.state)
     }
 
     componentDidMount(){

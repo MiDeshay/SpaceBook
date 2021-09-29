@@ -49,7 +49,7 @@ class SessionForm extends React.Component{
         last_name: "",
         password: ""  
     });
-        console.log(this.state)
+       
     }
 
     
