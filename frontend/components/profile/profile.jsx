@@ -1,8 +1,10 @@
 import React from "react";
 import GreetingContainer from '../greeting/greeting_container';
+import CreatePostContainer from "./posts/create_post_container";
+import PostIndexContainer from "./posts/post_index_container";
 
 
-class HomePage extends React.Component{
+class Profile extends React.Component{
     constructor(props){
         super(props);
         this.handleClick = this.handleClick.bind(this)
@@ -13,14 +15,16 @@ class HomePage extends React.Component{
     }
 
     render(){
-        console.log(this.props)
         return(
             <div>
                 <GreetingContainer/>
+                <CreatePostContainer/>
+                <PostIndexContainer/>
+               
             </div>
          )
         }
     }
   
 
-export default HomePage
+export default Profile

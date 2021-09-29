@@ -8,6 +8,5 @@ const mSTP = (state) => ({
 
 const mDTP = (dispatch) => ({
     logout: () => dispatch(logoutUser()),
-    login:  (user) => dispatch(loginUser(user))
 })
 export default connect(mSTP, mDTP)(Greeting)
