@@ -31,6 +31,7 @@ class PostForm extends React.Component{
     }
 
     updateBody(e){
+        
         if(!this.showSubmit && e.target.value != ""){
             this.showSubmit = true
             this.toggleSubmitButton("on")
@@ -43,11 +44,13 @@ class PostForm extends React.Component{
     }
 
     handleSubmit(e){
-        e.preventDefault()
-        this.props.action(this.state)
-        this.hideModal()
-        this.state["body"] = ""
-        this.toggleSubmitButton("off")
+        e.preventDefault();
+        this.props.action(this.state);
+        this.hideModal();
+        this.state["body"] = "";
+        this.toggleSubmitButton("off");
+        this.showSubmit = false;
+
     }
 
     hideModal(){
