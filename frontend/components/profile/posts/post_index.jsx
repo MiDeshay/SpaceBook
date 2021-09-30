@@ -23,12 +23,15 @@ class PostIndex extends React.Component {
 
         return (
             <div>
-                 <ul>
+                 <ul id="all-posts">
                 {this.props.posts.map((post, i) => 
                 <li key={i}>
                     <PostIndexItem post={post} />
                     <button onClick={() => this.handleDeletePost(post.id)}>Delete</button>
+                    <br/>
+                    <br/>
                 </li>
+                
                 
                 
                 )}

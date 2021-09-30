@@ -8,7 +8,9 @@ const mSTP = (state) => ({
         body: "",
         poster_id: state.session.id
     },
-    formType: 'Create Post'
+    formType: 'Create Post',
+    submitType: "Post",
+    currentUser: state.entities.users[state.session.id],
 })
 
 const mDTP = dispatch => ({

@@ -25,7 +25,9 @@ class EditPostForm extends React.Component {
 
 const mSTP = (state, ownProps) => ({
   post: state.post[ownProps.match.params.postId],
-  formType: 'Edit Report'
+  formType: 'Edit Report',
+  submitType: "Save",
+  currentUser: state.entities.users[state.session.id],
 })
 
 const mDTP = dispatch => ({

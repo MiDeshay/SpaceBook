@@ -8,17 +8,38 @@ class Profile extends React.Component{
     constructor(props){
         super(props);
         this.handleClick = this.handleClick.bind(this)
+
+        this.revealCreatePost = this.revealCreatePost.bind(this)
     }
 
     handleClick(){
         this.props.logout()
     }
 
+    revealCreatePost(){
+       const createPost = document.getElementById('post-container');
+       createPost.style.display = "block"
+    }
+
     render(){
         return(
             <div>
                 <GreetingContainer/>
-                <CreatePostContainer/>
+                <div id="post-bar">
+                    <div id="post-bar-main">
+                        <div id="post-image"></div>
+                        <div onClick={this.revealCreatePost}id="post-text-button">
+                        <div id="text-prompt"> What's on your mind?</div>
+                            
+                            </div>
+                    </div>
+                    <div id="post-bar-line"></div>
+                    
+                </div>
+                <div id="post-container">
+                    <CreatePostContainer/>
+                </div>
+                
                 <PostIndexContainer/>
                
             </div>
