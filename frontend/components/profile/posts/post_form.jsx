@@ -47,6 +47,7 @@ class PostForm extends React.Component{
         this.props.action(this.state)
         this.hideModal()
         this.state["body"] = ""
+        this.toggleSubmitButton("off")
     }
 
     hideModal(){
