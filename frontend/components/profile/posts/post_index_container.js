@@ -6,7 +6,6 @@ import PostIndex from './post_index';
 
 const mSTP = (state) => ({
   posts: Object.values(state.entities.posts),
-  msg: ""
 })
 
 const mDTP = (dispatch) => ({

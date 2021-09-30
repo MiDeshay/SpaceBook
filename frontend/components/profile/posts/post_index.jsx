@@ -4,7 +4,7 @@ import PostIndexItem from './post_index_item';
 class PostIndex extends React.Component {
     constructor(props){
         super(props);
-
+        this.firstRender = true
         this.handleDeletePost = this.handleDeletePost.bind(this)
     }
 
@@ -18,16 +18,20 @@ class PostIndex extends React.Component {
   
     
     render(){
-        
         const posts = []
-        this.props.posts.map((post) => posts.unshift(post))
 
+
+        this.props.posts.map((post) => posts.unshift(post))
+        
         return (
             <div>
                  <ul id="all-posts">
+                    
                 {posts.map((post, i) => 
                 <li key={i}>
-                    <PostIndexItem post={post} />
+                    <PostIndexItem Myid={i} post={post} />
+    
+
                     <button onClick={() => this.handleDeletePost(post.id)}>Delete</button>
                     <br/>
                 </li>

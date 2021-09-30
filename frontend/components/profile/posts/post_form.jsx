@@ -46,8 +46,8 @@ class PostForm extends React.Component{
     handleSubmit(e){
         e.preventDefault();
         this.props.action(this.state);
+        this.setState({body: ""})
         this.hideModal();
-        this.state["body"] = "";
         this.toggleSubmitButton("off");
         this.showSubmit = false;
 
