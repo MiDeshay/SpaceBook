@@ -5,8 +5,6 @@ class PostIndex extends React.Component {
     constructor(props){
         super(props);
 
-        this.state = this.props.msg
-
         this.handleDeletePost = this.handleDeletePost.bind(this)
     }
 
@@ -20,15 +18,17 @@ class PostIndex extends React.Component {
   
     
     render(){
+        
+        const posts = []
+        this.props.posts.map((post) => posts.unshift(post))
 
         return (
             <div>
                  <ul id="all-posts">
-                {this.props.posts.map((post, i) => 
+                {posts.map((post, i) => 
                 <li key={i}>
                     <PostIndexItem post={post} />
                     <button onClick={() => this.handleDeletePost(post.id)}>Delete</button>
-                    <br/>
                     <br/>
                 </li>
                 
