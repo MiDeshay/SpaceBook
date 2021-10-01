@@ -1,11 +1,16 @@
 import React from 'react';
 import PostIndexItem from './post_index_item';
+import { Link } from 'react-router-dom';
 
 class PostIndex extends React.Component {
     constructor(props){
         super(props);
         this.firstRender = true
+        this.handleUpdatePost = this.handleUpdatePost.bind(this)
         this.handleDeletePost = this.handleDeletePost.bind(this)
+        this.state = {
+            editPostConatiner: ""
+        }
     }
 
     componentDidMount(){
@@ -14,7 +19,16 @@ class PostIndex extends React.Component {
 
     handleDeletePost(postId){
         this.props.deletePost(postId);
+        
+        
+
     }
+
+    handleUpdatePost(postId){
+        this.props.history.push(`/home/edit_post/${postId}`)
+    }
+
+  
   
     
     render(){
@@ -28,11 +42,11 @@ class PostIndex extends React.Component {
                  <ul id="all-posts">
                     
                 {posts.map((post, i) => 
-                <li key={i}>
+                <li key={i} id={`post${post.id}`}>
                     <PostIndexItem Myid={i} post={post} />
     
-
-                    <button onClick={() => this.handleDeletePost(post.id)}>Delete</button>
+                    <button id={`${post.id}1`} onClick={() => this.handleDeletePost(post.id)}>Delete</button>
+                    <Link to={`/home/edit_post/${post.id}`}>Edit</Link>
                     <br/>
                 </li>
                 
@@ -40,6 +54,7 @@ class PostIndex extends React.Component {
                 
                 )}
                 </ul>
+               
             </div>
         )
     }

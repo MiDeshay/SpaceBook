@@ -1,38 +1,42 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchPost, updatePost } from "../../../actions/post_actions";
-import PostForm from './post_form';
+import { updatePost, fetchPost } from "../../../actions/post_actions";
+import EditPostModal from './edit_post_form';
 
 
 class EditPostForm extends React.Component {
+
   componentDidMount(){
-    this.props.fetchPost(this.props.match.params.postId)
+    fetchPost(this.props.match.params.postId)
   }
 
   render() {
     
-    const { action, formType, post } = this.props;
-
-    if (!post) return null;
+    const { action, formType, post, currentUser, submitType, i } = this.props;
     return (
-      <PostForm
+      <EditPostModal
         action={action}
         formType={formType}
-        post={post} />
+        post={post}
+        currentUser={currentUser}
+        submitType={submitType}
+        i={i}
+        />
     );
   }
 }
 
 const mSTP = (state, ownProps) => ({
-  post: state.post[ownProps.match.params.postId],
-  formType: 'Edit Report',
+  post: state.entities.posts[ownProps.match.params.postId],
+  formType: 'Edit Post',
   submitType: "Save",
   currentUser: state.entities.users[state.session.id],
+  i: ownProps.i
 })
 
 const mDTP = dispatch => ({
-  requestPost: (postId) => dispatch(fetchPost(postId)),
-  action: (post) => dispatch(updatePost(post))
+  action: (post) => dispatch(updatePost(post)),
+  fetchPost: (postId) => dispatch(fetchPost(postId))
 })
 
 export default connect(mSTP, mDTP)(EditPostForm)

@@ -5,7 +5,6 @@
 .post-block{
     width: 561px;
     min-height: 100px;
-    max-height: 800px;
     background-color: #fff;
     display: flex;
     flex-direction: column;
@@ -55,12 +54,19 @@
     width: 538px;
     min-height: 40px;
     overflow-wrap: break-word;
-    max-height: 613px;
     font-size: 35px;
     flex: 1;
-    white-space: normal;
+    white-space: pre-line;
+    
    
     
+    
+}
+.post-block-main{
+    width: 538px;
+    margin: auto;
+    min-height: 50px;
+   
     
 }
 
@@ -107,11 +113,6 @@
 
 
 
-.post-block-main{
-    width: 538px;
-    margin: auto;
-    min-height: 50px;
-}
 
 .post-comment-block{
     width: 537px;
@@ -155,5 +156,9 @@
 
 .see-more-button:hover{
     text-decoration: underline;
+}
+
+#edit-post-container{
+    display: none;
 }
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import PostModal from './post_options_modal';
 
 
 class PostIndexItem extends React.Component {
@@ -10,8 +11,11 @@ class PostIndexItem extends React.Component {
         }
  
         this.hideBody = this.hideBody.bind(this);
-        this.revealBody = this.revealBody.bind(this)
+        this.revealBody = this.revealBody.bind(this);
+       
     }
+
+    
 
     //slices body string and adds three dots
     //also adds link "See More" to the end which calls reveal body on click
@@ -70,7 +74,7 @@ class PostIndexItem extends React.Component {
             <div className="post-block-header">
                 <div className="post-profile-image"></div>
                 <div className="post-username"></div>
-                <button className="post-options-button"></button>
+                <button onClick={this.showOptionsModal} className="post-options-button"></button>
             </div>
             <div className="post-block-main">
                 {textBody}
@@ -86,7 +90,6 @@ class PostIndexItem extends React.Component {
                     <input className="post-comment-input" placeholder="Write a comment..." type="text"/>
                 </div>
             </div>
-            
             
         </div>
     )

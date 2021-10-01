@@ -1,19 +1,23 @@
 import React from 'react';
+import {Link, withRouter} from 'react-router-dom';
 
 
-class PostForm extends React.Component{
+class EditPostModal extends React.Component{
     constructor(props){
         super(props)
         this.showSubmit = false
 
-        this.state = this.props.post
+        this.state = this.props.post;
+        if(this.state){
+            this.oldBody = this.state.body;
+        }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.updateBody = this.updateBody.bind(this)
-        this.hideModal = this.hideModal.bind(this)
         
     }
 
     componentDidMount(){
+        
        this.toggleSubmitButton("off"); 
     }
 
@@ -31,58 +35,44 @@ class PostForm extends React.Component{
     }
 
     updateBody(e){
-        
-          
-        if(!this.showSubmit && e.target.value != ""){
-            this.showSubmit = true
-            this.toggleSubmitButton("on")
-        } else if (this.showSubmit && e.target.value === ""){
-            this.showSubmit = false
-            this.toggleSubmitButton("off")
-        }
-       
-
         this.setState({body: e.target.value})
+
+        if(e.target.value != this.oldBody){
+            console.log("no match")
+            this.toggleSubmitButton("on");
+        }
+
+        if(e.target.value === this.oldBody){
+            console.log("match")
+            this.toggleSubmitButton("off");
+        } else {
+            if(e.target.value != ""){
+            this.toggleSubmitButton("on")
+            } else if (e.target.value === ""){
+            this.toggleSubmitButton("off")
+            }
+        }
+
+    
     }
 
     handleSubmit(e){
         e.preventDefault();
         this.props.action(this.state);
-        this.setState({body: ""})
-        this.hideModal();
-        this.toggleSubmitButton("off");
-        this.showSubmit = false;
-        document.getElementById("text-prompt").textContent = "What's on your mind?"
+        this.props.history.push("/home")
+
+        //document.getElementById("post-close-button").click()
+
 
     }
 
-    hideModal(){
-       
-        const modal = document.getElementById("post-container");
-        modal.style.display="none"
-        
-        this.setState({state: this.state});
-        const text = document.getElementById("post-text");
-
-        if(text.value != ""){
-            document.getElementById("text-prompt").textContent = text.value
-            this.toggleSubmitButton("on");
-            this.showSubmit = true;
-        }else{
-            this.toggleSubmitButton("off");
-            this.showSubmit = false;
-        }
-
-    }
 
     render(){
         const { formType, submitType, currentUser} = this.props
-        
-        
-        return(
+        const display = this.props.post != undefined ? ( 
             <div id="post-modal-contianer">
                 <div id="post-modal">
-                    <button id="post-close-button" onClick={this.hideModal}></button>
+                    <Link to="/home" id="post-close-button" onClick={this.hideModal}></Link>
                     <div id="post-header-container">
                         <h3 id="post-modal-header">{formType}</h3>
                     </div>
@@ -90,19 +80,19 @@ class PostForm extends React.Component{
                         <div id="small-post-image"></div>
                         <div id="post-username">{currentUser.firstName} {currentUser.lastName}</div>
                     </div>
-                    
-                   
                     <form id="post-modal-main" onSubmit={this.handleSubmit}>
                         <textarea id="post-text" type="text" placeholder="What's on your mind?" value={this.state.body} onChange={this.updateBody}/>
                         <button id="post-submit-button">{submitType}</button>
-                    </form>
-                    
-                    
+                    </form>              
                 </div>
-                
             </div>
+        ) : this.props.history.push("/home")
+        return(
+            <>
+            {display}
+            </>
         )
     }
 }
 
-export default PostForm
+export default withRouter(EditPostModal)

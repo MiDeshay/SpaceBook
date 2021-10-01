@@ -18,6 +18,7 @@ class Profile extends React.Component{
 
     revealCreatePost(){
        const createPost = document.getElementById('post-container');
+       document.getElementById("post-modal-contianer").style.display = "block";
        createPost.style.display = "block"
     }
 
@@ -39,6 +40,7 @@ class Profile extends React.Component{
                 <div id="post-container">
                     <CreatePostContainer/>
                 </div>
+                
                 
                 <PostIndexContainer/>
                
