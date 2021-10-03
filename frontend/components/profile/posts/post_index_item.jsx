@@ -7,12 +7,40 @@ class PostIndexItem extends React.Component {
         super(props);
         
         this.state = {
-            firstRender: true
         }
- 
+       
+        this.firstPass = true;
+        
         this.hideBody = this.hideBody.bind(this);
         this.revealBody = this.revealBody.bind(this);
+        this.showOptionsModal = this.showOptionsModal.bind(this);
+        this.formatDate = this.formatDate.bind(this)
+    }
+
+    componentDidMount(){
+        this.menu = document.getElementById(`options-dropdown${this.props.post.id}`);
+        const that = this;
+
+        document.addEventListener("click", (event) => { 
+        if(that.firstPass){
+            that.firstPass = false;
+        }else if(that.menu !== event.target){
+            that.menu.style.display = "none"; 
+        }
+        })
+
+    }
+
+    showOptionsModal(){
+        this.firstPass = true;
+       this.menu.style.display = "flex";
        
+    }
+
+    formatDate(){
+        const date = new Date (this.props.post.createdAt);
+        return date.toString().slice(0, 10);
+
     }
 
     
@@ -45,11 +73,10 @@ class PostIndexItem extends React.Component {
 
     //Otherwise, inserts body with classes small-text post-block-text (so even big posts are fully revealed).
     //Else just inserts body with single class post-block-text
-    const {post} = this.props;
-    const {firstRender} = this.state
-
+    const {post, users} = this.props;
+    const {firstRender} = this.state;
    
-
+    this.formatDate()
     let textBody = '';
 
     if(firstRender){
@@ -73,7 +100,14 @@ class PostIndexItem extends React.Component {
         <div className="post-block">
             <div className="post-block-header">
                 <div className="post-profile-image"></div>
-                <div className="post-username"></div>
+                <div className="post-info">
+                    <div className="post-author">
+                        {`${users[post.posterId].firstName} ${users[post.posterId].lastName}`}
+                    </div>
+                    <div className="post-date">
+                        {this.formatDate()}
+                    </div>
+                </div>
                 <button onClick={this.showOptionsModal} className="post-options-button"></button>
             </div>
             <div className="post-block-main">

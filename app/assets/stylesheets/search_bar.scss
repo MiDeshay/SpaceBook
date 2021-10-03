@@ -1,0 +1,82 @@
+#nav-search-bar{
+    height: 40px;
+    width: 196px;
+    margin-left: 60px;
+    margin-top: 10px;
+    border-radius: 20px;
+    font-size: 16px;
+    padding-left: 20px;
+    border: none;
+    background-color: #f0f2f5;
+    outline: none;
+    margin-right: 42px;
+}
+
+#search-back-arrow{
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    background-image: image-url('betterArrow.png');
+    background-size: 42px;
+    height: 42px;
+    width: 42px;
+    border: none;
+    background-color: transparent;
+    background-repeat: no-repeat;
+}
+
+#search-back-arrow:hover{
+    filter: brightness(95%);
+}
+
+#search-bar-contents{
+    position: relative;
+}
+
+#search-logo-1{
+    position: absolute;
+    z-index: 6;
+    left: 11px;
+    top: 11px;
+    background-image: image-url('realSearch.png');
+    background-size: 18px;
+    height: 18px;
+    width: 18px;
+    border: none;
+    background-color: transparent;
+    background-repeat: no-repeat;
+}
+
+#home-search-container{
+    display: flex;
+    margin-left: 10px;
+    margin-top: 8px;
+}
+
+#search-bar-dropdown{
+    display: none;
+    z-index: 8;
+    position: relative;
+    right: 50px;
+    bottom: 50px;
+    width: 295px;
+    min-height: 60px;
+    background-color: #fff;
+    border-radius: 6px;
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+
+}
+
+#search-and-results{
+    z-index: inherit;
+}
+
+#search-button{
+    position: relative;
+    border: none;
+    height: 40px;
+    width: 40px;
+    left: 10px;
+    border-radius: 20px;
+}

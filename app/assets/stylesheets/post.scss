@@ -1,5 +1,12 @@
+#all-posts-container{
+    width: fit-content;
+    margin: 0 auto;
+    margin-top: 20px;
+}
 #all-posts{
     padding: 0;
+    width: 565px;
+    
 }
 
 .post-block{
@@ -26,19 +33,25 @@
 
 
 .post-options-button{
-    width: 30px;
-    height: 30px;
+    background-image: image-url('3dots.png');
+    background-size: 40px;
+    width: 40px;
+    height: 40px;
     position: relative;
-    left: 159px;
-    border-radius: 20px;
+    left: 150px;
     border: none;
-    background-color: cyan;
+    background-color: transparent;
+    background-repeat: no-repeat;
 }
 
-.post-username{
+.post-options-button:hover{
+    background-image: image-url('3dotsSelected.png');
+}
+
+.post-info{
     width: 300px;
     height: 40px;
-    background-color: purple;
+    background-color: #fff;
 }
 .post-profile-image{
     height: 40px;
@@ -162,3 +175,259 @@
     display: none;
 }
 
+.all-post-contents{
+    position: relative;
+    width: 561px;
+    margin: auto;
+}
+
+
+.post-options-dropdown{
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    right: 12px;
+    bottom: 65px;
+    border-radius: 8px;
+    z-index: 5;
+    height: 125px;
+    width: 344px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .3);
+}
+
+.post-options-dropdown-button{
+    height: 40px;
+    width: 320px;
+    text-align: left;
+    font-size: 20px;
+    padding-left: 50px;
+    position: relative;
+    left: 12px;
+    background: #fff;
+    border: none;
+    border-radius: 6px;
+}
+
+.post-options-dropdown-button:hover{
+    background: #F2F3F5;
+}
+
+
+.options-buttons-container{
+    margin-top: 12px;
+}
+
+.options-style-line{
+    width: 300px;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #dddfe2;
+}
+
+.single-option-button{
+    position: relative;
+}
+
+.edit-symbol{
+   position: absolute;
+    z-index: 6;
+    left: 19px;
+    top: 8px;
+    background-image: image-url('editSymbol.png');
+    background-size: 30px;
+    height: 30px;
+    width: 30px;
+    border: none;
+    background-color: transparent;
+    background-repeat: no-repeat;
+}
+
+.delete-symbol{
+    position: absolute;
+    z-index: 6;
+    left: 22px;
+    top: 5px;
+    background-image: image-url('trashcanSymbol.png');
+    background-size: 24px;
+    height: 35px;
+    width: 30px;
+    border: none;
+    background-color: transparent;
+    background-repeat: no-repeat;
+}
+
+.post-date{
+    color: #7a7a7a;
+    font-weight: 500;
+    font-size: 14px;
+}
+li{
+    list-style-type: none;
+}
+
+#post-bar{
+    height: 95px;
+    width: 561px;
+    background-color: #fff;
+    border: none;
+    border-radius: 8px;
+    margin: auto;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .16), 0 8px 16px rgba(0, 0, 0, 0);
+    
+}
+
+#post-bar-main{
+    border-bottom: 1px solid #ced0d4;
+    position: relative;
+    top: 15px;
+    width: 527px;
+    height: 56px;
+    margin: auto;
+}
+
+#post-image{
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+    background: orange;
+}
+
+#text-prompt{
+    font-size: 18px;
+    position: absolute;
+    top: 9px;
+    width: 455px;
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    color: #66686c;
+    font-weight: 100;
+    left: 13px;
+}
+
+
+#post-text-button{
+    width: 478px;
+    height: 40px;
+    background-color: #f0f2f5;
+    position: absolute;
+    right: 0px;
+    border-radius: 20px;
+    top: 0px;
+}
+
+#post-text-button:hover{
+    background-color: #e6e7e9;
+}
+
+#post-container{
+    display: none;
+}
+
+#post-modal-contianer{
+    display: block;
+    position: fixed;
+    background-color: rgba(255, 255, 255, .8);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+}
+
+#post-header-container{
+    padding-bottom: 18px;
+    position: relative;
+    top: 20px;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+#post-image-container{
+    display: flex;
+    margin-top: 33px;
+    margin-bottom: 6px;
+}
+
+#small-post-image{
+    height: 35px;
+    width: 35px;
+    border-radius: 20px;
+    background: orange;
+    margin-left: 16px;
+}
+
+#post-modal-header{
+    margin: 0 auto;
+    width: 200px;
+    text-align: center;
+    font-size: 21px;
+}
+
+#post-modal{
+    width: 500px;
+    position: relative;
+    height: 330px;
+    margin: auto;
+    margin-top: 120px;
+    background: #fff;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+}
+
+#post-text{
+    height: 115px;
+    padding: 10px;
+    padding-left: 18px;
+    outline: none;
+    resize: none;
+    font-size: 25px;
+    overflow: auto;
+    font-weight: lighter;
+    font-family: SANS-SERIF;
+    border: none;
+}
+
+#post-submit-button{
+    width: 465px;
+    height: 40px;
+    margin: auto;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 16px;
+    position: relative;
+    background: #1877f2;
+    top: 24px;
+    pointer-events: auto;
+}
+
+#post-close-button{
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    z-index: 4;
+    background-image: image-url('postXDefault.png');
+    background-size: 30px;
+    height: 30px;
+    width: 30px;
+    border: none;
+    background-color: transparent;
+    background-repeat: no-repeat;
+}
+
+#post-close-button:hover{
+    background-image: image-url('theRealXSelected.png');
+}
+
+
+#post-username{
+    margin-left: 10px;
+}
+
+#post-modal-main{
+    display: flex;
+    flex-direction: column;
+}

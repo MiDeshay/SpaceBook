@@ -38,15 +38,29 @@ class PostIndex extends React.Component {
         this.props.posts.map((post) => posts.unshift(post))
         
         return (
-            <div>
+            <div id="all-posts-container">
                  <ul id="all-posts">
                     
                 {posts.map((post, i) => 
-                <li key={i} id={`post${post.id}`}>
-                    <PostIndexItem Myid={i} post={post} />
+                <li key={i} className="all-post-contents" id={`post${post.id}`}>
+
+                   
+                    <div className="post-options-dropdown" id={`options-dropdown${post.id}`}>
+                        <div className="options-buttons-container">
+                            <div className="single-option-button">
+                                <div className="symbol edit-symbol"></div>
+                                <Link to={`/user/:userId/edit_post/${post.id}`}><button className="post-options-dropdown-button post-options-edit">Edit Post</button></Link>
+                            </div>
+                            <div className="options-style-line"></div>
+                            <div className="single-option-button">
+                                <div className="symbol delete-symbol"></div>
+                                <button className="post-options-dropdown-button post-options-delete" id={`${post.id}1`} onClick={() => this.handleDeletePost(post.id)}>Delete Post</button>
+                            </div>
+
+                        </div>
+                    </div>
     
-                    <button id={`${post.id}1`} onClick={() => this.handleDeletePost(post.id)}>Delete</button>
-                    <Link to={`/home/edit_post/${post.id}`}>Edit</Link>
+                    <PostIndexItem users={this.props.users} Myid={i} post={post} />
                     <br/>
                 </li>
                 

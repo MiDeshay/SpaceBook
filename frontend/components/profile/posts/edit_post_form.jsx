@@ -59,7 +59,7 @@ class EditPostModal extends React.Component{
     handleSubmit(e){
         e.preventDefault();
         this.props.action(this.state);
-        this.props.history.push("/home")
+        this.props.history.push("/user/:userId")
 
         //document.getElementById("post-close-button").click()
 
@@ -72,7 +72,7 @@ class EditPostModal extends React.Component{
         const display = this.props.post != undefined ? ( 
             <div id="post-modal-contianer">
                 <div id="post-modal">
-                    <Link to="/home" id="post-close-button" onClick={this.hideModal}></Link>
+                    <Link to="/user/:userId" id="post-close-button" onClick={this.hideModal}></Link>
                     <div id="post-header-container">
                         <h3 id="post-modal-header">{formType}</h3>
                     </div>
@@ -86,7 +86,7 @@ class EditPostModal extends React.Component{
                     </form>              
                 </div>
             </div>
-        ) : this.props.history.push("/home")
+        ) : this.props.history.push("/user/:userId")
         return(
             <>
             {display}
