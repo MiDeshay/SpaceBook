@@ -5,10 +5,13 @@ import EditPostModal from './edit_post_form';
 
 
 class EditPostForm extends React.Component {
+  
 
   componentDidMount(){
     fetchPost(this.props.match.params.postId)
   }
+
+ 
 
   render() {
     
@@ -31,7 +34,8 @@ const mSTP = (state, ownProps) => ({
   formType: 'Edit Post',
   submitType: "Save",
   currentUser: state.entities.users[state.session.id],
-  i: ownProps.i
+  i: ownProps.i, 
+  prevPath: state.path
 })
 
 const mDTP = dispatch => ({

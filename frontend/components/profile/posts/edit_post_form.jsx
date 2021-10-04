@@ -13,6 +13,7 @@ class EditPostModal extends React.Component{
         }
         this.handleSubmit = this.handleSubmit.bind(this)
         this.updateBody = this.updateBody.bind(this)
+        this.hideModal = this.hideModal.bind(this)
         
     }
 
@@ -20,6 +21,8 @@ class EditPostModal extends React.Component{
         
        this.toggleSubmitButton("off"); 
     }
+
+
 
     toggleSubmitButton(action){
         const button = document.getElementById("post-submit-button");
@@ -61,18 +64,20 @@ class EditPostModal extends React.Component{
         this.props.action(this.state);
         this.props.history.goBack()
 
-        
+    }
 
-
+    hideModal(){
+        this.props.history.goBack()
     }
 
 
     render(){
+
         const { formType, submitType, currentUser} = this.props
         const display = this.props.post != undefined ? ( 
             <div id="post-modal-contianer">
                 <div id="post-modal">
-                    <Link to="/user/:userId" id="post-close-button" onClick={this.hideModal}></Link>
+                    <button to="/user/:userId" id="post-close-button" onClick={this.hideModal}></button>
                     <div id="post-header-container">
                         <h3 id="post-modal-header">{formType}</h3>
                     </div>

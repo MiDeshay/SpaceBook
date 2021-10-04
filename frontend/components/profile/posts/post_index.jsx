@@ -1,6 +1,7 @@
 import React from 'react';
 import PostIndexItem from './post_index_item';
 import { Link } from 'react-router-dom';
+import { withRouter, useLocation } from 'react-router-dom';
 
 class PostIndex extends React.Component {
     constructor(props){
@@ -49,7 +50,7 @@ class PostIndex extends React.Component {
                         <div className="options-buttons-container">
                             <div className="single-option-button">
                                 <div className="symbol edit-symbol"></div>
-                                <Link to={`/user/:userId/edit_post/${post.id}`}><button className="post-options-dropdown-button post-options-edit">Edit Post</button></Link>
+                                <Link to={`${this.props.location.pathname}/edit_post/${post.id}`}><button className="post-options-dropdown-button post-options-edit">Edit Post</button></Link>
                             </div>
                             <div className="options-style-line"></div>
                             <div className="single-option-button">
@@ -76,4 +77,4 @@ class PostIndex extends React.Component {
     
 }
 
-export default PostIndex
+export default withRouter(PostIndex)

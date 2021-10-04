@@ -4,6 +4,7 @@ import PostIndex from './post_index';
 
 
 
+
 const mSTP = (state) => ({
   users: state.entities.users,
   posts: Object.values(state.entities.posts),
@@ -12,7 +13,7 @@ const mSTP = (state) => ({
 const mDTP = (dispatch) => ({
   fetchPosts: () => dispatch(fetchPosts()),
   updatePost: (post) => dispatch(updatePost(post)),
-  deletePost: (postId) => dispatch(deletePost(postId))
+  deletePost: (postId) => dispatch(deletePost(postId)),
 
 })
 
