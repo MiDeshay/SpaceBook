@@ -18,6 +18,8 @@ class Post < ApplicationRecord
 
     has_many :likes, as: :likeable
 
+    has_one_attached :photo
+
     belongs_to :poster,
     foreign_key: :poster_id,
     class_name: :User

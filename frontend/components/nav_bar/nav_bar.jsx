@@ -44,32 +44,36 @@ class NavBar extends React.Component{
             const navPics = document.getElementsByClassName("nav-pic")
             const profileButton = document.getElementById("nav-profile");
             const mainButtons = document.getElementById("main-nav-buttons")
-            const gamePic = document.getElementById("game-nav-pic")
-      
+            const gamePic = document.getElementById("game-nav-pic");
+        
+            
+                
+            for(let i = 0; i < navButtons.length; i++){
+              if(width < 670){
+                navButtons[i].style.width = '70px';
+                navPics[i].style.left = "20px";
+                
+    
+              } else {
+                navButtons[i].style.width = '100px';
+                navPics[i].style.left = "38px";
+                
+              }
+            }
+
               if(width < 670){
                 profileButton.style.display = "none";
                 gamePic.style.left = "15px";
-                mainButtons.style.left = "55%"
+                mainButtons.style.left = "55%";
+                
               }else{
-                gamePic.style.left = "33px";
+                gamePic.style.left = "30px";
                   profileButton.style.display = "flex";
-                  mainButtons.style.left = "50%"
+                  mainButtons.style.left = "50%";
               }
       
           
       
-              for(let i = 0; i < navButtons.length; i++){
-                if(width < 670){
-                  navButtons[i].style.width = '70px';
-                  navPics[i].style.left = "20px";
-                  
-      
-                } else {
-                  navButtons[i].style.width = '100px';
-                  navPics[i].style.left = "38px";
-                  
-                }
-              }
             }
     }
 
@@ -81,14 +85,13 @@ class NavBar extends React.Component{
     }
 
     render(){
-        
         const display = this.props.currentUser ? (
            
         <div id="main-nav-bar">
         <div id="nav-all">
 
         <div id="home-search-container">
-            <div id="home-logo"><div id="the-s">S</div></div>
+            <Link to="/newsfeed" id="home-logo"><div id="the-s">S</div></Link>
             <SearchBarContainer/>
         </div>
 

@@ -94,7 +94,9 @@ class PostIndexItem extends React.Component {
             textBody = (<div className="post-block-text">{post.body}</div>)
         }
     }
-    
+
+
+    const image = post.photoUrl ? <img id="post-picture" src={post.photoUrl}></img> : <></>
 
     return (
         <div className="post-block">
@@ -112,6 +114,8 @@ class PostIndexItem extends React.Component {
             </div>
             <div className="post-block-main">
                 {textBody}
+                {image}
+                
             </div>
             <div className="post-block-footer">
                 <div className="post-block-buttons">

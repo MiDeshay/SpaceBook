@@ -11,6 +11,41 @@ class Profile extends React.Component{
         this.revealCreatePost = this.revealCreatePost.bind(this)
     }
 
+    componentDidMount(){
+        this.resizePage()
+        window.addEventListener('resize', () => {
+            this.resizePage()
+           
+        })
+    }
+
+    resizePage(){
+        const width = window.innerWidth
+
+        const sideBar = document.getElementById("profile-side-content");
+        const lowerProfileHeader = document.getElementById('lower-profile-header');
+        const editButton = document.getElementById("edit-profile-button");
+        const editSymbol = document.getElementById("edit-profile-symbol")
+
+        if(width < 985){
+            sideBar.style.display = "none"
+        }else{
+            sideBar.style.display = "block"
+        }
+    
+
+        if(width < 740){
+            lowerProfileHeader.style.width = "500px"
+            editButton.style.left ="35px"
+            editSymbol.style.left = "50px";
+        } else{
+            lowerProfileHeader.style.width = "720px"
+            editButton.style.left ="253px";
+            editSymbol.style.left = "267px";
+            
+        }
+    }
+
     handleClick(){
         this.props.logout()
     }
@@ -53,7 +88,37 @@ class Profile extends React.Component{
 
             <div id="profile-main-content">
                 <div id="profile-side-content">
-                    <div id="placeholder"></div>
+                    <div id="Intro"  className="profile-side-panel">
+                        <div className="panel-title" id="intro-title info-detail">Intro</div>
+                        <div id='school-div' className="info-div-container">
+                            <div className="info-pic" id="school-logo"></div>
+                            <div className="info-text-line">
+                                <div className="info-text-first">Went to</div>
+                                <div className="info-text-second" id="school-name">{`${this.props.currentUser.school}`}</div>
+                            </div>
+                        </div>
+                        <div id='location-div' className="info-div-container">
+                            <div className="info-pic" id="location-logo"></div>
+                            <div className="info-text-line">
+                                <div className="info-text-first">Lives in</div>
+                                <div  className="info-text-second" id="location-name">{`${this.props.currentUser.location}`}</div>
+                            </div>
+                        </div>
+                        <div id='from-div' className="info-div-container">
+                            <div className="info-pic" id="from-logo"></div>
+                            <div className="info-text-line">
+                                <div className="info-text-first">From</div>
+                                <div className="info-text-second" id="from-name">{`${this.props.currentUser.birthplace}`}</div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div id="Photos"  className="profile-side-panel">
+                         <div className="panel-title" id="photos-title">Photos</div>
+                    </div>
+                    <div id="Friends"  className="profile-side-panel">
+                        <div className="panel-title" id="friends-title">Friends</div>
+                    </div>
                 </div>
            
            

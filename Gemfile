@@ -29,6 +29,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'binding_of_caller'
 gem 'pry-rails'
 gem 'jquery-rails'
+gem "aws-sdk-s3"
 
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'

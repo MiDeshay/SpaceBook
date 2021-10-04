@@ -59,9 +59,9 @@ class EditPostModal extends React.Component{
     handleSubmit(e){
         e.preventDefault();
         this.props.action(this.state);
-        this.props.history.push("/user/:userId")
+        this.props.history.goBack()
 
-        //document.getElementById("post-close-button").click()
+        
 
 
     }
@@ -86,7 +86,7 @@ class EditPostModal extends React.Component{
                     </form>              
                 </div>
             </div>
-        ) : this.props.history.push("/user/:userId")
+        ) : this.props.history.goBack()
         return(
             <>
             {display}

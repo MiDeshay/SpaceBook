@@ -58,7 +58,8 @@ class User < ApplicationRecord
     through: :friendships,
     source: :friends
 
-
+    has_many_attached :images
+    
     has_one :news_feed
 
 
