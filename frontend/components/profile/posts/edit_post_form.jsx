@@ -87,6 +87,7 @@ class EditPostModal extends React.Component{
                     </div>
                     <form id="post-modal-main" onSubmit={this.handleSubmit}>
                         <textarea id="post-text" type="text" placeholder="What's on your mind?" value={this.state.body} onChange={this.updateBody}/>
+                        <input type="file"/>
                         <button id="post-submit-button">{submitType}</button>
                     </form>              
                 </div>

@@ -368,7 +368,7 @@ li{
 #post-modal{
     width: 500px;
     position: relative;
-    height: 330px;
+    min-height: 330px;
     margin: auto;
     margin-top: 120px;
     background: #fff;
@@ -391,7 +391,7 @@ li{
 }
 
 #post-submit-button{
-    width: 465px;
+   width: 465px;
     height: 40px;
     margin: auto;
     border: none;
@@ -400,7 +400,8 @@ li{
     font-size: 16px;
     position: relative;
     background: #1877f2;
-    top: 24px;
+    margin-top: 20px;
+    top: -10px;
     pointer-events: auto;
 }
 
@@ -436,5 +437,39 @@ li{
     width: 561px;
     position: relative;
     margin-top: 15px;
-    right: 11px;
+    right: 12px;
+}
+
+#post-image-preview{
+    max-height: 300px;
+    max-width: 200px;
+    margin: auto;
+    margin-top: 0px;
+    margin-bottom: 15px;
+}
+
+
+#hidden-file-input{
+    display: none;
+}
+
+.picture-button{
+    width: 465px;
+    height: 40px;
+    font-size: 16px;
+    margin: auto;
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    background-color: #42b72a;
+    
+}
+
+
+#remove-picture-button{
+    display: none;
+    height: 40px;
+    margin-top: 10px;
+    width: 465px;
+    background-color: #ed3e36;
 }

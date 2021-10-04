@@ -6,7 +6,13 @@ class PostForm extends React.Component{
         super(props)
         this.showSubmit = false
 
-        this.state = this.props.post
+        this.state = {
+            body: this.props.post.body,
+            poster_id: this.props.post.poster_id,
+            photoFile: null,
+            photoUrl: null
+        }
+
         this.handleSubmit = this.handleSubmit.bind(this)
         this.updateBody = this.updateBody.bind(this)
         this.hideModal = this.hideModal.bind(this)
@@ -47,12 +53,27 @@ class PostForm extends React.Component{
 
     handleSubmit(e){
         e.preventDefault();
-        this.props.action(this.state);
-        this.setState({body: ""})
+        const formData = new FormData();
+        formData.append("post[body]", this.state.body);
+        formData.append("post[poster_id]", this.state.poster_id);
+        if(this.state.photoFile){
+
+            formData.append("post[photo]", this.state.photoFile);
+        }
+       
+
+        this.props.action(formData)
+
+        this.setState({body: "", photoFile: null, photoUrl: null})
         this.hideModal();
         this.toggleSubmitButton("off");
         this.showSubmit = false;
         document.getElementById("text-prompt").textContent = "What's on your mind?"
+        document.getElementById("hidden-file-input").value = ""
+        document.getElementById("post-modal").style.marginTop = "120px";
+        document.getElementById("remove-picture-button").style.display = "none";
+
+        
 
     }
 
@@ -75,10 +96,41 @@ class PostForm extends React.Component{
 
     }
 
+    handleFile(e){
+        const removePictureButton = document.getElementById("remove-picture-button");
+        const addPictureButton = document.getElementById("add-picture-button");
+        const file = e.currentTarget.files[0];
+        const fileReader = new FileReader()
+
+        if(file){
+            fileReader.readAsDataURL(file)
+            removePictureButton.style.display = "block";
+            document.getElementById("post-modal").style.marginTop = "75px";
+        }
+        
+        fileReader.onloadend= () => {
+            this.setState({photoFile: file, photoUrl: fileReader.result})
+        }
+        
+        
+    }
+
+    removePreview(e){
+        e.preventDefault()
+        document.getElementById("hidden-file-input").value = ""
+        document.getElementById("post-modal").style.marginTop = "120px";
+        document.getElementById("remove-picture-button").style.display = "none";
+
+        this.setState({photoFile: null, photoUrl: null})
+
+    }
+
     render(){
         const { formType, submitType, currentUser} = this.props
+        const preview = this.state.photoUrl ? (<>
+        <img id="post-image-preview" src={this.state.photoUrl}/> 
         
-        
+        </>): null
         return(
             <div id="post-modal-contianer">
                 <div id="post-modal">
@@ -94,6 +146,10 @@ class PostForm extends React.Component{
                    
                     <form id="post-modal-main" onSubmit={this.handleSubmit}>
                         <textarea id="post-text" type="text" placeholder="What's on your mind?" value={this.state.body} onChange={this.updateBody}/>
+                        {preview}
+                        <input id="hidden-file-input" type="file" onChange={this.handleFile.bind(this)}/>
+                        <input type="button" className="picture-button" id="add-picture-button" value="Add Picture" onClick={() => document.getElementById('hidden-file-input').click()} />
+                        <button typ="button" className="picture-button" id="remove-picture-button" onClick={this.removePreview.bind(this)}>Remove Picture</button>
                         <button id="post-submit-button">{submitType}</button>
                     </form>
                     
