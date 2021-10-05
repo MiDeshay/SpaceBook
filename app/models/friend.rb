@@ -20,7 +20,12 @@ class Friend < ApplicationRecord
     foreign_key: :user_id,
     class_name: :User
 
-    belongs_to :friends,
+
+    belongs_to :friendship,
     foreign_key: :friend_id,
     class_name: :User
+
+    has_many :posts_of_friends,
+    through: :friendship,
+    source: :posts
 end

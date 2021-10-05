@@ -112,7 +112,7 @@ class NavBar extends React.Component{
 
         <div id="profile-logout-container">
             <Link to={`/user/${this.props.currentUser.id}`} id="nav-profile"> 
-                <div id="nav-profile-image"></div>
+                <img src={this.props.currentUser.avatarUrl} id="nav-profile-image"></img>
                 <div id="nav-profile-name"> {`${this.props.currentUser.firstName}`}</div>
             </Link>
             <button onClick={this.showLogout} id="logout-dropdown-button"></button>
@@ -121,7 +121,7 @@ class NavBar extends React.Component{
                     <div id="mini-nav-profile">
                         <Link to={`/user/${this.props.currentUser.id}`} > 
                                 <div id="logout-text-container">
-                                    <div id="mini-nav-profile-image"></div>
+                                    <img src={this.props.currentUser.avatarUrl} id="mini-nav-profile-image"></img>
                                     <div id="mini-nav-logout-items">
                                         <div id="mini-nav-profile-name"> {`${this.props.currentUser.firstName} ${this.props.currentUser.lastName}`}</div>
                                         <div id="see-your-profile">See your profile</div>

@@ -7,7 +7,9 @@ class Profile extends React.Component{
     constructor(props){
         super(props);
         this.handleClick = this.handleClick.bind(this)
-
+        this.coverScrollDefault = 20
+        this.currentCoverScoll = 20
+        this.currentWindowScroll = 0
         this.revealCreatePost = this.revealCreatePost.bind(this)
     }
 
@@ -17,7 +19,17 @@ class Profile extends React.Component{
             this.resizePage()
            
         })
+
+        const coverPic = document.getElementById("cover-photo-box");
+        coverPic.scrollTop = 100
+
+        
     }
+
+        
+        
+       
+    
 
     resizePage(){
         const width = window.innerWidth
@@ -26,11 +38,13 @@ class Profile extends React.Component{
         const lowerProfileHeader = document.getElementById('lower-profile-header');
         const editButton = document.getElementById("edit-profile-button");
         const editSymbol = document.getElementById("edit-profile-symbol")
+        const coverPic = document.getElementById("cover-photo-box");
 
         if(width < 985){
             sideBar.style.display = "none"
         }else{
             sideBar.style.display = "block"
+            coverPic.scrollTop = 130
         }
     
 
@@ -64,8 +78,11 @@ class Profile extends React.Component{
             <div id="profile-header"> 
                 <div id="upper-profile-header">
                     <div id="cover">
-                        <div id="cover-photo"></div>
-                        <div id="cover-profile-picture"></div>
+                        <div className="scrollbar-hidden" id="cover-photo-box">
+
+                            <img src={this.props.currentUser.backgroundUrl} id="cover-photo"></img>
+                        </div>
+                        <img src={this.props.currentUser.avatarUrl}id="cover-profile-picture"></img>
                     </div>
                     <div id="upper-profile-text">
                         <div className="profile-text" id="upper-profile-name">{`${this.props.currentUser.firstName} ${this.props.currentUser.lastName}`}</div>
@@ -125,7 +142,7 @@ class Profile extends React.Component{
                 <div id="profile-posts-content">
                     <div id="post-bar">
                         <div id="post-bar-main">
-                            <div id="post-image"></div>
+                            <img src={this.props.currentUser.avatarUrl} id="post-image"></img>
                             <div onClick={this.revealCreatePost}id="post-text-button">
                             <div id="text-prompt"> What's on your mind?</div>
                                 

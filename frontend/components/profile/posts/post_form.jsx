@@ -56,8 +56,8 @@ class PostForm extends React.Component{
         const formData = new FormData();
         formData.append("post[body]", this.state.body);
         formData.append("post[poster_id]", this.state.poster_id);
+        
         if(this.state.photoFile){
-
             formData.append("post[photo]", this.state.photoFile);
         }
        
@@ -92,13 +92,13 @@ class PostForm extends React.Component{
         }else{
             this.toggleSubmitButton("off");
             this.showSubmit = false;
+            document.getElementById("text-prompt").textContent = "What's on your mind?"
         }
 
     }
 
     handleFile(e){
         const removePictureButton = document.getElementById("remove-picture-button");
-        const addPictureButton = document.getElementById("add-picture-button");
         const file = e.currentTarget.files[0];
         const fileReader = new FileReader()
 
@@ -127,10 +127,8 @@ class PostForm extends React.Component{
 
     render(){
         const { formType, submitType, currentUser} = this.props
-        const preview = this.state.photoUrl ? (<>
-        <img id="post-image-preview" src={this.state.photoUrl}/> 
+        const preview = this.state.photoUrl ? (<><img id="post-image-preview" src={this.state.photoUrl}/></>): null
         
-        </>): null
         return(
             <div id="post-modal-contianer">
                 <div id="post-modal">
@@ -139,7 +137,7 @@ class PostForm extends React.Component{
                         <h3 id="post-modal-header">{formType}</h3>
                     </div>
                     <div id="post-image-container">
-                        <div id="small-post-image"></div>
+                        <img src={this.props.currentUser.avatarUrl} id="small-post-image"></img>
                         <div id="post-username">{currentUser.firstName} {currentUser.lastName}</div>
                     </div>
                     
@@ -149,7 +147,7 @@ class PostForm extends React.Component{
                         {preview}
                         <input id="hidden-file-input" type="file" onChange={this.handleFile.bind(this)}/>
                         <input type="button" className="picture-button" id="add-picture-button" value="Add Picture" onClick={() => document.getElementById('hidden-file-input').click()} />
-                        <button typ="button" className="picture-button" id="remove-picture-button" onClick={this.removePreview.bind(this)}>Remove Picture</button>
+                        <button className="picture-button" id="remove-picture-button" onClick={this.removePreview.bind(this)}>Remove Picture</button>
                         <button id="post-submit-button">{submitType}</button>
                     </form>
                     

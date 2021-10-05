@@ -1,4 +1,4 @@
-@posts.each do |post|
+@all_posts.each do |post|
     json.set! post.id do
         json.extract! post, :id, :body, :poster_id, :created_at
         json.extract! post.poster, :first_name, :last_name

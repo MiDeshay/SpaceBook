@@ -10,6 +10,8 @@ class PostIndexItem extends React.Component {
         }
        
         this.firstPass = true;
+
+
         
         this.hideBody = this.hideBody.bind(this);
         this.revealBody = this.revealBody.bind(this);
@@ -73,11 +75,12 @@ class PostIndexItem extends React.Component {
 
     //Otherwise, inserts body with classes small-text post-block-text (so even big posts are fully revealed).
     //Else just inserts body with single class post-block-text
-    const {post, users} = this.props;
+    const {post} = this.props;
     const {firstRender} = this.state;
    
     this.formatDate()
     let textBody = '';
+
 
     if(firstRender){
         if(post.body.length > 530){
@@ -101,10 +104,10 @@ class PostIndexItem extends React.Component {
     return (
         <div className="post-block">
             <div className="post-block-header">
-                <div className="post-profile-image"></div>
+                <img src={post.avatarUrl} className="post-profile-image"></img>
                 <div className="post-info">
                     <div className="post-author">
-                        {`${users[post.posterId].firstName} ${users[post.posterId].lastName}`}
+                        {`${post.firstName} ${post.lastName}`}
                     </div>
                     <div className="post-date">
                         {this.formatDate()}
@@ -124,7 +127,7 @@ class PostIndexItem extends React.Component {
                     <button className="post-button">Share</button>
                 </div>
                 <div className="post-comment-block">
-                    <div className="post-comment-user"></div>
+                    <img src={this.props.currentUser.avatarUrl} className="post-comment-user"></img>
                     <input className="post-comment-input" placeholder="Write a comment..." type="text"/>
                 </div>
             </div>

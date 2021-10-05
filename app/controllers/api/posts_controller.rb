@@ -4,15 +4,6 @@ class Api::PostsController < ApplicationController
         render :index
     end
 
-    def show
-        @post = Post.find_by(id: params[:id])
-        if @post
-          render :show
-        else
-          rrender json: ['User not found'], status: 401
-        end
-    end
-
     def create
         @post = Post.new(post_params)
         if @post.save
@@ -46,6 +37,6 @@ class Api::PostsController < ApplicationController
     private
 
     def post_params
-        params.require(:post).permit(:body, :poster_id, :photo)
+        params.require(:post).permit(:body, :poster_id, :photo, :remove_photo)
       end
 end

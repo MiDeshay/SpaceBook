@@ -44,7 +44,7 @@ class PostIndex extends React.Component {
                     
                 {posts.map((post, i) => 
                 <li key={i} className="all-post-contents" id={`post${post.id}`}>
-
+                    {console.log(post)}
                    
                     <div className="post-options-dropdown" id={`options-dropdown${post.id}`}>
                         <div className="options-buttons-container">
@@ -61,7 +61,7 @@ class PostIndex extends React.Component {
                         </div>
                     </div>
     
-                    <PostIndexItem users={this.props.users} Myid={i} post={post} />
+                    <PostIndexItem currentUser={this.props.currentUser} post={post} />
                     <br/>
                 </li>
                 

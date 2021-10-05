@@ -16,7 +16,7 @@ class Newsfeed extends React.Component{
             <div id="profile-posts-content">
                     <div id="post-bar">
                         <div id="post-bar-main">
-                            <div id="post-image"></div>
+                            <img src={this.props.currentUser.avatarUrl} id="post-image"></img>
                             <div onClick={this.revealCreatePost}id="post-text-button">
                             <div id="text-prompt"> What's on your mind?</div>
                                 

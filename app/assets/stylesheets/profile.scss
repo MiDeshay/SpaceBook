@@ -27,6 +27,8 @@
 
 #cover{
     position: relative;
+    display: flex;
+    width: 100%;
 }
 
 #cover-profile-picture{
@@ -43,15 +45,23 @@
 }
 
 #cover-photo{
-    border: 1px solid green;
-    background: blue;
-    height: 335px;
-    width: 1090px;
+    width: 100%;
+    height: auto;
+}
+
+#cover-photo-box{
+    height: 350px;
+    width: 1050px;
+    overflow: scroll;
     border-top: none;
     margin: auto;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
 }
+
+.scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
 
 #upper-profile-text{
     position: relative;

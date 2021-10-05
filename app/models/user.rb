@@ -38,6 +38,9 @@ class User < ApplicationRecord
 
     has_many :comments
 
+    has_many :friends
+
+
     has_many :posts,
     foreign_key: :poster_id,
     class_name: :Post
@@ -50,13 +53,28 @@ class User < ApplicationRecord
     foreign_key: :requested_id,
     class_name: :FriendRequest
 
-    has_many :friendships,
-    foreign_key: :user_id,
-    class_name: :friends
+    has_many :friends_they_added,
+    through: :friends,
+    source: :friendship
 
-    has_many :friends,
-    through: :friendships,
-    source: :friends
+    has_many :added_friendships,
+    primary_key: :id,
+    foreign_key: :friend_id,
+    class_name: :Friend
+
+    has_many :friends_who_added_them,
+    through: :added_friendships,
+    source: :user
+
+
+    has_many :friends_posts,
+    through: :friends,
+    source: :posts_of_friends
+
+
+    has_one_attached :avatar
+
+    has_one_attached :background
 
     has_many_attached :images
     

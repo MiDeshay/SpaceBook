@@ -7,6 +7,7 @@ import PostIndex from './post_index';
 
 const mSTP = (state) => ({
   users: state.entities.users,
+  currentUser:  state.entities.users[state.session.id],
   posts: Object.values(state.entities.posts),
 })
 

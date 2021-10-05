@@ -6,22 +6,38 @@ class EditPostModal extends React.Component{
     constructor(props){
         super(props)
         this.showSubmit = false
-
-        this.state = this.props.post;
+        
+        this.state = this.props.post
+        
+        //prevent crash when refresshing while editing
         if(this.state){
+            this.oldState = this.state
             this.oldBody = this.state.body;
+            this.state["photoFile"] = null;
         }
+
         this.handleSubmit = this.handleSubmit.bind(this)
         this.updateBody = this.updateBody.bind(this)
         this.hideModal = this.hideModal.bind(this)
+        this.handleFile = this.handleFile.bind(this)
         
     }
 
     componentDidMount(){
         
-       this.toggleSubmitButton("off"); 
+       this.toggleSubmitButton("off");
+       if (this.state){
+           if(this.state.photoUrl){
+            document.getElementById("remove-picture-button").style.display = "block";
+            document.getElementById("post-modal").style.marginTop = "75px"
+           }
+       } 
     }
 
+    componentDidUpdate(){
+        console.log(this.state.photoUrl)
+
+    }
 
 
     toggleSubmitButton(action){
@@ -40,13 +56,11 @@ class EditPostModal extends React.Component{
     updateBody(e){
         this.setState({body: e.target.value})
 
-        if(e.target.value != this.oldBody){
-            console.log("no match")
+        if(e.target.value != this.oldState){
             this.toggleSubmitButton("on");
         }
 
-        if(e.target.value === this.oldBody){
-            console.log("match")
+        if(e.target.value === this.oldState){
             this.toggleSubmitButton("off");
         } else {
             if(e.target.value != ""){
@@ -61,7 +75,22 @@ class EditPostModal extends React.Component{
 
     handleSubmit(e){
         e.preventDefault();
-        this.props.action(this.state);
+        const formData = new FormData();
+        
+        formData.append("post[body]", this.state.body);
+        
+
+        if(this.state.photoUrl != this.oldState.photoUrl){
+            if(this.state.photoFile){
+                formData.append("post[photo]", this.state.photoFile);
+            } else{
+                formData.append("post[remove_photo]", true);
+            }
+        }
+
+        const packet = {id: this.state.id, payload: formData}
+
+        this.props.action(packet);
         this.props.history.goBack()
 
     }
@@ -70,10 +99,42 @@ class EditPostModal extends React.Component{
         this.props.history.goBack()
     }
 
+    handleFile(e){
+        const removePictureButton = document.getElementById("remove-picture-button");
+        const postModal = document.getElementById("post-modal")
+        const file = e.currentTarget.files[0];
+        const fileReader = new FileReader()
+
+        if(file){
+            fileReader.readAsDataURL(file)
+            removePictureButton.style.display = "block";
+            postModal.style.marginTop = "75px";
+            
+        }
+        
+        fileReader.onloadend= () => {
+            this.setState({photoFile: file, photoUrl: fileReader.result})
+        }
+        
+    }
+    removePreview(e){
+        e.preventDefault()
+        document.getElementById("hidden-file-input").value = ""
+        document.getElementById("post-modal").style.marginTop = "120px";
+        document.getElementById("remove-picture-button").style.display = "none";
+
+        this.setState({photoFile: null, photoUrl: null})
+
+    }
 
     render(){
 
         const { formType, submitType, currentUser} = this.props
+        let preview = null
+        if(this.state){
+            preview = this.state.photoUrl ? (<><img id="post-image-preview" src={this.state.photoUrl}/></>): null
+        }
+        
         const display = this.props.post != undefined ? ( 
             <div id="post-modal-contianer">
                 <div id="post-modal">
@@ -82,12 +143,15 @@ class EditPostModal extends React.Component{
                         <h3 id="post-modal-header">{formType}</h3>
                     </div>
                     <div id="post-image-container">
-                        <div id="small-post-image"></div>
+                    <img src={this.props.currentUser.avatarUrl} id="small-post-image"></img>
                         <div id="post-username">{currentUser.firstName} {currentUser.lastName}</div>
                     </div>
                     <form id="post-modal-main" onSubmit={this.handleSubmit}>
                         <textarea id="post-text" type="text" placeholder="What's on your mind?" value={this.state.body} onChange={this.updateBody}/>
-                        <input type="file"/>
+                        {preview}
+                        <input id="edit-hidden-file-input" type="file" onChange={this.handleFile}/>
+                        <input type="button" className="picture-button" id="add-picture-button" value="Change Picture" onClick={() => document.getElementById('edit-hidden-file-input').click()} />
+                        <button className="picture-button" id="remove-picture-button" onClick={this.removePreview.bind(this)}>Remove Picture</button>
                         <button id="post-submit-button">{submitType}</button>
                     </form>              
                 </div>

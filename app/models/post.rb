@@ -14,6 +14,14 @@
 #
 class Post < ApplicationRecord
     validates :body, :poster_id, presence: true
+
+    attr_accessor :remove_photo
+
+    after_save :purge_photo, if: :remove_photo
+    private def purge_photo
+        photo.purge
+    end
+
     has_many :comments
 
     has_many :likes, as: :likeable
