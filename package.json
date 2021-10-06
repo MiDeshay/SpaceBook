@@ -21,7 +21,7 @@
   },
   "scripts": {
     "start": "webpack -w --mode=development",
-    "postinstall": "webpack"
+    "postinstall": "concurrently \"webpack\" \"ng build\""
   },
   "engines": {
     "node": "12.5.0",
