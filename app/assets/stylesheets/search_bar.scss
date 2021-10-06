@@ -75,8 +75,13 @@
 #search-button{
     position: relative;
     border: none;
+    background-color: #EBEDF0;
     height: 40px;
     width: 40px;
     left: 10px;
     border-radius: 20px;
+}
+
+#search-button:hover{
+    filter: brightness(90%);
 }

@@ -13,7 +13,6 @@ class Profile extends React.Component{
         this.handleClick = this.handleClick.bind(this)
         this.revealCreatePost = this.revealCreatePost.bind(this)
 
-        console.log(this.props.currentUser.friends)
     }
 
     componentDidMount(){
@@ -163,11 +162,11 @@ class Profile extends React.Component{
                     <div id="Friends"  className="profile-side-panel">
                         <div className="panel-title" id="friends-title">Friends</div>
                         {
-                            this.props.currentUser.friends.map((friend) => 
-                            <>
+                            this.props.currentUser.friends.map((friend, i) => 
+                            <div key={i}>
                             <li>{`${friend.firstName} ${friend.lastName}`}</li>
                             <br/>
-                            </>
+                            </div>
                             )
                         }
                     </div>

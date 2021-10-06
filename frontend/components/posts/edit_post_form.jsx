@@ -8,8 +8,9 @@ class EditPostModal extends React.Component{
         this.showSubmit = false
         
         this.state = this.props.post
+        this.prevFile = null
         
-        //prevent crash when refresshing while editing
+        //prevent crash when refreshing while editing
         if(this.state){
             this.oldState = this.state
             this.oldBody = this.state.body;
@@ -34,11 +35,6 @@ class EditPostModal extends React.Component{
        } 
     }
 
-    componentDidUpdate(){
-        console.log(this.state.photoUrl)
-
-    }
-
 
     toggleSubmitButton(action){
         const button = document.getElementById("post-submit-button");
@@ -56,19 +52,25 @@ class EditPostModal extends React.Component{
     updateBody(e){
         this.setState({body: e.target.value})
 
-        if(e.target.value != this.oldState){
-            this.toggleSubmitButton("on");
-        }
+        
 
-        if(e.target.value === this.oldState){
-            this.toggleSubmitButton("off");
-        } else {
-            if(e.target.value != ""){
-            this.toggleSubmitButton("on")
-            } else if (e.target.value === ""){
-            this.toggleSubmitButton("off")
+            if(e.target.value != this.oldState){
+                this.toggleSubmitButton("on");
             }
-        }
+
+            if(e.target.value === this.oldState){
+                this.toggleSubmitButton("off");
+            } else {
+                if(e.target.value != ""){
+                this.toggleSubmitButton("on")
+                } else if (e.target.value === ""){
+                this.toggleSubmitButton("off")
+                }
+            }
+        
+          
+
+       
 
     
     }
@@ -108,8 +110,12 @@ class EditPostModal extends React.Component{
         if(file){
             fileReader.readAsDataURL(file)
             removePictureButton.style.display = "block";
-            postModal.style.marginTop = "75px";
+            postModal.style.marginTop = "70px";
+            if (this.state.body){
+                this.toggleSubmitButton("on");
+            }
             
+         
         }
         
         fileReader.onloadend= () => {
@@ -124,7 +130,10 @@ class EditPostModal extends React.Component{
         document.getElementById("remove-picture-button").style.display = "none";
 
         this.setState({photoFile: null, photoUrl: null})
-
+        if (this.state.body){
+            this.toggleSubmitButton("on");
+        }
+        
     }
 
     render(){
