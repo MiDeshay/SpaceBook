@@ -1,16 +1,19 @@
 import React from "react";
-import CreatePostContainer from "./posts/create_post_container";
-import PostIndexContainer from "./posts/post_index_container";
+import { withRouter} from 'react-router-dom';
+import EditProfileContainer from "../edit_profile/edit_profile_container";
+import CreatePostContainer from "../posts/create_post_container";
+import PostIndexContainer from "../posts/post_index_container";
 
 
 class Profile extends React.Component{
     constructor(props){
         super(props);
+
+        this.resizePage = this.resizePage.bind(this)
         this.handleClick = this.handleClick.bind(this)
-        this.coverScrollDefault = 20
-        this.currentCoverScoll = 20
-        this.currentWindowScroll = 0
         this.revealCreatePost = this.revealCreatePost.bind(this)
+
+        console.log(this.props.currentUser.friends)
     }
 
     componentDidMount(){
@@ -23,6 +26,19 @@ class Profile extends React.Component{
         const coverPic = document.getElementById("cover-photo-box");
         coverPic.scrollTop = 100
 
+
+        this.editContainer = document.getElementById("edit-profile-container");
+        this.editModal = document.getElementById("edit-profile-modal")
+        const that = this;
+       
+        document.addEventListener("click", (e)=> {
+          if(that.editContainer === e.target){
+                that.editContainer.style.display = "none"
+            }
+            
+
+        })
+
         
     }
 
@@ -32,6 +48,8 @@ class Profile extends React.Component{
     
 
     resizePage(){
+
+    
         const width = window.innerWidth
 
         const sideBar = document.getElementById("profile-side-content");
@@ -40,11 +58,13 @@ class Profile extends React.Component{
         const editSymbol = document.getElementById("edit-profile-symbol")
         const coverPic = document.getElementById("cover-photo-box");
 
+        if(sideBar){
         if(width < 985){
             sideBar.style.display = "none"
         }else{
             sideBar.style.display = "block"
             coverPic.scrollTop = 130
+        }
         }
     
 
@@ -58,6 +78,11 @@ class Profile extends React.Component{
             editSymbol.style.left = "267px";
             
         }
+     
+    }
+
+    handleShowEdit(){
+        document.getElementById("edit-profile-container").style.display ="block"
     }
 
     handleClick(){
@@ -71,9 +96,9 @@ class Profile extends React.Component{
     }
 
     render(){
-        return(
-            <div>
-              
+        const display = this.props.currentUser ? (
+
+            <div> 
 
             <div id="profile-header"> 
                 <div id="upper-profile-header">
@@ -97,7 +122,7 @@ class Profile extends React.Component{
                     </div>
                     <div id="edit-profile">
                         <div id="edit-profile-symbol"></div>
-                        <button id="edit-profile-button">Edit Profile</button>
+                        <button onClick={this.handleShowEdit.bind(this)} id="edit-profile-button">Edit Profile</button>
                     </div>
 
                 </div>
@@ -105,6 +130,7 @@ class Profile extends React.Component{
 
             <div id="profile-main-content">
                 <div id="profile-side-content">
+                    
                     <div id="Intro"  className="profile-side-panel">
                         <div className="panel-title" id="intro-title info-detail">Intro</div>
                         <div id='school-div' className="info-div-container">
@@ -130,11 +156,20 @@ class Profile extends React.Component{
                         </div>
 
                     </div>
+
                     <div id="Photos"  className="profile-side-panel">
                          <div className="panel-title" id="photos-title">Photos</div>
                     </div>
                     <div id="Friends"  className="profile-side-panel">
                         <div className="panel-title" id="friends-title">Friends</div>
+                        {
+                            this.props.currentUser.friends.map((friend) => 
+                            <>
+                            <li>{`${friend.firstName} ${friend.lastName}`}</li>
+                            <br/>
+                            </>
+                            )
+                        }
                     </div>
                 </div>
            
@@ -154,16 +189,27 @@ class Profile extends React.Component{
                     <div id="post-container">
                         <CreatePostContainer/>
                     </div>
-                    
+
+                    <div id="edit-profile-container">
+                        <EditProfileContainer/>
+                    </div>
                     
                     <PostIndexContainer/>
                 </div>
                
             </div>
         </div>
+        ) : this.props.history.goBack()
+
+        
+           
+        return(
+           <>
+            {display}
+           </>
          )
         }
     }
   
 
-export default Profile
+export default withRouter(Profile)

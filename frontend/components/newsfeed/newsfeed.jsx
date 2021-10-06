@@ -1,6 +1,7 @@
 import React from "react";
-import CreatePostContainer from "../profile/posts/create_post_container";
-import PostIndexContainer from "../profile/posts/post_index_container";
+import { withRouter} from 'react-router-dom';
+import CreatePostContainer from "../posts/create_post_container";
+import PostIndexContainer from "../posts/post_index_container";
 
 class Newsfeed extends React.Component{
 
@@ -11,8 +12,8 @@ class Newsfeed extends React.Component{
      }
 
     render(){
-        return(
-        <div id="newsfeed">
+        const display = this.props.currentUser ? (
+            <div id="newsfeed">
             <div id="profile-posts-content">
                     <div id="post-bar">
                         <div id="post-bar-main">
@@ -32,8 +33,15 @@ class Newsfeed extends React.Component{
                     
                     <PostIndexContainer/>
                 </div>
-        </div>)
+        </div>
+        ) : ("bang")
+
+        return(
+            <>
+            {display}
+            </>
+        )
     }
 }
 
-export default Newsfeed
+export default withRouter(Newsfeed)

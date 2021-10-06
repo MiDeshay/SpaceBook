@@ -1,9 +1,10 @@
 import { connect } from 'react-redux';
-import { deletePost, fetchPosts, updatePost } from "../../../actions/post_actions"
+import { deletePost, fetchPosts, updatePost } from '../../actions/post_actions';
+
 import PostIndex from './post_index';
 
 
-
+deletePost
 
 const mSTP = (state) => ({
   users: state.entities.users,

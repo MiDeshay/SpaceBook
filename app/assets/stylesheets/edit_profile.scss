@@ -1,0 +1,281 @@
+#edit-profile-container{
+    display: none;
+    position: fixed;
+    background-color: rgba(255, 255, 255, .8);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+}
+
+#edit-profile-modal{
+    background-color: #fff;
+    max-width: 700px;
+    position: relative;
+    height: 607px;
+    margin: auto;
+    margin-top: 64px;
+    background: #fff;
+    border: none;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+}
+
+#edit-profile-header{
+    text-align: center;
+    font-size: 30px;
+    border-bottom: 1px solid #dddfe2;
+    padding-bottom: 20px;
+    margin-bottom: 0px;
+}
+
+#edit-modal-close{
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    z-index: 4;
+    background-image: image-url('postXDefault.png');
+    background-size: 30px;
+    height: 30px;
+    width: 30px;
+    border: none;
+    background-color: transparent;
+    background-repeat: no-repeat;
+}
+
+#edit-modal-close:hover{
+    background-image: image-url('theRealXSelected.png');
+}
+
+.edit-profile-block{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.edit-preview{
+    margin: auto;
+    margin-bottom: 15px;
+}
+
+#profile-image-preview{
+    height: 150px;
+    width: 150px;
+    border-radius: 80px;
+    
+}
+
+#background-photo-preview{
+    height: 300px;
+    width: 500px;
+    border-radius: 10px;
+}
+
+#bio-preview{
+   color: #65676b
+}
+
+#close-profile-edit{
+    margin: 0 auto;
+    position: relative;
+    height: 40px;
+    color: #1877f2;
+    background-color: #e7f3ff;
+    left: 20px;
+    width: 655px;
+    font-size: 22px;
+    border-radius: 6px;
+    margin-bottom: 12px;
+    margin-top: 12px;
+    border: none;
+}
+
+#close-profile-edit:hover{
+    filter: brightness(90%);
+}
+
+#customize-intro{
+    margin-bottom: 20px;
+}
+
+#edit-location-logo{
+    background-image: image-url('livesAt.png');
+    background-size: 16px;
+    height: 52px;
+    width: 16px;
+    bottom: -6px;
+    left: 24px;
+}
+
+.profile-edit-header{
+    font-size: 19px;
+}
+.preview-header{
+    display: flex;
+    margin-bottom: 10px;
+    padding-left: 20px;
+}
+
+.profile-modal-edit-button{
+    position: absolute;
+    right: 10px;
+    top: 11px;
+    border: none;
+    padding: 10px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    font-size: 16px;
+    border-radius: 3px;
+}
+
+.hidden-file-input{
+    display: none;
+}
+
+#bio-change-field{
+    width: 225px;
+    margin: auto;
+}
+
+#bio-commit{
+    color: white;
+    background: #166fe5;
+    width: 100px;
+}
+
+#bio-textarea{
+    width: 225px;
+    height: 65px;
+    background: #f0f2f5;
+    padding-top: 0px;
+    font-size: 16px;
+    border-radius: 6px;
+    border: 1px solid #ced0d4;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+#bio-textarea:hover{
+    background: #ced0d4;
+}
+
+#bio-textarea:focus{
+    background: #fff;
+    border: 1px solid #166fe5;
+}
+
+.edit-intro{
+    margin-top: 8px;
+}
+
+#bio-buttons{
+    width: 183px;
+    margin: auto;
+}
+
+.bio-button{
+    height: 35px;
+    border: none;
+    font-size: 16px;
+    padding: 10px;
+    font-weight: 600;
+    background: #e4e6eb;
+    border-radius: 7px;
+    margin-right: 5px;
+}
+
+.bio-button:hover{
+    filter: brightness(90%);
+}
+
+#bio-change-field{
+    display: none;
+}
+
+#intro-modal-container{
+    display: none;
+    position: fixed;
+    background-color: rgba(255, 255, 255, .8);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+}
+
+#Intro-header{
+    text-align: center;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e5e7ec
+}
+
+#intro-modal{
+    pointer-events: auto;
+    background: #fff;
+    max-width: 700px;
+    height: 500px;
+    position: relative;
+    top: 100px;
+    margin: auto;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+}
+
+.intro-modal-headers{
+    font-size: 25px;
+    margin-bottom: 15px;
+    margin-top: 29px;
+}
+
+#intro-footer{
+    border-top: 1px solid #e5e7ec;
+    margin-top: 36px;
+}
+
+#intro-save{
+    position: absolute;
+    right: 10px;
+    width: 130px;
+    color: white;
+    bottom: 15px;
+    font-weight: 500;
+    background: #166fe5
+}
+
+#intro-save:hover{
+    filter: brightness(90%);
+}
+
+#intro-cancel{
+    bottom: 15px;
+    right: 149px;
+    font-weight: 500;
+    position: absolute;
+}
+
+#intro-cancel:hover{
+    filter: brightness(90%);
+}
+
+
+#intro-modal-content{
+    padding-left: 25px;
+}
+
+.intro-text-input{
+    height: 30px;
+    background-color: #f0f2f5;
+    border-radius: 15px;
+    padding: 5px;
+    padding-left: 25px;
+    margin-left: 40px;
+    width: 525px;
+    font-size: 20px;
+    border: none;
+}

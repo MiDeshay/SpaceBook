@@ -4,7 +4,7 @@ import LoginFormContainer from './session_form/login_form_container';
 import { Redirect } from 'react-router-dom/cjs/react-router-dom.min';
 import { AuthRoute, HomeAuthRoute } from '../util/route_util';
 import ProfileContainer from './profile/profile_container';
-import EditPostContainer from './profile/posts/edit_post_container';
+import EditPostContainer from './posts/edit_post_container';
 import NewsFeedContainer from './newsfeed/newsfeed_container';
 
 const App = (props) => (

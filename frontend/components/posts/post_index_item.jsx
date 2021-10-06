@@ -1,5 +1,4 @@
 import React from 'react';
-import PostModal from './post_options_modal';
 
 
 class PostIndexItem extends React.Component {
@@ -100,11 +99,12 @@ class PostIndexItem extends React.Component {
 
 
     const image = post.photoUrl ? <img id="post-picture" src={post.photoUrl}></img> : <></>
+    const avatar = post.posterId === this.props.currentUser.id ?  this.props.currentUser.avatarUrl : post.avatarUrl
 
     return (
         <div className="post-block">
             <div className="post-block-header">
-                <img src={post.avatarUrl} className="post-profile-image"></img>
+                <img src={avatar} className="post-profile-image"></img>
                 <div className="post-info">
                     <div className="post-author">
                         {`${post.firstName} ${post.lastName}`}

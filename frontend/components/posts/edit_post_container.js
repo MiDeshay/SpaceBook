@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { updatePost, fetchPost } from "../../../actions/post_actions";
+import { updatePost, fetchPost } from "../../actions/post_actions";
 import EditPostModal from './edit_post_form';
 
 

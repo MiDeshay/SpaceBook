@@ -56,7 +56,7 @@ class User < ApplicationRecord
     has_many :friends_they_added,
     through: :friends,
     source: :friendship
-
+    
     has_many :added_friendships,
     primary_key: :id,
     foreign_key: :friend_id,

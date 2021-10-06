@@ -1,7 +1,7 @@
 import React from 'react';
 import PostIndexItem from './post_index_item';
 import { Link } from 'react-router-dom';
-import { withRouter, useLocation } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 class PostIndex extends React.Component {
     constructor(props){
@@ -44,7 +44,6 @@ class PostIndex extends React.Component {
                     
                 {posts.map((post, i) => 
                 <li key={i} className="all-post-contents" id={`post${post.id}`}>
-                    {console.log(post)}
                    
                     <div className="post-options-dropdown" id={`options-dropdown${post.id}`}>
                         <div className="options-buttons-container">
