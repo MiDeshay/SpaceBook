@@ -1,3 +1,87 @@
 #newsfeed{
+    margin: 0 auto;
     margin-top: 20px;
 }
+
+#newsfeed-box{
+    width: 100%;
+}
+
+#all-newsfeed-content{
+    display: flex;
+    margin: auto;
+    max-width: 100%;
+}
+
+#newsfeed-left{
+    min-width: 300px;
+    margin-top: 20px;
+}
+
+#newsfeed-right{
+    min-width: 300px;
+    margin-top: 20px;
+}
+
+.left-profile-image{
+    position: relative;
+    height: 30px;
+    width: 30px;
+    margin-right: 12px;
+    margin-left: 6px;
+    top: 4px;
+    border-radius: 15px;
+    
+}
+
+.left-block{
+    position: relative;
+}
+
+.left-block-button{
+    background-color: #EBEDF0;
+}
+
+#left-style-line{
+    width: 95%;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #dddfe2;
+}
+
+.left-block-button{
+    width: 95%;
+    height: 42px;
+    border-radius: 8px;
+    background-color: Transparent;
+    background-repeat: no-repeat;
+    margin: auto;
+    border: none;
+    display: flex;
+    color: black;
+}
+
+.left-block-button:hover{
+    background-color: #dee0e4;
+}
+
+.left-block-text{
+    position: relative;
+    font-size: 18px;
+    top: 8px;
+    margin-right: 20px;
+}
+
+#friends-pic{
+    background-image: image-url('friends.png');
+    background-size: 100%;
+    border-radius: 0px;
+}
+
+#left-game-pic{
+    background-image: image-url('joystick.png');
+    background-size: 100%;
+    border-radius: 0px;
+}
+

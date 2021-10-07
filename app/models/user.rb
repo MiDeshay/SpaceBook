@@ -36,10 +36,11 @@ class User < ApplicationRecord
 
   after_initialize :ensure_session_token
 
-    has_many :comments
-
     has_many :friends
 
+    has_many :replies
+
+    has_many :likes
 
     has_many :posts,
     foreign_key: :poster_id,

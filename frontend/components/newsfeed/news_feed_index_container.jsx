@@ -1,19 +1,18 @@
 import { connect } from 'react-redux';
-import { deletePost, fetchPosts, updatePost } from '../../actions/post_actions';
+import { deletePost, fetchNewsfeed, updatePost } from '../../actions/post_actions';
+import NewsFeedIndex from './news_feed_index';
 import { createComment, fetchCommentsForPost, updateComment, deleteComment } from '../../actions/comment_actions';
-
-import PostIndex from './post_index';
 
 
 const mSTP = (state) => ({
   users: state.entities.users,
   currentUser:  state.entities.users[state.session.id],
+  comments: state.entities.comments,
   posts: Object.values(state.entities.posts),
-  comments: state.entities.comments
 })
 
 const mDTP = (dispatch) => ({
-  fetchPosts: () => dispatch(fetchPosts()),
+  fetchNewsFeed: () => dispatch(fetchNewsfeed()),
   updatePost: (post) => dispatch(updatePost(post)),
   deletePost: (postId) => dispatch(deletePost(postId)),
   fetchCommentsForPost: (postId) => dispatch(fetchCommentsForPost(postId)),
@@ -21,7 +20,6 @@ const mDTP = (dispatch) => ({
   updateComment: (comment) => dispatch(updateComment(comment)),
   deleteComment: (commentId) => dispatch(deleteComment(commentId)),
 
-
 })
 
-export default connect(mSTP, mDTP)(PostIndex)
+export default connect(mSTP, mDTP)(NewsFeedIndex)

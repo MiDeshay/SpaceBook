@@ -1,14 +1,4 @@
 class Api::FriendsController < ApplicationController
-  
-    def create
-        @friendship = Friend.new(friend_params)
-        if @friendship.save
-          render :show
-        else
-          render json: @friendship.errors.full_messages, status: 404
-       
-        end
-    end
 
     def index
         @friends = Friend.where(user_id: current_user.id)
@@ -17,15 +7,6 @@ class Api::FriendsController < ApplicationController
         else
           render json: ["You haven't added any friends yet!"], status: 401
         end
-    end
-
-    def show
-        @friends = Friend.where(user_id: params[:id])
-        if @friends
-            render :index
-          else
-            render json: ["This user hasn't added any friends yet!"], status: 401
-          end
     end
 
     def destroy

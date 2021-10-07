@@ -6,9 +6,9 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy]
     resources :friends, only: [:create, :index, :destroy, :show]
     resources :posts, except: [:edit, :new]
-    resources :comments, except: [:edit, :new]
+    resources :comments, only: [:create, :update, :destroy, :show]
     resources :likes, only: [:create, :destroy]
-    resources :friend_requests, only: [:create, :index, :destroy]
+    resources :friend_requests, only: [:create, :update, :destroy]
     resources :news_feeds, only: [:index]
   end
 end
