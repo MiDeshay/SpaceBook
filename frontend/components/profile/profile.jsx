@@ -9,6 +9,8 @@ class Profile extends React.Component{
     constructor(props){
         super(props);
 
+       
+
         this.resizePage = this.resizePage.bind(this)
         this.handleClick = this.handleClick.bind(this)
         this.revealCreatePost = this.revealCreatePost.bind(this)
@@ -37,6 +39,11 @@ class Profile extends React.Component{
             
 
         })
+
+        if (this.props.user != this.props.currentUser){
+            document.getElementById("edit-profile-button").display = "none"
+        }
+
 
         
     }
@@ -95,7 +102,7 @@ class Profile extends React.Component{
     }
 
     render(){
-        const display = this.props.currentUser ? (
+        const display = this.props.user ? (
 
             <div> 
 
@@ -104,13 +111,13 @@ class Profile extends React.Component{
                     <div id="cover">
                         <div className="scrollbar-hidden" id="cover-photo-box">
 
-                            <img src={this.props.currentUser.backgroundUrl} id="cover-photo"></img>
+                            <img src={this.props.user.backgroundUrl} id="cover-photo"></img>
                         </div>
-                        <img src={this.props.currentUser.avatarUrl}id="cover-profile-picture"></img>
+                        <img src={this.props.user.avatarUrl}id="cover-profile-picture"></img>
                     </div>
                     <div id="upper-profile-text">
-                        <div className="profile-text" id="upper-profile-name">{`${this.props.currentUser.firstName} ${this.props.currentUser.lastName}`}</div>
-                        <div className="profile-text" id="upper-profile-bio">{`${this.props.currentUser.bio}`}</div>
+                        <div className="profile-text" id="upper-profile-name">{`${this.props.user.firstName} ${this.props.user.lastName}`}</div>
+                        <div className="profile-text" id="upper-profile-bio">{`${this.props.user.bio}`}</div>
                     </div>
                 </div>
                 <div id="lower-profile-header">
@@ -136,21 +143,21 @@ class Profile extends React.Component{
                             <div className="info-pic" id="school-logo"></div>
                             <div className="info-text-line">
                                 <div className="info-text-first">Went to</div>
-                                <div className="info-text-second" id="school-name">{`${this.props.currentUser.school}`}</div>
+                                <div className="info-text-second" id="school-name">{`${this.props.user.school}`}</div>
                             </div>
                         </div>
                         <div id='location-div' className="info-div-container">
                             <div className="info-pic" id="location-logo"></div>
                             <div className="info-text-line">
                                 <div className="info-text-first">Lives in</div>
-                                <div  className="info-text-second" id="location-name">{`${this.props.currentUser.location}`}</div>
+                                <div  className="info-text-second" id="location-name">{`${this.props.user.location}`}</div>
                             </div>
                         </div>
                         <div id='from-div' className="info-div-container">
                             <div className="info-pic" id="from-logo"></div>
                             <div className="info-text-line">
                                 <div className="info-text-first">From</div>
-                                <div className="info-text-second" id="from-name">{`${this.props.currentUser.birthplace}`}</div>
+                                <div className="info-text-second" id="from-name">{`${this.props.user.birthplace}`}</div>
                             </div>
                         </div>
 
@@ -162,7 +169,7 @@ class Profile extends React.Component{
                     <div id="Friends"  className="profile-side-panel">
                         <div className="panel-title" id="friends-title">Friends</div>
                         {
-                            this.props.currentUser.friends.map((friend, i) => 
+                            this.props.user.friends.map((friend, i) => 
                             <div key={i}>
                             <li>{`${friend.firstName} ${friend.lastName}`}</li>
                             <br/>
@@ -176,7 +183,7 @@ class Profile extends React.Component{
                 <div id="profile-posts-content">
                     <div id="post-bar">
                         <div id="post-bar-main">
-                            <img src={this.props.currentUser.avatarUrl} id="post-image"></img>
+                            <img src={this.props.user.avatarUrl} id="post-image"></img>
                             <div onClick={this.revealCreatePost}id="post-text-button">
                             <div id="text-prompt"> What's on your mind?</div>
                                 
