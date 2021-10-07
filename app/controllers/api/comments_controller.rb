@@ -10,7 +10,7 @@ class Api::CommentsController < ApplicationController
     end
 
     def show
-        @comments = Comment.where(post_id: params[:id])
+        @comments = Comment.all
         if @comments
             render :index
         else

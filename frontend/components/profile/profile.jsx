@@ -168,14 +168,14 @@ class Profile extends React.Component{
                     </div>
                     <div id="Friends"  className="profile-side-panel">
                         <div className="panel-title" id="friends-title">Friends</div>
-                        {
+                        {/* {
                             this.props.user.friends.map((friend, i) => 
                             <div key={i}>
                             <li>{`${friend.firstName} ${friend.lastName}`}</li>
                             <br/>
                             </div>
                             )
-                        }
+                        } */}
                     </div>
                 </div>
            

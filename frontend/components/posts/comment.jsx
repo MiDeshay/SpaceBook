@@ -10,10 +10,11 @@ class Comment extends React.Component{
     }
 
     componentDidMount(){
+        
         const input = document.getElementById(`comment-edit-${this.props.comment.id}`);
         const dropDown = document.getElementById(`comment-dropdown-${this.props.comment.id}`)
         const modalHider = document.getElementById("modal-close")
-        const comment =  document.getElementById(`comment-user-text-${this.props.comment}`)
+        const comment =  document.getElementById(`comment-user-text-${this.props.comment.id}`)
 
        document.addEventListener("click", (e) => {
         if(e.target === modalHider){
@@ -34,6 +35,8 @@ class Comment extends React.Component{
 
     handleDelete(){
         this.props.deleteComment(this.props.comment.id)
+        document.getElementById("modal-close").style.display = "none"
+        document.getElementById(`comment-dropdown-${this.props.comment.id}`).style.display = "none"
     }
 
     handleEdit(){
@@ -48,7 +51,7 @@ class Comment extends React.Component{
         const textEdit = document.getElementById(`comment-edit-${this.props.comment.id}`)
         textEdit.style.display= "block"
         textEdit.focus()
-        document.getElementById(`comment-user-text-${this.props.comment}`).style.display="none"
+        document.getElementById(`comment-user-text-${this.props.comment.id}`).style.display="none"
        document.getElementById(`comment-dropdown-${this.props.comment.id}`).style.display = "none"
         
 
@@ -61,6 +64,7 @@ class Comment extends React.Component{
 
 
     render(){
+        
         const comment = this.props.comment
 
         const userPic = comment.avatarUrl ? (comment.avatarUrl) : ("#")
@@ -74,16 +78,22 @@ class Comment extends React.Component{
                     )}
             
             </ul>) : ("")
-            
-        
-        return (<div>
+
+         
+            if (this.props.post.id === this.props.comment.postId ){
+                return(
+                <div>
                     <div className="comment-content">
+                       
+
+                        <div className="comment-content">
                         <img src={`${userPic}`} className="comment-picture"></img>
-                        <div className="comment-user-text" id={`comment-user-text-${this.props.comment}`}>
-                            <div className="comment-user-name"> {`${comment.firstName} ${comment.lastName}`}</div>
-                            <div className="comment-text">{comment.body}</div>
+                            <div className="comment-user-text" id={`comment-user-text-${this.props.comment.id}`}>
+                                <div className="comment-user-name"> {`${comment.firstName} ${comment.lastName}`}</div>
+                                <div className="comment-text">{comment.body}</div>
+                            </div>
+                            <input type="text" className="comment-edit" id={`comment-edit-${this.props.comment.id}`}value={this.state.body} onChange={this.handleInput.bind(this)}/>
                         </div>
-                        <input type="text" className="comment-edit" id={`comment-edit-${this.props.comment.id}`}value={this.state.body} onChange={this.handleInput.bind(this)}/>
 
                         <button className="comment-dropdown-reveal" onClick={this.showCommentDropdown.bind(this)}></button>
                             <div id="modal-close" ></div>
@@ -96,6 +106,14 @@ class Comment extends React.Component{
                     
                     {replies}
                 </div>)
+           
+            }else{
+                return <div></div>
+            }
+         
+        
+        
+        
     }
 
 }

@@ -23,9 +23,11 @@ class PostIndexItem extends React.Component {
         this.handleCreateComment = this.handleCreateComment.bind(this)
     }
 
+
     componentDidMount(){
+
+        console.log(this.props.post.id)
         this.props.fetchCommentsForPost(this.props.post.id)
-        
         this.menu = document.getElementById(`options-dropdown${this.props.post.id}`);
         const that = this;
 
@@ -99,14 +101,15 @@ class PostIndexItem extends React.Component {
     render(){
     //If firstRender is true (inserts the return of hidebigbody into the return)
     // console.log(Object.values(this.props.comments)[0])
+        
      
         const comments = this.props.comments ?  
         (<ul>
             {Object.values(this.props.comments).map( (comment, i) => 
-                
                 <div className="comment" key={i} >
                     <Comment 
                     comment={comment} 
+                    post={this.props.post}
                     deleteComment={this.props.deleteComment}
                     updateComment ={this.props.updateComment}
                      />

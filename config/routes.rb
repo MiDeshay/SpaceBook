@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :posts, except: [:edit, :new]
     resources :comments, only: [:create, :update, :destroy, :show]
     resources :likes, only: [:create, :destroy]
-    resources :friend_requests, only: [:create, :update, :destroy]
+    resources :friend_requests, only: [:create, :get, :index, :destroy]
     resources :news_feeds, only: [:index]
   end
 end

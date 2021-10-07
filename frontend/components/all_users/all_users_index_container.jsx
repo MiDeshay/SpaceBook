@@ -4,11 +4,12 @@ import AllUsers from "./all_users_index";
 
 
 const mSTP = (state) => ({
-    currentUser: state.entities.users[state.session.id]
+    currentUser: state.entities.users[state.session.id],
+    users: state.entities.users
 })
 
 const mDTP = (dispatch) => ({
-    fetchAllUsers: (user) => dispatch(fetchAllUsers(user))
+    fetchAllUsers: () => dispatch(fetchAllUsers())
 })  
 
 export default connect(mSTP,mDTP)(AllUsers)

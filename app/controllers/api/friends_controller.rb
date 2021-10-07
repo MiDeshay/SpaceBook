@@ -1,8 +1,12 @@
 class Api::FriendsController < ApplicationController
 
-    def index
-        @friends = Friend.where(user_id: current_user.id)
-        if @friends
+    def show
+        friends1 = User.find_by(id: params[:id]).friends_they_added
+        friends2 = User.find_by(id: params[:id]).friends_who_added_them
+        @users = friends1 + friends2
+        @users.sort_by &:created_at
+
+        if @users
           render :index
         else
           render json: ["You haven't added any friends yet!"], status: 401

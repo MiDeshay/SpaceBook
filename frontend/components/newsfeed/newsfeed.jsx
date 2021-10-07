@@ -28,10 +28,10 @@ class Newsfeed extends React.Component{
                     </div>
 
                     <div className="left-block" id="friends">
-                        <button className="left-block-button">
+                       <Link to="/everyone"> <button className="left-block-button">
                             <div className="left-profile-image" id="friends-pic"></div>
                             <div className="left-block-text"> Friends</div>
-                        </button>
+                        </button> </Link>
                     </div>
 
                     <div id="left-style-line"></div>

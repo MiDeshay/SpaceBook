@@ -6,6 +6,7 @@ import { AuthRoute, HomeAuthRoute } from '../util/route_util';
 import ProfileContainer from './profile/profile_container';
 import EditPostContainer from './posts/edit_post_container';
 import NewsFeedContainer from './newsfeed/newsfeed_container';
+import AllUsersIndexContainer from './all_users/all_users_index_container';
 
 const App = (props) => (
     <div>
@@ -13,7 +14,8 @@ const App = (props) => (
             <NavBarContainer/>
             <div id="nav-spacer"></div>
         </header>
-            <HomeAuthRoute path="/everyone" component={EditPostContainer}/>
+            
+            <HomeAuthRoute path="/everyone" component={AllUsersIndexContainer}/>
             <HomeAuthRoute path="/user/:userId/edit_post/:postId" component={EditPostContainer}/>
             <HomeAuthRoute path="/user/:userId" component={ProfileContainer}/>
             <HomeAuthRoute path="/newsfeed/edit_post/:postId" component={EditPostContainer}/>
