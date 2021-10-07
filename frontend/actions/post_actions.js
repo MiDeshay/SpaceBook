@@ -18,7 +18,9 @@ const removePost = (postId) => ({
     postId
 })
 
-
+export const fetchNewsfeed = () => dispatch => {
+    APIUTIL.fetchNewsfeed().then((res) => dispatch(receiveAllPosts(res)))
+}
 
 export const fetchPosts = () => dispatch => {
     APIUTIL.fetchPosts().then((res) => dispatch(receiveAllPosts(res)))

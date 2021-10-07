@@ -1,24 +1,31 @@
 import React from 'react';
-
+import Comment from './comment';
 
 class PostIndexItem extends React.Component {
     constructor(props){
         super(props);
         
         this.state = {
+            body: "",
+            post_id: this.props.post.id,
+            commenter_id: this.props.currentUser.id
         }
-       
+
+        
         this.firstPass = true;
 
-
+        
         
         this.hideBody = this.hideBody.bind(this);
         this.revealBody = this.revealBody.bind(this);
         this.showOptionsModal = this.showOptionsModal.bind(this);
         this.formatDate = this.formatDate.bind(this)
+        this.handleCreateComment = this.handleCreateComment.bind(this)
     }
 
     componentDidMount(){
+        this.props.fetchCommentsForPost(this.props.post.id)
+        
         this.menu = document.getElementById(`options-dropdown${this.props.post.id}`);
         const that = this;
 
@@ -29,6 +36,13 @@ class PostIndexItem extends React.Component {
             that.menu.style.display = "none"; 
         }
         })
+
+        const input = document.getElementById(`post-input-${this.props.post.id}`);
+        input.addEventListener("keyup", function(event) {
+        if (event.key === "Enter") {
+            that.handleCreateComment()
+        }
+        });
 
     }
 
@@ -69,20 +83,54 @@ class PostIndexItem extends React.Component {
         this.setState({firstRender: false})
     }
 
+
+
+    handleCommentInput(e){
+        this.setState({body: e.currentTarget.value})
+    }
+
+    handleCreateComment(){
+        this.props.createComment(this.state)
+        this.setState({body: ""})
+    }
+
+
+
     render(){
     //If firstRender is true (inserts the return of hidebigbody into the return)
+    // console.log(Object.values(this.props.comments)[0])
+     
+        const comments = this.props.comments ?  
+        (<ul>
+            {Object.values(this.props.comments).map( (comment, i) => 
+                
+                <div className="comment" key={i} >
+                    <Comment 
+                    comment={comment} 
+                    deleteComment={this.props.deleteComment}
+                    updateComment ={this.props.updateComment}
+                     />
+                </div>
+                
+                )}
+
+        </ul>)
+
+        : ("")
+      
 
     //Otherwise, inserts body with classes small-text post-block-text (so even big posts are fully revealed).
     //Else just inserts body with single class post-block-text
     const {post} = this.props;
     const {firstRender} = this.state;
+
    
     this.formatDate()
     let textBody = '';
 
 
     if(firstRender){
-        if(post.body.length > 530){
+        if (post.body.length > 530){
             textBody = this.hideBody()
         }else if(post.body.length > 40){
             textBody = (<div className="small-text post-block-text">{post.body}</div>)
@@ -128,9 +176,10 @@ class PostIndexItem extends React.Component {
                 </div>
                 <div className="post-comment-block">
                     <img src={this.props.currentUser.avatarUrl} className="post-comment-user"></img>
-                    <input className="post-comment-input" placeholder="Write a comment..." type="text"/>
+                    <input className="post-comment-input" value={this.state.body} onChange={this.handleCommentInput.bind(this)} id={`post-input-${post.id}`} placeholder="Write a comment..." type="text"/>
                 </div>
             </div>
+            {comments}
             
         </div>
     )

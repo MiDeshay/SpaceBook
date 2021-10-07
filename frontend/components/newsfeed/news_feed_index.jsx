@@ -1,9 +1,9 @@
 import React from 'react';
-import PostIndexItem from './post_index_item';
+import PostIndexItem from '../posts/post_index_item';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 
-class PostIndex extends React.Component {
+class NewsFeedIndex extends React.Component {
     constructor(props){
         super(props);
         this.handleUpdatePost = this.handleUpdatePost.bind(this)
@@ -12,7 +12,7 @@ class PostIndex extends React.Component {
     }
 
     componentDidMount(){
-        this.props.fetchPosts()
+        this.props.fetchNewsFeed()
     }
 
     handleDeletePost(postId){
@@ -25,10 +25,10 @@ class PostIndex extends React.Component {
     }
 
   
-  
     
     render(){
         const posts = []
+
         this.props.posts.map((post) => posts.unshift(post))
         
         return (
@@ -52,15 +52,14 @@ class PostIndex extends React.Component {
 
                         </div>
                     </div>
-                  
     
-                    <PostIndexItem currentUser={this.props.currentUser} 
+                    <PostIndexItem 
+                    currentUser={this.props.currentUser} 
                     post={post} 
-                    currentUser={this.props.currentUser}
                     comments={this.props.comments}
                     
                     fetchCommentsForPost={this.props.fetchCommentsForPost}
-                    createComment={this.props.createComment} 
+                    createComment={this.props.createComment}
                     deleteComment={this.props.deleteComment}
                     updateComment ={this.props.updateComment}
                     />
@@ -79,4 +78,4 @@ class PostIndex extends React.Component {
     
 }
 
-export default withRouter(PostIndex)
+export default withRouter(NewsFeedIndex)

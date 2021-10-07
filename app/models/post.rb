@@ -26,6 +26,10 @@ class Post < ApplicationRecord
 
     has_many :likes, as: :likeable
 
+    has_many :users_who_liked,
+    through: :likes,
+    source: :user
+
     has_one_attached :photo
 
     belongs_to :poster,

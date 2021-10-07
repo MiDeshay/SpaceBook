@@ -12,6 +12,15 @@ export const fetchPosts = () => {
     })
 }
 
+export const fetchNewsfeed = () =>{
+
+    return $.ajax({
+        method: "GET",
+        url: "/api/news_feeds"
+    })
+
+}
+
 export const createPost = (formData) => {
     return $.ajax({
         url: '/api/posts',

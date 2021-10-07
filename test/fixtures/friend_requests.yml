@@ -3,6 +3,7 @@
 # Table name: friend_requests
 #
 #  id           :bigint           not null, primary key
+#  accepted     :boolean
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  requested_id :integer          not null
