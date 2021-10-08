@@ -1,10 +1,20 @@
 
 //sends the friends of a user 
 //can also send back own friends
-export const getUserFriends = (userId) => {
+export const getAllFriends = () => {
     return $.ajax({
         method: "GET",
-        url: `/api/friends/${userId}`
+        url: `/api/friends`
+    })
+}
+
+export const addFriend = (friend) => {
+
+    return $.ajax({
+        method: "GET",
+        url: "/api/friends",
+        data: {friend}
+
     })
 }
 

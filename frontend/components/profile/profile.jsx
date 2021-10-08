@@ -19,6 +19,7 @@ class Profile extends React.Component{
 
     componentDidMount(){
         this.props.fetchAllUsers()
+        this.props.getAllFriends()
         this.resizePage()
         window.addEventListener('resize', () => {
             this.resizePage()
@@ -74,16 +75,18 @@ class Profile extends React.Component{
         }
         }
     
+        if(lowerProfileHeader){
 
-        if(width < 740){
-            lowerProfileHeader.style.width = "500px"
-            editButton.style.left ="35px"
-            editSymbol.style.left = "50px";
-        } else{
-            lowerProfileHeader.style.width = "720px"
-            editButton.style.left ="253px";
-            editSymbol.style.left = "267px";
-            
+            if(width < 740){
+                lowerProfileHeader.style.width = "500px"
+                editButton.style.left ="35px"
+                editSymbol.style.left = "50px";
+            } else{
+                lowerProfileHeader.style.width = "720px"
+                editButton.style.left ="253px";
+                editSymbol.style.left = "267px";
+                
+            }
         }
      
     }
@@ -103,6 +106,18 @@ class Profile extends React.Component{
     }
 
     render(){
+        if (this.props.currentUser.id != this.props.match.params.userId){
+           const edit = document.getElementById("edit-profile")
+           if (edit){
+               edit.style.display = "none"
+           }
+        }else{
+            const edit = document.getElementById("edit-profile")
+            if(edit){
+                edit.style.display = "block"
+            }
+           }
+        
         const display = this.props.user ? (
 
             <div> 

@@ -1,24 +1,38 @@
 class Api::FriendsController < ApplicationController
 
-    def show
-        friends1 = User.find_by(id: params[:id]).friends_they_added
-        friends2 = User.find_by(id: params[:id]).friends_who_added_them
-        @users = friends1 + friends2
-        @users.sort_by &:created_at
-
-        if @users
-          render :index
+    def create 
+        @friendship = Friend.new(friend_params)
+        if(@friendship.save)
+          render :show
         else
-          render json: ["You haven't added any friends yet!"], status: 401
+          render json: @friendship.errors.full_messages, status: :unprocessable_entity
         end
     end
+
+    def index
+      @friends = Friend.all
+      render :index
+    end
+
+    # def show
+    #     friends1 = User.find_by(id: params[:id]).friends_they_added
+    #     friends2 = User.find_by(id: params[:id]).friends_who_added_them
+    #     @users = friends1 + friends2
+    #     @users.sort_by &:created_at
+
+    #     if @users
+    #       render :index
+    #     else
+    #       render json: ["You haven't added any friends yet!"], status: 401
+    #     end
+    # end
 
     def destroy
         @friendship = Friend.find_by(id: params[:id])
         if @friendship.destroy
             render :show
         else
-            render json: @post.errors.full_messages, status: :unprocessable_entity
+            render json: @friendship.errors.full_messages, status: :unprocessable_entity
         end
     end
     
