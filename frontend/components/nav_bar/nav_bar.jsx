@@ -47,7 +47,9 @@ class NavBar extends React.Component{
             const gamePic = document.getElementById("game-nav-pic");
         
             
-                
+             if(navButtons){
+
+           
             for(let i = 0; i < navButtons.length; i++){
               if(width < 670){
                 navButtons[i].style.width = '70px';
@@ -71,6 +73,7 @@ class NavBar extends React.Component{
                   profileButton.style.display = "flex";
                   mainButtons.style.left = "50%";
               }
+            }   
       
           
       

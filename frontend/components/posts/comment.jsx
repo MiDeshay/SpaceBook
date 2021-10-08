@@ -28,12 +28,14 @@ class Comment extends React.Component{
             })
         }
         const that = this;
+        if(input){
 
-        input.addEventListener("keyup", (event) => {
-        if (event.key === "Enter") {
-            that.handleEdit()
+            input.addEventListener("keyup", (event) => {
+            if (event.key === "Enter") {
+                that.handleEdit()
+            }
+            });
         }
-        });
     }
 
     handleDelete(){
