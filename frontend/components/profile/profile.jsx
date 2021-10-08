@@ -108,12 +108,12 @@ class Profile extends React.Component{
 
             if(width < 740){
                 lowerProfileHeader.style.width = "500px"
-                editButton.style.left ="35px"
-                editSymbol.style.left = "50px";
+                editButton.style.left ="250px"
+                editSymbol.style.left = "265px";
             } else{
                 lowerProfileHeader.style.width = "720px"
-                editButton.style.left ="253px";
-                editSymbol.style.left = "267px";
+                editButton.style.left ="470px";
+                editSymbol.style.left = "485px";
                 
             }
         }
@@ -192,8 +192,8 @@ class Profile extends React.Component{
                 <div id="lower-profile-header">
                     <div id="lower-profile-buttons">
                         <button className="profile-buttons" id="profile-posts-button">Posts</button>
-                        <button className="profile-buttons" id="profile-friends-button">Friends</button>
-                        <button className="profile-buttons" id="profile-photos-button">Photos</button>
+                        {/* <button className="profile-buttons" id="profile-friends-button">Friends</button>
+                        <button className="profile-buttons" id="profile-photos-button">Photos</button> */}
                     </div>
                     <div id="edit-profile">
                         <div id="edit-profile-symbol"></div>
@@ -241,14 +241,14 @@ class Profile extends React.Component{
                     </div>
                     <div id="Friends"  className="profile-side-panel">
                         <div className="panel-title" id="friends-title">Friends</div>
-                        {/* {
+                        {
                             this.props.user.friends.map((friend, i) => 
                             <div key={i}>
                             <li>{`${friend.firstName} ${friend.lastName}`}</li>
                             <br/>
                             </div>
                             )
-                        } */}
+                        }
                     </div>
                 </div>
            
