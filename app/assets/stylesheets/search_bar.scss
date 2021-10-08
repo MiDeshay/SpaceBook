@@ -70,6 +70,8 @@
 
 #search-and-results{
     z-index: inherit;
+    display: block;
+    padding-bottom: 10px;
 }
 
 #search-button{
@@ -84,4 +86,38 @@
 
 #search-button:hover{
     filter: brightness(90%);
+}
+
+#nav-search-results{
+    display: block;
+    margin-top: 12px;
+    width: 293px;
+}
+.search-pic{
+    height: 35px;
+    width: 35px;
+    border-radius: 20px;
+    margin-top: 5px;
+}
+
+.search-name{
+    font-size: 20px;
+    margin-left: 19px;
+    padding-top: 12px;
+}
+
+
+.select-user{
+    display: flex;
+    flex-direction: row;
+    border-radius: 8px;
+    border: none;
+    width: 95%;
+    height: 50px;
+    margin: auto;
+    background: #fff;
+}
+
+.select-user:hover{
+    background-color: #EBEDF0;
 }
