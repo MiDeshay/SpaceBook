@@ -171,11 +171,6 @@ class PostIndexItem extends React.Component {
                 
             </div>
             <div className="post-block-footer">
-                <div className="post-block-buttons">
-                    <button className="post-button">Like</button>
-                    <button className="post-button">Comment</button>
-                    <button className="post-button">Share</button>
-                </div>
                 <div className="post-comment-block">
                     <img src={this.props.currentUser.avatarUrl} className="post-comment-user"></img>
                     <input className="post-comment-input" value={this.state.body} onChange={this.handleCommentInput.bind(this)} id={`post-input-${post.id}`} placeholder="Write a comment..." type="text"/>

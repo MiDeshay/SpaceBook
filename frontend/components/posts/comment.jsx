@@ -16,17 +16,20 @@ class Comment extends React.Component{
         const modalHider = document.getElementById("modal-close")
         const comment =  document.getElementById(`comment-user-text-${this.props.comment.id}`)
 
-       document.addEventListener("click", (e) => {
-        if(e.target === modalHider){
-            input.style.display = "none"
-            dropDown.style.display = "none"
-            modalHider.style.display = "none"
-            comment.style.display = "block"
+        if(modalHider){
+
+            document.addEventListener("click", (e) => {
+                if(e.target === modalHider){
+                    input.style.display = "none"
+                    dropDown.style.display = "none"
+                    modalHider.style.display = "none"
+                    comment.style.display = "block"
+                }
+            })
         }
-       })
+        const that = this;
 
-
-        input.addEventListener("keyup", function(event) {
+        input.addEventListener("keyup", (event) => {
         if (event.key === "Enter") {
             that.handleEdit()
         }
@@ -41,6 +44,8 @@ class Comment extends React.Component{
 
     handleEdit(){
         this.props.updateComment(this.state)
+        const textEdit = document.getElementById(`comment-edit-${this.props.comment.id}`)
+        textEdit.blur()
     }
 
     handleInput(e){
@@ -67,20 +72,12 @@ class Comment extends React.Component{
         
         const comment = this.props.comment
 
+
         const userPic = comment.avatarUrl ? (comment.avatarUrl) : ("#")
-
-        const replies = comment.replies ? (
-            <ul>
-                {Object.values(comment.replies).map((reply, i) => 
-                    <div className="replies" key={i}>
-                        <Reply reply={reply}/>
-                    </div>
-                    )}
-            
-            </ul>) : ("")
-
+                
          
             if (this.props.post.id === this.props.comment.postId ){
+                
                 return(
                 <div>
                     <div className="comment-content">
@@ -104,7 +101,7 @@ class Comment extends React.Component{
                        
                     </div>
                     
-                    {replies}
+                
                 </div>)
            
             }else{

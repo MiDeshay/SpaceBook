@@ -36,7 +36,7 @@ class Api::FriendRequestsController < ApplicationController
     def destroy
         @request = FriendRequest.find_by(params.id)
         if(@request.destroy)
-            render: show
+            render :show
         else
             render json: @request.errors.full_messages, status: 404
         end
