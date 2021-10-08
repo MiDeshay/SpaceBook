@@ -11,7 +11,7 @@ export const getAllFriends = () => {
 export const addFriend = (friend) => {
 
     return $.ajax({
-        method: "GET",
+        method: "POST",
         url: "/api/friends",
         data: {friend}
 

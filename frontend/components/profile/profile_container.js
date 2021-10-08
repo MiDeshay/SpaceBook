@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { addFriend, getAllFriends, removeFriend } from "../../actions/friend_actions";
+import { addFriend, getAllFriends, removeFriendship } from "../../actions/friend_actions";
 import { logoutUser } from "../../actions/session_actions";
 import { fetchAllUsers } from "../../actions/user_actions";
 import Profile from "./profile";
@@ -17,7 +17,7 @@ const mDTP = (dispatch) => ({
     fetchAllUsers: () => dispatch(fetchAllUsers()),
     addFriend: (friend) => dispatch(addFriend(friend)),
     getAllFriends: ()=>dispatch(getAllFriends()),
-    removeFriendship: (friendId)=>dispatch(removeFriend(friendId))
+    removeFriendship: (friendId)=>dispatch(removeFriendship(friendId))
     
 
 })  

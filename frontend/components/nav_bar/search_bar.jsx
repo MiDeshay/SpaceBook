@@ -55,7 +55,7 @@ class SearchBar extends React.Component{
                 <div id='nav-search-results'>
                     {this.props.users.filter(val => {
                         if(searchTerm === ""){
-                            return ""
+                            return val
                         } else if (val.firstName.toLowerCase().includes(searchTerm.toLowerCase()) ||
                         (val.lastName.toLowerCase().includes(searchTerm.toLowerCase()))){
                             return val

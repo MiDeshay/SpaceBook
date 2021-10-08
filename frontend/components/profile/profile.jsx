@@ -18,6 +18,7 @@ class Profile extends React.Component{
     }
 
     componentDidMount(){
+        this.user = this.props.users[this.props.match.params.userId]
         this.props.fetchAllUsers()
         this.props.getAllFriends()
         this.resizePage()
@@ -57,7 +58,29 @@ class Profile extends React.Component{
     }
 
         
-        
+    componentDidUpdate(){
+        this.user = this.props.users[this.props.match.params.userId]
+        if (this.user){
+            let swtiched = false
+            this.props.friends.map((relation) => {
+                if (relation.userId == this.user.id && relation.friendId ==  this.props.currentUser.id ||
+                    relation.userId == this.props.currentUser.id && relation.friendId ==  this.user.id){
+                    document.getElementById("remove-friend").style.display = "block";
+                    document.getElementById("add-friend").style.display = "none";
+                    swtiched = true
+                } 
+            })
+
+            if (!swtiched && this.user.id != this.props.currentUser.id) {
+                    document.getElementById("add-friend").style.display = "block"
+                    document.getElementById("remove-friend").style.display = "none";
+            }else if (this.user.id == this.props.currentUser.id){
+                document.getElementById("remove-friend").style.display = "none";
+                document.getElementById("add-friend").style.display = "none";
+                document.getElementById("edit-profile").style.display = "block"
+            }
+        }
+    }
        
     
 
@@ -97,6 +120,25 @@ class Profile extends React.Component{
      
     }
 
+    addFriend(){
+        this.props.addFriend({user_id: this.props.currentUser.id, friend_id: this.props.match.params.userId })
+    }
+
+    deleteFriend(){
+        this.user = this.props.users[this.props.match.params.userId]
+        this.props.friends.map((relation) => {
+            if (relation.userId == this.user.id && relation.friendId ==  this.props.currentUser.id ||
+                relation.userId == this.props.currentUser.id && relation.friendId ==  this.user.id)
+                {
+                   this.props.removeFriendship(relation.id)
+                }
+                   
+            })
+        
+    }
+
+
+
     handleShowEdit(){
         document.getElementById("edit-profile-container").style.display ="block"
     }
@@ -113,6 +155,9 @@ class Profile extends React.Component{
 
     render(){
         
+
+ 
+        
         if (this.props.currentUser.id != this.props.match.params.userId){
            const edit = document.getElementById("edit-profile")
            if (edit){
@@ -122,17 +167,9 @@ class Profile extends React.Component{
             const edit = document.getElementById("edit-profile")
             if(edit){
                 edit.style.display = "block"
-                if (this.props.user){
-                    
-                    this.props.friends.map((relation) => {
-                        if (relation.userId == this.props.user.id && relation.friendId ==  this.props.currentUser.id ||
-                            relation.userId == this.props.currentUser.id && relation.friendId ==  this.props.user.id){
-                                console.log("yes")
-                            }
-                    })
-                }
             }
-           }
+       
+    }
         
         const display = this.props.user ? (
 
@@ -163,13 +200,9 @@ class Profile extends React.Component{
                         <button onClick={this.handleShowEdit.bind(this)} id="edit-profile-button">Edit Profile</button>
                     </div>
 
-                    <button className="alt-profile-button" id="add-friend">
+                    <button onClick={this.addFriend.bind(this)} className="alt-profile-button" id="add-friend">Add Friend</button>
 
-                    </button>
-
-                    <button className="alt-profile-button" id="remove-friend" >
-
-                    </button>
+                    <button onClick={this.deleteFriend.bind(this)} className="alt-profile-button" id="remove-friend" ><div id="check-img"></div>Friends</button>
 
                 </div>
             </div>

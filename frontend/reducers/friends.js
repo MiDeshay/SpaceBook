@@ -11,7 +11,7 @@ const friendsReducer = (state={}, action) => {
             newState[action.friend.id] = action.friend
             return newState;
         case REMOVE_FRIEND:
-            delete newState[action.friendshipId]
+            delete newState[action.friendshipId.id]
             return newState; 
         default:
             return state;
