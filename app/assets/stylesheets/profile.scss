@@ -241,3 +241,22 @@
 
 }
 
+.alt-profile-button{
+    display: none;
+    position: relative;
+    top: 7px;
+    left: 253px;
+    padding-left: 50px;
+    padding-right: 15px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 8px;
+    background: #e4e6eb;
+    height: 38px;
+    border: none;
+}
+
+.alt-profile-button:hover{
+    filter: brightness(87%);
+}
+

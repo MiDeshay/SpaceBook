@@ -26,7 +26,6 @@ class PostIndexItem extends React.Component {
 
     componentDidMount(){
 
-        console.log(this.props.post.id)
         this.props.fetchCommentsForPost(this.props.post.id)
         this.menu = document.getElementById(`options-dropdown${this.props.post.id}`);
         const that = this;

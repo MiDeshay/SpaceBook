@@ -7,7 +7,9 @@ import Profile from "./profile";
 const mSTP = (state, ownProps) => ({
     currentUser: state.entities.users[state.session.id],
     user: state.entities.users[ownProps.match.params.userId],
-    friends: state.entities.friends
+    friends: Object.values(state.entities.friends),
+    users: state.entities.users
+
 })
 
 const mDTP = (dispatch) => ({

@@ -27,7 +27,10 @@ class Profile extends React.Component{
         })
 
         const coverPic = document.getElementById("cover-photo-box");
-        coverPic.scrollTop = 100
+        if (coverPic){
+
+            coverPic.scrollTop = 100
+        }
 
 
         this.editContainer = document.getElementById("edit-profile-container");
@@ -43,7 +46,10 @@ class Profile extends React.Component{
         })
 
         if (this.props.user != this.props.currentUser){
-            document.getElementById("edit-profile-button").display = "none"
+            const edit = document.getElementById("edit-profile-button")
+            if(edit){
+                edit.style.display = "none"
+            }
         }
 
 
@@ -106,6 +112,7 @@ class Profile extends React.Component{
     }
 
     render(){
+        
         if (this.props.currentUser.id != this.props.match.params.userId){
            const edit = document.getElementById("edit-profile")
            if (edit){
@@ -115,6 +122,15 @@ class Profile extends React.Component{
             const edit = document.getElementById("edit-profile")
             if(edit){
                 edit.style.display = "block"
+                if (this.props.user){
+                    
+                    this.props.friends.map((relation) => {
+                        if (relation.userId == this.props.user.id && relation.friendId ==  this.props.currentUser.id ||
+                            relation.userId == this.props.currentUser.id && relation.friendId ==  this.props.user.id){
+                                console.log("yes")
+                            }
+                    })
+                }
             }
            }
         
@@ -146,6 +162,14 @@ class Profile extends React.Component{
                         <div id="edit-profile-symbol"></div>
                         <button onClick={this.handleShowEdit.bind(this)} id="edit-profile-button">Edit Profile</button>
                     </div>
+
+                    <button className="alt-profile-button" id="add-friend">
+
+                    </button>
+
+                    <button className="alt-profile-button" id="remove-friend" >
+
+                    </button>
 
                 </div>
             </div>
