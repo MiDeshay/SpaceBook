@@ -18,6 +18,7 @@ class Profile extends React.Component{
     }
 
     componentDidMount(){
+        this.props.fetchAllUsers()
         this.resizePage()
         window.addEventListener('resize', () => {
             this.resizePage()

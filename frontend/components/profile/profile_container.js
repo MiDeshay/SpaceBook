@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/session_actions";
+import { fetchAllUsers } from "../../actions/user_actions";
 import Profile from "./profile";
 
 const mSTP = (state, ownProps) => ({
@@ -8,7 +9,9 @@ const mSTP = (state, ownProps) => ({
 })
 
 const mDTP = (dispatch) => ({
-    logout: () => dispatch(logoutUser())
+    logout: () => dispatch(logoutUser()),
+    fetchAllUser: () => dispatch(fetchAllUsers())
+
 })  
 
 export default connect(mSTP,mDTP)(Profile)
