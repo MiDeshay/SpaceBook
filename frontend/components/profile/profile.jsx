@@ -94,6 +94,7 @@ class Profile extends React.Component{
         const editButton = document.getElementById("edit-profile-button");
         const editSymbol = document.getElementById("edit-profile-symbol")
         const coverPic = document.getElementById("cover-photo-box");
+        const alt_profile = document.getElementsByClassName("alt-button")
 
         if(sideBar){
         if(width < 985){
@@ -107,6 +108,7 @@ class Profile extends React.Component{
         if(lowerProfileHeader){
 
             if(width < 740){
+                
                 lowerProfileHeader.style.width = "500px"
                 editButton.style.left ="250px"
                 editSymbol.style.left = "265px";
@@ -236,20 +238,20 @@ class Profile extends React.Component{
 
                     </div>
 
-                    <div id="Photos"  className="profile-side-panel">
-                         <div className="panel-title" id="photos-title">Photos</div>
-                    </div>
-                    <div id="Friends"  className="profile-side-panel">
-                        <div className="panel-title" id="friends-title">Friends</div>
-                        {
+                    {/* <div id="Photos"  className="profile-side-panel">
+                         <div className="panel-title" id="photos-title"></div>
+                    </div> */}
+                    {/* <div id="Friends"  className="profile-side-panel">
+                        <div className="panel-title" id="friends-title"></div>
+                        {/* {
                             this.props.user.friends.map((friend, i) => 
                             <div key={i}>
                             <li>{`${friend.firstName} ${friend.lastName}`}</li>
                             <br/>
                             </div>
                             )
-                        }
-                    </div>
+                        } */}
+
                 </div>
            
            
