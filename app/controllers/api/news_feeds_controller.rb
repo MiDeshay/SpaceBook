@@ -12,4 +12,6 @@ class Api::NewsFeedsController < ApplicationController
         @all_posts.sort_by &:created_at
         render :index
     end
+
+    
 end

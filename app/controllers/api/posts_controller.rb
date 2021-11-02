@@ -4,6 +4,11 @@ class Api::PostsController < ApplicationController
         render :index
     end
 
+    def show
+        @posts = Post.where(poster_id: params[:id])
+        render :index
+    end
+
     def create
         @post = Post.new(post_params)
         if @post.save

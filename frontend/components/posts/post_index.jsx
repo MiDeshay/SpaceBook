@@ -11,9 +11,6 @@ class PostIndex extends React.Component {
 
     }
 
-    componentDidMount(){
-        this.props.fetchPosts()
-    }
 
     handleDeletePost(postId){
         this.props.deletePost(postId);
@@ -29,7 +26,9 @@ class PostIndex extends React.Component {
     
     render(){
         const posts = []
-        this.props.posts.map((post) => posts.unshift(post))
+        this.props.posts.map((post) => {
+            posts.unshift(post)
+        })
         
         return (
             <div id="all-posts-container">
@@ -57,9 +56,7 @@ class PostIndex extends React.Component {
                     <PostIndexItem currentUser={this.props.currentUser} 
                     post={post} 
                     currentUser={this.props.currentUser}
-                    comments={this.props.comments}
                     
-                    fetchCommentsForPost={this.props.fetchCommentsForPost}
                     createComment={this.props.createComment} 
                     deleteComment={this.props.deleteComment}
                     updateComment ={this.props.updateComment}

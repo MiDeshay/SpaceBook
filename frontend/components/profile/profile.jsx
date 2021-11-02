@@ -58,8 +58,13 @@ class Profile extends React.Component{
     }
 
         
-    componentDidUpdate(){
+    componentDidUpdate(prevProps){
         this.user = this.props.users[this.props.match.params.userId]
+        if(this.props.user.id !== prevProps.user.id){
+            this.props.fetchPosts(this.props.user.id)
+        }
+
+
         if (this.user){
             let swtiched = false
             this.props.friends.map((relation) => {
@@ -194,8 +199,8 @@ class Profile extends React.Component{
                 <div id="lower-profile-header">
                     <div id="lower-profile-buttons">
                         <button className="profile-buttons" id="profile-posts-button">Posts</button>
-                        {/* <button className="profile-buttons" id="profile-friends-button">Friends</button>
-                        <button className="profile-buttons" id="profile-photos-button">Photos</button> */}
+                        <button className="profile-buttons" id="profile-friends-button">Friends</button>
+                        <button className="profile-buttons" id="profile-photos-button">Photos</button>
                     </div>
                     <div id="edit-profile">
                         <div id="edit-profile-symbol"></div>

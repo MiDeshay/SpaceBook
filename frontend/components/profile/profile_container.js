@@ -2,6 +2,7 @@ import { connect } from "react-redux";
 import { addFriend, getAllFriends, removeFriendship } from "../../actions/friend_actions";
 import { logoutUser } from "../../actions/session_actions";
 import { fetchAllUsers } from "../../actions/user_actions";
+import { fetchPosts } from "../../actions/post_actions";
 import Profile from "./profile";
 
 const mSTP = (state, ownProps) => ({
@@ -14,6 +15,7 @@ const mSTP = (state, ownProps) => ({
 
 const mDTP = (dispatch) => ({
     logout: () => dispatch(logoutUser()),
+    fetchPosts: (userId) => dispatch(fetchPosts(userId)),
     fetchAllUsers: () => dispatch(fetchAllUsers()),
     addFriend: (friend) => dispatch(addFriend(friend)),
     getAllFriends: ()=>dispatch(getAllFriends()),

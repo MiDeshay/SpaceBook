@@ -1,10 +1,11 @@
 class Api::CommentsController < ApplicationController
     def create
-        @comment = Comment.new(comment_params)
-        if @comment.save
+        comment = Comment.new(comment_params)
+        if comment.save
+            @post = Post.find_by(id: comment.post_id)
           render :show
         else
-          render json: @comment.errors.full_messages, status: 404
+          render json: comment.errors.full_messages, status: 404
        
         end
     end
@@ -19,8 +20,9 @@ class Api::CommentsController < ApplicationController
     end
 
     def update
-        @comment = Comment.find_by(id: params[:id])
-        if @comment.update(comment_params)
+        comment = Comment.find_by(id: params[:id])
+        if comment.update(comment_params)
+            @post = Post.find_by(id: comment.post_id)
             render :show
         else
             render json: @comment.errors.full_messages, status: :unprocessable_entity
@@ -30,8 +32,9 @@ class Api::CommentsController < ApplicationController
     end
 
     def destroy
-        @comment = Comment.find_by(id: params[:id])
-        if @comment.destroy
+        comment = Comment.find_by(id: params[:id])
+        if comment.destroy
+            @post = Post.find_by(id: comment.post_id)
             render :show
         else
             render json: @comment.errors.full_messages, status: :unprocessable_entity

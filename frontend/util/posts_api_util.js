@@ -5,10 +5,10 @@ export const fetchPost = (postId) => {
     })
 }
 
-export const fetchPosts = () => {
+export const fetchPosts = (userId) => {
     return $.ajax({
         method: "GET",
-        url: '/api/posts'
+        url: `/api/posts/${userId}`
     })
 }
 
@@ -16,7 +16,7 @@ export const fetchNewsfeed = () =>{
 
     return $.ajax({
         method: "GET",
-        url: "/api/news_feeds"
+        url: `/api/news_feeds`
     })
 
 }

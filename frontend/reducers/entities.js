@@ -8,7 +8,6 @@ import friendsReducer from "./friends";
 export const entitiesReducer = combineReducers ({
     users: usersReducer,
     posts: postsReducer,
-    comments: commentsReducer,
     friends: friendsReducer
 })
 
