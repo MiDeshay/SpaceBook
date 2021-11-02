@@ -47,7 +47,9 @@ class Comment extends React.Component{
     handleEdit(){
         this.props.updateComment(this.state)
         const textEdit = document.getElementById(`comment-edit-${this.props.comment.id}`)
-        textEdit.blur()
+        textEdit.style.display = "none"
+
+        document.getElementById(`comment-user-text-${this.props.comment.id}`).style.display="block"
     }
 
     handleInput(e){
@@ -59,7 +61,7 @@ class Comment extends React.Component{
         textEdit.style.display= "block"
         textEdit.focus()
         document.getElementById(`comment-user-text-${this.props.comment.id}`).style.display="none"
-       document.getElementById(`comment-dropdown-${this.props.comment.id}`).style.display = "none"
+        document.getElementById(`comment-dropdown-${this.props.comment.id}`).style.display = "none"
         
 
     }
@@ -73,42 +75,40 @@ class Comment extends React.Component{
     render(){
         
         const comment = this.props.comment
-
-
-        const userPic = comment.avatarUrl ? (comment.avatarUrl) : ("#")
-                
+        const post = this.props.post
+        const commenter = post.commenters[comment.commenter_id]
+        const userPic = commenter.avatarUrl ? (commenter.avatarUrl) : ("#")
+        const commentDropdownButton = comment.commenter_id === this.props.currentUser.id ? (<button className="comment-dropdown-reveal" onClick={this.showCommentDropdown.bind(this)}></button>) : ""        
          
-            if (this.props.post.id === this.props.comment.postId ){
+       
                 
-                return(
-                <div>
-                    <div className="comment-content">
-                       
+        return(
+        <div>
+            <div className="comment-content">
+                
 
-                        <div className="comment-content">
-                        <img src={`${userPic}`} className="comment-picture"></img>
-                            <div className="comment-user-text" id={`comment-user-text-${this.props.comment.id}`}>
-                                <div className="comment-user-name"> {`${comment.firstName} ${comment.lastName}`}</div>
-                                <div className="comment-text">{comment.body}</div>
-                            </div>
-                            <input type="text" className="comment-edit" id={`comment-edit-${this.props.comment.id}`}value={this.state.body} onChange={this.handleInput.bind(this)}/>
-                        </div>
-
-                        <button className="comment-dropdown-reveal" onClick={this.showCommentDropdown.bind(this)}></button>
-                            <div id="modal-close" ></div>
-                            <div id={`comment-dropdown-${this.props.comment.id}`} className="comment-dropdown" >
-                                <button className="comment-option" onClick={this.handleDelete.bind(this)}>Delete</button>
-                                <button className="comment-option" onClick={this.showTextInput.bind(this)}>Edit</button>
-                            </div>
-                       
+                <div className="comment-content">
+                <img src={`${userPic}`} className="comment-picture"></img>
+                    <div className="comment-user-text" id={`comment-user-text-${this.props.comment.id}`}>
+                        <div className="comment-user-name"> {`${commenter.firstName} ${commenter.lastName}`}</div>
+                        <div className="comment-text">{comment.body}</div>
                     </div>
-                    
+                    <input type="text" className="comment-edit" id={`comment-edit-${this.props.comment.id}`}value={this.state.body} onChange={this.handleInput.bind(this)}/>
+                </div>
+
+                    {commentDropdownButton}
+                    <div id="modal-close" ></div>
+                    <div id={`comment-dropdown-${this.props.comment.id}`} className="comment-dropdown" >
+                        <button className="comment-option" onClick={this.handleDelete.bind(this)}>Delete</button>
+                        <button className="comment-option" onClick={this.showTextInput.bind(this)}>Edit</button>
+                    </div>
                 
-                </div>)
+            </div>
+            
+        
+        </div>)
            
-            }else{
-                return <div></div>
-            }
+           
          
         
         

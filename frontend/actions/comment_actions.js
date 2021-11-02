@@ -1,7 +1,14 @@
 export const RECEIVE_COMMENT = "RECEIVE_COMMENT";
 export const RECEIVE_ALL_COMMENTS = "RECEIVE_ALL_COMMENTS";
 export const REMOVE_COMMENT = "REMOVE_COMMENT";
+
+export const RECEIVE_POST = "RECEIVE_POST";
 import * as APIUTIL from "../util/comments_api_utils"
+
+const receivePost = (post) => ({
+    type: RECEIVE_POST,
+    post
+})
 
 const receiveComment = (comment) => ({
     type: RECEIVE_COMMENT,
@@ -24,13 +31,13 @@ export const fetchCommentsForPost = (postId) => dispatch => {
 }
 
 export const createComment = (comment) => dispatch => {
-    APIUTIL.createComment(comment).then((res) => dispatch(receiveComment(res)))
+    APIUTIL.createComment(comment).then((post) => dispatch(receivePost(post)))
 }
 
 export const updateComment = (comment) => dispatch => {
-    APIUTIL.updateComment(comment).then((res) => dispatch(receiveComment(res)))
+    APIUTIL.updateComment(comment).then((post) => dispatch(receivePost(post)))
 }
 
 export const deleteComment = (commentId) => dispatch => {
-    APIUTIL.deleteComment(commentId).then((comment) => dispatch(removeComment(comment.id)))
+    APIUTIL.deleteComment(commentId).then((post) => dispatch(receivePost(post)))
 }

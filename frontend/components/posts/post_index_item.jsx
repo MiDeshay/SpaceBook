@@ -4,7 +4,6 @@ import Comment from './comment';
 class PostIndexItem extends React.Component {
     constructor(props){
         super(props);
-        
         this.state = {
             body: "",
             post_id: this.props.post.id,
@@ -26,7 +25,7 @@ class PostIndexItem extends React.Component {
 
     componentDidMount(){
 
-        this.props.fetchCommentsForPost(this.props.post.id)
+        //this.props.fetchCommentsForPost(this.props.post.id)
         this.menu = document.getElementById(`options-dropdown${this.props.post.id}`);
         const that = this;
 
@@ -45,6 +44,9 @@ class PostIndexItem extends React.Component {
         }
         });
 
+        if(this.props.post.id !== this.state.post_id){
+            this.setState({post_id: this.props.post.id})
+        }
     }
 
     showOptionsModal(){
@@ -91,6 +93,7 @@ class PostIndexItem extends React.Component {
     }
 
     handleCreateComment(){
+        this.state.post_id = this.props.post.id
         this.props.createComment(this.state)
         this.setState({body: ""})
     }
@@ -98,31 +101,7 @@ class PostIndexItem extends React.Component {
 
 
     render(){
-    //If firstRender is true (inserts the return of hidebigbody into the return)
-    // console.log(Object.values(this.props.comments)[0])
-        
-     
-        const comments = this.props.comments ?  
-        (<ul>
-            {Object.values(this.props.comments).map( (comment, i) => 
-                <div className="comment" key={i} >
-                    <Comment 
-                    comment={comment} 
-                    post={this.props.post}
-                    deleteComment={this.props.deleteComment}
-                    updateComment ={this.props.updateComment}
-                     />
-                </div>
-                
-                )}
 
-        </ul>)
-
-        : ("")
-      
-
-    //Otherwise, inserts body with classes small-text post-block-text (so even big posts are fully revealed).
-    //Else just inserts body with single class post-block-text
     const {post} = this.props;
     const {firstRender} = this.state;
 
@@ -176,7 +155,23 @@ class PostIndexItem extends React.Component {
                     <input className="post-comment-input" value={this.state.body} onChange={this.handleCommentInput.bind(this)} id={`post-input-${post.id}`} placeholder="Write a comment..." type="text"/>
                 </div>
             </div>
-            {comments}
+            <ul>
+            {this.props.post.comments.map( (comment, i) => 
+
+            
+                <div className="comment" key={i} >
+                    <Comment 
+                    comment={comment} 
+                    currentUser={this.props.currentUser}
+                    post={this.props.post}
+                    deleteComment={this.props.deleteComment}
+                    updateComment ={this.props.updateComment}
+                     />
+                </div>
+                
+                )}
+
+        </ul>
             
         </div>
     )

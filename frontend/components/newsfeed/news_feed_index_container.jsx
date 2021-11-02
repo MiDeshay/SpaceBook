@@ -7,7 +7,6 @@ import { createComment, fetchCommentsForPost, updateComment, deleteComment } fro
 const mSTP = (state) => ({
   users: state.entities.users,
   currentUser:  state.entities.users[state.session.id],
-  comments: state.entities.comments,
   posts: Object.values(state.entities.posts),
 })
 
@@ -15,7 +14,6 @@ const mDTP = (dispatch) => ({
   fetchNewsFeed: () => dispatch(fetchNewsfeed()),
   updatePost: (post) => dispatch(updatePost(post)),
   deletePost: (postId) => dispatch(deletePost(postId)),
-  fetchCommentsForPost: (postId) => dispatch(fetchCommentsForPost(postId)),
   createComment: (comment) => dispatch(createComment(comment)),
   updateComment: (comment) => dispatch(updateComment(comment)),
   deleteComment: (commentId) => dispatch(deleteComment(commentId)),

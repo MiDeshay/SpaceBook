@@ -22,8 +22,8 @@ export const fetchNewsfeed = () => dispatch => {
     APIUTIL.fetchNewsfeed().then((res) => dispatch(receiveAllPosts(res)))
 }
 
-export const fetchPosts = () => dispatch => {
-    APIUTIL.fetchPosts().then((res) => dispatch(receiveAllPosts(res)))
+export const fetchPosts = (userId) => dispatch => {
+    APIUTIL.fetchPosts(userId).then((res) => dispatch(receiveAllPosts(res)))
 }
 
 export const fetchPost = (postId) => dispatch => {
