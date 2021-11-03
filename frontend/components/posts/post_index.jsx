@@ -1,6 +1,7 @@
 import React from 'react';
 import PostIndexItem from './post_index_item';
 import { Link } from 'react-router-dom';
+import {EditPostContainer} from "./edit_post_container"
 import { withRouter } from 'react-router-dom';
 
 class PostIndex extends React.Component {
@@ -20,7 +21,6 @@ class PostIndex extends React.Component {
     handleUpdatePost(postId){
         this.props.history.push(`/home/edit_post/${postId}`)
     }
-
   
   
     
@@ -42,6 +42,7 @@ class PostIndex extends React.Component {
                             <div className="single-option-button">
                                 <div className="symbol edit-symbol"></div>
                                 <Link to={`${this.props.location.pathname}/edit_post/${post.id}`}><button className="post-options-dropdown-button post-options-edit">Edit Post</button></Link>
+                                
                             </div>
                             <div className="options-style-line"></div>
                             <div className="single-option-button">

@@ -11,7 +11,6 @@ class AllUsers extends React.Component{
     }
 
     componentDidMount(){
-        console.log("here")
         this.props.fetchAllUsers()
     }
 

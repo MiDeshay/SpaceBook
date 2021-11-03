@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter} from 'react-router-dom';
+import { Link, withRouter} from 'react-router-dom';
 import EditProfileContainer from "../edit_profile/edit_profile_container";
 import CreatePostContainer from "../posts/create_post_container";
 import PostIndexContainer from "../posts/post_index_container";
@@ -9,18 +9,23 @@ class Profile extends React.Component{
     constructor(props){
         super(props);
 
-       
-
         this.resizePage = this.resizePage.bind(this)
         this.handleClick = this.handleClick.bind(this)
         this.revealCreatePost = this.revealCreatePost.bind(this)
 
     }
 
+
     componentDidMount(){
-        this.user = this.props.users[this.props.match.params.userId]
         this.props.fetchAllUsers()
         this.props.getAllFriends()
+
+        console.log("mounted")
+
+        if(this.props.user){
+            this.props.fetchPosts(this.props.user.id)
+        }
+
         this.resizePage()
         window.addEventListener('resize', () => {
             this.resizePage()
@@ -59,9 +64,26 @@ class Profile extends React.Component{
 
         
     componentDidUpdate(prevProps){
+        console.log("updated")
+
+        console.log(this.props.users)
+        
         this.user = this.props.users[this.props.match.params.userId]
-        if(this.props.user.id !== prevProps.user.id){
-            this.props.fetchPosts(this.props.user.id)
+        if(this.user){
+            if(prevProps.user){
+                if(this.user.id !== prevProps.user.id){
+                    this.props.fetchPosts(this.user.id)
+                }
+            }else{
+                this.props.fetchPosts(this.user.id)
+            }
+        }
+
+
+        // console.log(this.props.friends)
+        // console.log(prevProps.friends)
+        if(this.props.friends.length !== prevProps.friends.length){
+            this.props.fetchAllUsers()
         }
 
 
@@ -144,8 +166,6 @@ class Profile extends React.Component{
         
     }
 
-
-
     handleShowEdit(){
         document.getElementById("edit-profile-container").style.display ="block"
     }
@@ -160,10 +180,16 @@ class Profile extends React.Component{
        createPost.style.display = "block"
     }
 
-    render(){
-        
+  
 
- 
+    render(){
+        console.log("rendered")
+        this.user = this.props.users[this.props.match.params.userId]
+        let friends = []
+        if(this.user && this.user.friends){
+            friends = Object.values(this.user.friends)
+        }
+    
         
         if (this.props.currentUser.id != this.props.match.params.userId){
            const edit = document.getElementById("edit-profile")
@@ -178,117 +204,118 @@ class Profile extends React.Component{
        
     }
         
-        const display = this.props.user ? (
+        const display = this.user ? (
 
             <div> 
+                <div id="profile-header"> 
+                    <div id="upper-profile-header">
+                        <div id="cover">
+                            <div className="scrollbar-hidden" id="cover-photo-box">
 
-            <div id="profile-header"> 
-                <div id="upper-profile-header">
-                    <div id="cover">
-                        <div className="scrollbar-hidden" id="cover-photo-box">
-
-                            <img src={this.props.user.backgroundUrl} id="cover-photo"></img>
+                                <img src={this.props.user.backgroundUrl} id="cover-photo"></img>
+                            </div>
+                            <img src={this.props.user.avatarUrl}id="cover-profile-picture"></img>
                         </div>
-                        <img src={this.props.user.avatarUrl}id="cover-profile-picture"></img>
+                        <div id="upper-profile-text">
+                            <div className="profile-text" id="upper-profile-name">{`${this.props.user.firstName} ${this.props.user.lastName}`}</div>
+                            <div className="profile-text" id="upper-profile-bio">{`${this.props.user.bio}`}</div>
+                        </div>
                     </div>
-                    <div id="upper-profile-text">
-                        <div className="profile-text" id="upper-profile-name">{`${this.props.user.firstName} ${this.props.user.lastName}`}</div>
-                        <div className="profile-text" id="upper-profile-bio">{`${this.props.user.bio}`}</div>
+                    <div id="lower-profile-header">
+                        <div id="lower-profile-buttons">
+                            <button className="profile-buttons" id="profile-posts-button">Posts</button>
+                            <button className="profile-buttons" id="profile-friends-button">Friends</button>
+                            <button className="profile-buttons" id="profile-photos-button">Photos</button>
+                        </div>
+                        <div id="edit-profile">
+                            <div id="edit-profile-symbol"></div>
+                            <button onClick={this.handleShowEdit.bind(this)} id="edit-profile-button">Edit Profile</button>
+                        </div>
+
+                        <button onClick={this.addFriend.bind(this)} className="alt-profile-button" id="add-friend">Add Friend</button>
+
+                        <button onClick={this.deleteFriend.bind(this)} className="alt-profile-button" id="remove-friend" ><div id="check-img"></div>Friends</button>
+
                     </div>
                 </div>
-                <div id="lower-profile-header">
-                    <div id="lower-profile-buttons">
-                        <button className="profile-buttons" id="profile-posts-button">Posts</button>
-                        <button className="profile-buttons" id="profile-friends-button">Friends</button>
-                        <button className="profile-buttons" id="profile-photos-button">Photos</button>
-                    </div>
-                    <div id="edit-profile">
-                        <div id="edit-profile-symbol"></div>
-                        <button onClick={this.handleShowEdit.bind(this)} id="edit-profile-button">Edit Profile</button>
-                    </div>
 
-                    <button onClick={this.addFriend.bind(this)} className="alt-profile-button" id="add-friend">Add Friend</button>
-
-                    <button onClick={this.deleteFriend.bind(this)} className="alt-profile-button" id="remove-friend" ><div id="check-img"></div>Friends</button>
-
-                </div>
-            </div>
-
-            <div id="profile-main-content">
-                <div id="profile-side-content">
-                    
-                    <div id="Intro"  className="profile-side-panel">
-                        <div className="panel-title" id="intro-title info-detail">Intro</div>
-                        <div id='school-div' className="info-div-container">
-                            <div className="info-pic" id="school-logo"></div>
-                            <div className="info-text-line">
-                                <div className="info-text-first">Went to</div>
-                                <div className="info-text-second" id="school-name">{`${this.props.user.school}`}</div>
-                            </div>
-                        </div>
-                        <div id='location-div' className="info-div-container">
-                            <div className="info-pic" id="location-logo"></div>
-                            <div className="info-text-line">
-                                <div className="info-text-first">Lives in</div>
-                                <div  className="info-text-second" id="location-name">{`${this.props.user.location}`}</div>
-                            </div>
-                        </div>
-                        <div id='from-div' className="info-div-container">
-                            <div className="info-pic" id="from-logo"></div>
-                            <div className="info-text-line">
-                                <div className="info-text-first">From</div>
-                                <div className="info-text-second" id="from-name">{`${this.props.user.birthplace}`}</div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    {/* <div id="Photos"  className="profile-side-panel">
-                         <div className="panel-title" id="photos-title"></div>
-                    </div> */}
-                    {/* <div id="Friends"  className="profile-side-panel">
-                        <div className="panel-title" id="friends-title"></div>
-                        {/* {
-                            this.props.user.friends.map((friend, i) => 
-                            <div key={i}>
-                            <li>{`${friend.firstName} ${friend.lastName}`}</li>
-                            <br/>
-                            </div>
-                            )
-                        } */}
-
-                </div>
-           
-           
-                <div id="profile-posts-content">
-                    <div id="post-bar">
-                        <div id="post-bar-main">
-                            <img src={this.props.user.avatarUrl} id="post-image"></img>
-                            <div onClick={this.revealCreatePost}id="post-text-button">
-                            <div id="text-prompt"> What's on your mind?</div>
-                                
-                                </div>
-                        </div>
-                        <div id="post-bar-line"></div>
+                <div id="profile-main-content">
+                    <div id="profile-side-content">
                         
-                    </div>
-                    <div id="post-container">
-                        <CreatePostContainer/>
-                    </div>
+                        <div id="Intro"  className="profile-side-panel">
+                            <div className="panel-title" id="intro-title info-detail">Intro</div>
+                            <div id='school-div' className="info-div-container">
+                                <div className="info-pic" id="school-logo"></div>
+                                <div className="info-text-line">
+                                    <div className="info-text-first">Went to</div>
+                                    <div className="info-text-second" id="school-name">{`${this.props.user.school}`}</div>
+                                </div>
+                            </div>
+                            <div id='location-div' className="info-div-container">
+                                <div className="info-pic" id="location-logo"></div>
+                                <div className="info-text-line">
+                                    <div className="info-text-first">Lives in</div>
+                                    <div  className="info-text-second" id="location-name">{`${this.props.user.location}`}</div>
+                                </div>
+                            </div>
+                            <div id='from-div' className="info-div-container">
+                                <div className="info-pic" id="from-logo"></div>
+                                <div className="info-text-line">
+                                    <div className="info-text-first">From</div>
+                                    <div className="info-text-second" id="from-name">{`${this.props.user.birthplace}`}</div>
+                                </div>
+                            </div>
 
-                    <div id="edit-profile-container">
-                        <EditProfileContainer/>
+                        </div>
+
+                        <div id="Photos"  className="profile-side-panel">
+                            <div className="panel-title" id="photos-title">Photos</div>
+                        </div>
+
+                        <div id="Friends"  className="profile-side-panel">
+                            <div className="panel-title" id="friends-title">Friends</div>
+                            <ul id="friend-display">
+                            { 
+                            friends.map((friend, i) => 
+
+                                <Link to={`/user/${friend.id}`} key={i} className="friend-block">
+                                    <img className="friend-block-pic" src={friend.avatarUrl}></img>
+                                    <div className="friend-block-text">{`${friend.firstName} ${friend.lastName}`}</div>
+                                </Link>)
+                            }
+                            </ul>
+                        </div>
                     </div>
-                    
-                    <PostIndexContainer/>
+            
+            
+                    <div id="profile-posts-content">
+                        <div id="post-bar">
+                            <div id="post-bar-main">
+                                <img src={this.props.user.avatarUrl} id="post-image"></img>
+                                <div onClick={this.revealCreatePost}id="post-text-button">
+                                <div id="text-prompt"> What's on your mind?</div>
+                                    
+                                    </div>
+                            </div>
+                            <div id="post-bar-line"></div>
+                            
+                        </div>
+                        <div id="post-container">
+                            <CreatePostContainer/>
+                        </div>
+
+                        <div id="edit-profile-container">
+                            <EditProfileContainer/>
+                        </div>
+                        
+                        <PostIndexContainer/>
+                    </div>
+                
                 </div>
-               
             </div>
-        </div>
-        ) : this.props.history.goBack()
-
         
-           
+        ) : ""
+
         return(
            <>
             {display}
