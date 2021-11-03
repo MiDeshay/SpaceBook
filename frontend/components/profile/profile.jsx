@@ -20,8 +20,6 @@ class Profile extends React.Component{
         this.props.fetchAllUsers()
         this.props.getAllFriends()
 
-        console.log("mounted")
-
         if(this.props.user){
             this.props.fetchPosts(this.props.user.id)
         }

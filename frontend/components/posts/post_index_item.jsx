@@ -98,13 +98,16 @@ class PostIndexItem extends React.Component {
         this.setState({body: ""})
     }
 
+    goToComment(){
+        document.getElementById(`post-input-${this.props.post.id}`).focus()
+    }
+
 
 
     render(){
 
     const {post} = this.props;
     const {firstRender} = this.state;
-
    
     this.formatDate()
     let textBody = '';
@@ -129,6 +132,7 @@ class PostIndexItem extends React.Component {
 
     const image = post.photoUrl ? <img id="post-picture" src={post.photoUrl}></img> : <></>
     const avatar = post.posterId === this.props.currentUser.id ?  this.props.currentUser.avatarUrl : post.avatarUrl
+    const liked = 'liked'
 
     return (
         <div className="post-block">
@@ -148,6 +152,10 @@ class PostIndexItem extends React.Component {
                 {textBody}
                 {image}
                 
+            </div>
+            <div className="post-buttons">
+                <button className="post-button"><div className={liked}></div>Like</button>
+                <button className="post-button" onClick={this.goToComment.bind(this)}><div className="comment"></div>Comment</button>
             </div>
             <div className="post-block-footer">
                 <div className="post-comment-block">
