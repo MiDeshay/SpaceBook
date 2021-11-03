@@ -24,7 +24,7 @@ const App = (props) => (
                     <HomeAuthRoute path="/newsfeed/edit_post/:postId" component={EditPostContainer}/>
                     <HomeAuthRoute path="/newsfeed" component={NewsFeedContainer}/>
                     <AuthRoute path="/login" component={LoginFormContainer}/>
-                    <Redirect from="*" to="/login" />
+                    {/* <Redirect from="*" to="/login" /> */}
                
        
     </div>

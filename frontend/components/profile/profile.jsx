@@ -8,7 +8,6 @@ import PostIndexContainer from "../posts/post_index_container";
 class Profile extends React.Component{
     constructor(props){
         super(props);
-
         this.resizePage = this.resizePage.bind(this)
         this.handleClick = this.handleClick.bind(this)
         this.revealCreatePost = this.revealCreatePost.bind(this)
@@ -19,8 +18,6 @@ class Profile extends React.Component{
     componentDidMount(){
         this.props.fetchAllUsers()
         this.props.getAllFriends()
-
-        console.log("mounted")
 
         if(this.props.user){
             this.props.fetchPosts(this.props.user.id)
@@ -64,9 +61,6 @@ class Profile extends React.Component{
 
         
     componentDidUpdate(prevProps){
-        console.log("updated")
-
-        console.log(this.props.users)
         
         this.user = this.props.users[this.props.match.params.userId]
         if(this.user){
@@ -79,9 +73,6 @@ class Profile extends React.Component{
             }
         }
 
-
-        // console.log(this.props.friends)
-        // console.log(prevProps.friends)
         if(this.props.friends.length !== prevProps.friends.length){
             this.props.fetchAllUsers()
         }
@@ -183,7 +174,6 @@ class Profile extends React.Component{
   
 
     render(){
-        console.log("rendered")
         this.user = this.props.users[this.props.match.params.userId]
         let friends = []
         if(this.user && this.user.friends){

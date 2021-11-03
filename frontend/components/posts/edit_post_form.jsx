@@ -6,6 +6,7 @@ class EditPostModal extends React.Component{
     constructor(props){
         super(props)
         this.showSubmit = false
+        console.log(this.props.post.id)
         
         this.state = this.props.post
         this.prevFile = null
@@ -98,7 +99,8 @@ class EditPostModal extends React.Component{
     }
 
     hideModal(){
-        this.props.history.goBack()
+        //console.log(this.props.post)
+        document.getElementById(`edit-post-container-${this.state.id}`).style.display = "none"
     }
 
     handleFile(e){
@@ -137,7 +139,6 @@ class EditPostModal extends React.Component{
     }
 
     render(){
-
         const { formType, submitType, currentUser} = this.props
         let preview = null
         if(this.state){
@@ -145,7 +146,8 @@ class EditPostModal extends React.Component{
         }
         
         const display = this.props.post != undefined ? ( 
-            <div id="post-modal-contianer">
+            <div>
+                <div id="post-modal-contianer">
                 <div id="post-modal">
                     <button to="/user/:userId" id="post-close-button" onClick={this.hideModal}></button>
                     <div id="post-header-container">
@@ -165,6 +167,7 @@ class EditPostModal extends React.Component{
                     </form>              
                 </div>
             </div>
+        </div>
         ) : this.props.history.goBack()
         return(
             <>

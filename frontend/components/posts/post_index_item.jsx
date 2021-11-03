@@ -1,5 +1,6 @@
 import React from 'react';
 import Comment from './comment';
+import EditPostModal from "./edit_post_form"
 
 class PostIndexItem extends React.Component {
     constructor(props){
@@ -50,6 +51,7 @@ class PostIndexItem extends React.Component {
     }
 
     showOptionsModal(){
+        console.log(this.props.post)
         this.firstPass = true;
        this.menu.style.display = "flex";
        
@@ -131,6 +133,7 @@ class PostIndexItem extends React.Component {
     const avatar = post.posterId === this.props.currentUser.id ?  this.props.currentUser.avatarUrl : post.avatarUrl
 
     return (
+        <div>
         <div className="post-block">
             <div className="post-block-header">
                 <img src={avatar} className="post-profile-image"></img>
@@ -174,6 +177,15 @@ class PostIndexItem extends React.Component {
         </ul>
             
         </div>
+        <div className="edit-post-container" id={`edit-post-container-${post.id}`}>
+            <EditPostModal 
+            post={post} 
+            currentUser={this.props.currentUser} 
+            action={this.props.updatePost} 
+            formType="Edit Post" 
+            submitType="save"/>
+        </div>
+    </div>
     )
     }
 }

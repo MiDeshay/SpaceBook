@@ -30,11 +30,10 @@ class EditPostForm extends React.Component {
 }
 
 const mSTP = (state, ownProps) => ({
-  post: state.entities.posts[ownProps.match.params.postId],
+  post: this.props.post,
   formType: 'Edit Post',
   submitType: "Save",
-  currentUser: state.entities.users[state.session.id],
-  i: ownProps.i, 
+  currentUser: this.props.currentUser,
   prevPath: state.path
 })
 

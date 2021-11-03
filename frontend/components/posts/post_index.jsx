@@ -1,7 +1,6 @@
 import React from 'react';
 import PostIndexItem from './post_index_item';
 import { Link } from 'react-router-dom';
-import {EditPostContainer} from "./edit_post_container"
 import { withRouter } from 'react-router-dom';
 
 class PostIndex extends React.Component {
@@ -9,6 +8,7 @@ class PostIndex extends React.Component {
         super(props);
         this.handleUpdatePost = this.handleUpdatePost.bind(this)
         this.handleDeletePost = this.handleDeletePost.bind(this)
+        this.revealEditPost = this.revealEditPost.bind(this)
 
     }
 
@@ -21,6 +21,11 @@ class PostIndex extends React.Component {
     handleUpdatePost(postId){
         this.props.history.push(`/home/edit_post/${postId}`)
     }
+
+    revealEditPost(postId){
+        console.log(document.getElementById(`edit-post-container-${postId}`))
+        document.getElementById(`edit-post-container-${postId}`).style.display = "block"
+    }
   
   
     
@@ -29,7 +34,7 @@ class PostIndex extends React.Component {
         this.props.posts.map((post) => {
             posts.unshift(post)
         })
-        
+        console.log(posts)
         return (
             <div id="all-posts-container">
                  <ul id="all-posts">
@@ -41,7 +46,8 @@ class PostIndex extends React.Component {
                         <div className="options-buttons-container">
                             <div className="single-option-button">
                                 <div className="symbol edit-symbol"></div>
-                                <Link to={`${this.props.location.pathname}/edit_post/${post.id}`}><button className="post-options-dropdown-button post-options-edit">Edit Post</button></Link>
+                                {/* <Link to={`${this.props.location.pathname}/edit_post/${post.id}`}><button className="post-options-dropdown-button post-options-edit">Edit Post</button></Link> */}
+                                <button className="post-options-dropdown-button post-options-edit" onClick={() => this.revealEditPost(post.id)}>Edit Post</button>
                                 
                             </div>
                             <div className="options-style-line"></div>
@@ -52,12 +58,12 @@ class PostIndex extends React.Component {
 
                         </div>
                     </div>
-                  
-    
+                
+
                     <PostIndexItem currentUser={this.props.currentUser} 
                     post={post} 
                     currentUser={this.props.currentUser}
-                    
+                    updatePost={this.props.updatePost}
                     createComment={this.props.createComment} 
                     deleteComment={this.props.deleteComment}
                     updateComment ={this.props.updateComment}
@@ -69,7 +75,7 @@ class PostIndex extends React.Component {
                 
                 )}
                 </ul>
-               
+               {console.log("break")}
             </div>
         )
     }
