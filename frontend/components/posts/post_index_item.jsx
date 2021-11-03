@@ -102,6 +102,20 @@ class PostIndexItem extends React.Component {
         document.getElementById(`post-input-${this.props.post.id}`).focus()
     }
 
+    handleLike(){
+        const {post, likePost, unLikePost} = this.props
+        if (post.liked){
+            unLikePost(post.liked)
+        } else {
+            const like = {
+                likeable_type: "Post",
+                likeable_id: post.id,
+                user_id: this.props.currentUser.id
+            }
+            likePost(like)
+        }
+    }
+
 
 
     render(){
@@ -132,7 +146,10 @@ class PostIndexItem extends React.Component {
 
     const image = post.photoUrl ? <img id="post-picture" src={post.photoUrl}></img> : <></>
     const avatar = post.posterId === this.props.currentUser.id ?  this.props.currentUser.avatarUrl : post.avatarUrl
-    const liked = 'liked'
+
+    const liked = post.liked ? 'liked' : "unliked"
+    const likedText = post.liked ? 'post-button liked-text' : "post-button"
+
 
     return (
         <div className="post-block">
@@ -154,8 +171,8 @@ class PostIndexItem extends React.Component {
                 
             </div>
             <div className="post-buttons">
-                <button className="post-button"><div className={liked}></div>Like</button>
-                <button className="post-button" onClick={this.goToComment.bind(this)}><div className="comment"></div>Comment</button>
+                <button className={likedText} onClick={this.handleLike.bind(this)}><div className={liked}></div>Like</button>
+                <button className="post-button" onClick={this.goToComment.bind(this)}><div className="comment-button"></div>Comment</button>
             </div>
             <div className="post-block-footer">
                 <div className="post-comment-block">

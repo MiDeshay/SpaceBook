@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
 import { deletePost, fetchNewsfeed, updatePost } from '../../actions/post_actions';
 import NewsFeedIndex from './news_feed_index';
-import { createComment, fetchCommentsForPost, updateComment, deleteComment } from '../../actions/comment_actions';
+import { createComment, updateComment, deleteComment } from '../../actions/comment_actions';
+import { likePost, unLikePost } from '../../actions/like_actions';
 
 
 const mSTP = (state) => ({
@@ -14,6 +15,8 @@ const mDTP = (dispatch) => ({
   fetchNewsFeed: () => dispatch(fetchNewsfeed()),
   updatePost: (post) => dispatch(updatePost(post)),
   deletePost: (postId) => dispatch(deletePost(postId)),
+  likePost: (like)=> dispatch(likePost(like)),
+  unLikePost: (likeId)=> dispatch(unLikePost(likeId)),
   createComment: (comment) => dispatch(createComment(comment)),
   updateComment: (comment) => dispatch(updateComment(comment)),
   deleteComment: (commentId) => dispatch(deleteComment(commentId)),

@@ -7,7 +7,7 @@ json.liked false
 
 current_user.likes.each do |like|
         if (like.likeable_type == "Post" && like.likeable_id == @post.id)
-                json.liked true
+                json.liked like.id
         end
 end
 
