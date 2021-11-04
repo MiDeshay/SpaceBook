@@ -57,7 +57,8 @@ class PostIndex extends React.Component {
                     <PostIndexItem currentUser={this.props.currentUser} 
                     post={post} 
                     currentUser={this.props.currentUser}
-                    
+                    likePost={this.props.likePost}
+                    unLikePost={this.props.unLikePost}
                     createComment={this.props.createComment} 
                     deleteComment={this.props.deleteComment}
                     updateComment ={this.props.updateComment}

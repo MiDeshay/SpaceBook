@@ -20,8 +20,6 @@ class Profile extends React.Component{
         this.props.fetchAllUsers()
         this.props.getAllFriends()
 
-        console.log("mounted")
-
         if(this.props.user){
             this.props.fetchPosts(this.props.user.id)
         }
@@ -52,7 +50,7 @@ class Profile extends React.Component{
         })
 
         if (this.props.user != this.props.currentUser){
-            const edit = document.getElementById("edit-profile-button")
+            const edit = document.getElementById("edit-profile")
             if(edit){
                 edit.style.display = "none"
             }
@@ -64,9 +62,6 @@ class Profile extends React.Component{
 
         
     componentDidUpdate(prevProps){
-        console.log("updated")
-
-        console.log(this.props.users)
         
         this.user = this.props.users[this.props.match.params.userId]
         if(this.user){
@@ -85,7 +80,6 @@ class Profile extends React.Component{
         if(this.props.friends.length !== prevProps.friends.length){
             this.props.fetchAllUsers()
         }
-
 
         if (this.user){
             let swtiched = false
@@ -121,7 +115,8 @@ class Profile extends React.Component{
         const editButton = document.getElementById("edit-profile-button");
         const editSymbol = document.getElementById("edit-profile-symbol")
         const coverPic = document.getElementById("cover-photo-box");
-        const alt_profile = document.getElementsByClassName("alt-button")
+        const addFriend = document.getElementById("add-friend");
+        const removeFriend = document.getElementById("remove-friend");
 
         if(sideBar){
         if(width < 985){
@@ -134,16 +129,27 @@ class Profile extends React.Component{
     
         if(lowerProfileHeader){
 
-            if(width < 740){
+            if(width < 780){
                 
                 lowerProfileHeader.style.width = "500px"
-                editButton.style.left ="250px"
-                editSymbol.style.left = "265px";
+                editButton.style.left ="35px"
+                editSymbol.style.left = "50px";
+                addFriend.style.left = "39px";
+                removeFriend.style.left= "39px"
+             
+               
+            
+
+              
+                
+
             } else{
                 lowerProfileHeader.style.width = "720px"
-                editButton.style.left ="470px";
-                editSymbol.style.left = "485px";
-                
+                editButton.style.left ="255px";
+                editSymbol.style.left = "270px";
+                addFriend.style.left = "261px";
+                removeFriend.style.left= "261px"
+        
             }
         }
      

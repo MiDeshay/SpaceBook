@@ -273,13 +273,14 @@
 
 #remove-friend{
     display: block;
+    position: relative;
     font-size: 20px;
-    padding-left: 15px;
+    padding-left: 50px;
     height: 45px;
     padding-right: 15px;
     font-weight: 600;
-    color: black;
-    background: #EBEDF0;;
+    color: #808080;
+    background: #EBEDF0;
 }
 
 .friend-block{
@@ -307,4 +308,16 @@
     display: flex;
     flex-wrap: wrap;
     padding-left: 14px;
+}
+
+#check-img{
+    background-image: image-url('check.png');
+    position: absolute;
+    background-size: 25px;
+    background-repeat: no-repeat;
+    height: 28px;
+    width: 25px;
+    bottom: 6px;
+    left: 15px;
+    filter: brightness(95%);
 }

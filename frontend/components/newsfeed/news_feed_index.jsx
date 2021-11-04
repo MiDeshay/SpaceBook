@@ -56,7 +56,8 @@ class NewsFeedIndex extends React.Component {
                     <PostIndexItem 
                     currentUser={this.props.currentUser} 
                     post={post} 
-                    
+                    likePost={this.props.likePost}
+                    unLikePost={this.props.unLikePost}
                     createComment={this.props.createComment}
                     deleteComment={this.props.deleteComment}
                     updateComment ={this.props.updateComment}
