@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Comment from './comment';
 
 class PostIndexItem extends React.Component {
@@ -7,7 +8,8 @@ class PostIndexItem extends React.Component {
         this.state = {
             body: "",
             post_id: this.props.post.id,
-            commenter_id: this.props.currentUser.id
+            commenter_id: this.props.currentUser.id,
+            firstRender: true
         }
 
         
@@ -57,7 +59,7 @@ class PostIndexItem extends React.Component {
 
     formatDate(){
         const date = new Date (this.props.post.createdAt);
-        return date.toString().slice(0, 10);
+        return date.toString().slice(0, 15);
 
     }
 
@@ -126,6 +128,8 @@ class PostIndexItem extends React.Component {
     this.formatDate()
     let textBody = '';
 
+    //console.log(post.body.length)
+    console.log(firstRender)
 
     if(firstRender){
         if (post.body.length > 530){
@@ -150,6 +154,42 @@ class PostIndexItem extends React.Component {
     const liked = post.liked ? 'liked' : "unliked"
     const likedText = post.liked ? 'post-button liked-text' : "post-button"
 
+    let likersInfoString = ""
+    if(post.likers){
+        const likersArr = Object.values(post.likers)
+        likersInfoString += likersArr[0].firstName + " " + likersArr[0].lastName
+
+        if (likersArr.length === 2){
+            likersInfoString += ` and ${likersArr.length - 1} other`
+        } else if(likersArr.length > 2) {
+            likersInfoString += ` and ${likersArr.length - 1} others`
+        }
+
+    }
+
+    const likeInformation = post.likers ? (
+        <div className="post-interaction-info">
+            <div className="mini-post-likes"></div>
+            <div className="likers-dropdown" >{likersInfoString}
+                <div className="likers-dropdown-content"> 
+
+                    <ul>
+                        {Object.values(post.likers).map((liker, i) => 
+                            <div key={i}>
+        
+                            <Link to={`/user/${liker.id}`} className="dropdown-liker">
+                                <img className="likers-picture" src={liker.avatarUrl}/>
+                                <div className="likers-name">{liker.firstName} {liker.lastName}</div>
+                                </Link>
+                            </div>
+                        )}
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    ) : ""
+
 
     return (
         <div className="post-block">
@@ -170,6 +210,7 @@ class PostIndexItem extends React.Component {
                 {image}
                 
             </div>
+            {likeInformation}
             <div className="post-buttons">
                 <button className={likedText} onClick={this.handleLike.bind(this)}><div className={liked}></div>Like</button>
                 <button className="post-button" onClick={this.goToComment.bind(this)}><div className="comment-button"></div>Comment</button>

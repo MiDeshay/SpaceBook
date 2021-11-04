@@ -13,6 +13,16 @@
                 end
         end
 
+        json.likers do
+            post.users_who_liked.each do |liker|
+                json.set! liker.id do 
+                    json.extract! liker, :id, :first_name, :last_name
+                    json.avatarUrl url_for(liker.avatar) if liker.avatar.attached?
+                end
+            end
+
+        end
+
         json.commenters do
             post.comments.each do |comment|
                 json.set! comment.commenter.id do

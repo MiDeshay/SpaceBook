@@ -115,8 +115,8 @@ class Profile extends React.Component{
         const editButton = document.getElementById("edit-profile-button");
         const editSymbol = document.getElementById("edit-profile-symbol")
         const coverPic = document.getElementById("cover-photo-box");
-        const addFriend = document.getElementsByClassName("add-friend");
-        const removeFriend = document.getElementsByClassName("remove-friend");
+        const addFriend = document.getElementById("add-friend");
+        const removeFriend = document.getElementById("remove-friend");
 
         if(sideBar){
         if(width < 985){
@@ -134,11 +134,22 @@ class Profile extends React.Component{
                 lowerProfileHeader.style.width = "500px"
                 editButton.style.left ="35px"
                 editSymbol.style.left = "50px";
+                addFriend.style.left = "39px";
+                removeFriend.style.left= "39px"
+             
+               
+            
+
+              
+                
+
             } else{
                 lowerProfileHeader.style.width = "720px"
-                editButton.style.left ="470px";
-                editSymbol.style.left = "485px";
-                
+                editButton.style.left ="255px";
+                editSymbol.style.left = "270px";
+                addFriend.style.left = "261px";
+                removeFriend.style.left= "261px"
+        
             }
         }
      
