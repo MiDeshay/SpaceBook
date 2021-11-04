@@ -75,8 +75,6 @@ class Profile extends React.Component{
         }
 
 
-        // console.log(this.props.friends)
-        // console.log(prevProps.friends)
         if(this.props.friends.length !== prevProps.friends.length){
             this.props.fetchAllUsers()
         }
@@ -189,7 +187,6 @@ class Profile extends React.Component{
   
 
     render(){
-        console.log("rendered")
         this.user = this.props.users[this.props.match.params.userId]
         let friends = []
         if(this.user && this.user.friends){
@@ -207,8 +204,15 @@ class Profile extends React.Component{
             if(edit){
                 edit.style.display = "block"
             }
-       
-    }
+        }
+        let inputPlaceholder = "What's on your mind?"
+        
+        if (this.user){
+            if(this.user.id !== this.props.currentUser.id){
+                inputPlaceholder = `Say something to ${this.user.firstName}...`
+            }
+        }
+
         
         const display = this.user ? (
 
@@ -299,7 +303,7 @@ class Profile extends React.Component{
                             <div id="post-bar-main">
                                 <img src={this.props.user.avatarUrl} id="post-image"></img>
                                 <div onClick={this.revealCreatePost}id="post-text-button">
-                                <div id="text-prompt"> What's on your mind?</div>
+                                <div id="text-prompt"> {inputPlaceholder}</div>
                                     
                                     </div>
                             </div>
@@ -307,7 +311,7 @@ class Profile extends React.Component{
                             
                         </div>
                         <div id="post-container">
-                            <CreatePostContainer/>
+                            <CreatePostContainer />
                         </div>
 
                         <div id="edit-profile-container">

@@ -53,12 +53,31 @@
     height: 40px;
     background-color: #fff;
 }
+
+
+.hover-underline:hover{
+    text-decoration: underline;
+}
+
 .post-profile-image{
     height: 40px;
     width: 40px;
     margin-right: 10px;
     border-radius: 28px;
     background-color: yellow;
+}
+
+.share-arrow{
+    color: #7a7a7a;
+    position: relative;
+    top: 3px;
+    font-size: 11px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.share-text{
+    display: flex;
 }
 
 
@@ -169,6 +188,10 @@
     outline: none;
 }
 
+.post-comment-input:focus{
+    border: 2px solid #166fe5;
+}
+
 .see-more-button{
     border: none;
     font-size: 15px;
@@ -205,6 +228,22 @@
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .3);
 }
+
+.post-options-dropdown-2{
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    right: 12px;
+    top: 65px;
+    border-radius: 8px;
+    z-index: 5;
+    height: 65px;
+    width: 344px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .3);
+}
+
+
 
 .post-options-dropdown-button{
     height: 40px;

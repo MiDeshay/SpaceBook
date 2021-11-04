@@ -2,11 +2,12 @@
 #
 # Table name: posts
 #
-#  id         :bigint           not null, primary key
-#  body       :string           not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  poster_id  :integer          not null
+#  id               :bigint           not null, primary key
+#  body             :string           not null
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  messaged_user_id :integer
+#  poster_id        :integer          not null
 #
 # Indexes
 #
@@ -21,6 +22,11 @@ class Post < ApplicationRecord
     private def purge_photo
         photo.purge
     end
+
+    belongs_to :messaged_user,
+    foreign_key: :messaged_user_id,
+    class_name: :User,
+    optional: true
 
     has_many :comments
 

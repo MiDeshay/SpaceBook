@@ -4,7 +4,6 @@ class AllUsersIndexItem extends React.Component{
     constructor(props){
         super(props)
 
-        console.log(this.props.user)
     }
 
     handleAddFriend(){

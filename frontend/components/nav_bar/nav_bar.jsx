@@ -17,7 +17,7 @@ class NavBar extends React.Component{
         document.addEventListener("click", (event) => { 
         if(that.firstPass){
             that.firstPass = false;
-        }else if(that.menu !== event.target){
+        }else if(that.menu && that.menu !== event.target){
             that.menu.style.display = "none"; 
         }
         })

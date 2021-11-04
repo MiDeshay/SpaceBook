@@ -6,6 +6,12 @@
                 json.avatarUrl url_for(post.poster.avatar) if post.poster.avatar.attached?
                 json.photoUrl url_for(post.photo) if post.photo.attached?
 
+                if(post.messaged_user)
+                        json.messaged_user do
+                                json.extract! post.messaged_user, :id, :first_name, :last_name
+                        end
+                end
+
                 json.liked false
 
                 current_user.likes.each do |like|

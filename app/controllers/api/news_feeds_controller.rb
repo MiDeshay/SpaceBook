@@ -1,6 +1,7 @@
 class Api::NewsFeedsController < ApplicationController
     def index
     user_posts = Post.where(poster_id: current_user.id)
+    messages = Post.where(messaged_user_id: current_user.id)
     allfriends = current_user.friends_they_added + current_user.friends_who_added_them
     friend_posts = []
     allfriends.each do |friend|
@@ -8,7 +9,7 @@ class Api::NewsFeedsController < ApplicationController
             friend_posts << post
         end
     end
-    @all_posts = user_posts + friend_posts
+    @all_posts = user_posts + friend_posts + messages
         @all_posts.sort_by &:created_at
         render :index
     end

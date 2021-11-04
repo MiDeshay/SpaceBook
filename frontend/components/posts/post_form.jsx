@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {withRouter} from 'react-router-dom';
 
 class PostForm extends React.Component{
     constructor(props){
@@ -21,6 +21,11 @@ class PostForm extends React.Component{
 
     componentDidMount(){
        this.toggleSubmitButton("off"); 
+       this.user = this.props.users[this.props.match.params.userId]
+    }
+
+    componentDidUpdate(){
+        this.user = this.props.users[this.props.match.params.userId]
     }
 
     toggleSubmitButton(action){
@@ -54,6 +59,13 @@ class PostForm extends React.Component{
     handleSubmit(e){
         e.preventDefault();
         const formData = new FormData();
+        if(this.user){
+            if(this.user.id !== this.props.currentUser.id){
+                console.log("its a message")
+                formData.append("post[messaged_user_id]", this.user.id);
+            }
+        }
+
         formData.append("post[body]", this.state.body);
         formData.append("post[poster_id]", this.state.poster_id);
         
@@ -126,6 +138,7 @@ class PostForm extends React.Component{
     }
 
     render(){
+
         const { formType, submitType, currentUser} = this.props
         const preview = this.state.photoUrl ? (<><img id="post-image-preview" src={this.state.photoUrl}/></>): null
         
@@ -159,4 +172,4 @@ class PostForm extends React.Component{
     }
 }
 
-export default PostForm
+export default withRouter(PostForm)

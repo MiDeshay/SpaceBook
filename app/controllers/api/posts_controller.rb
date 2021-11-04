@@ -1,11 +1,17 @@
 class Api::PostsController < ApplicationController
     def index
-        @posts = Post.where(poster_id: current_user.id)
+        ownPosts = Post.where(poster_id: current_user.id)
+        messages = Post.where(messaged_user_id: current_user.id)
+        @posts = ownPosts + messages
+        @posts.sort_by &:created_at
         render :index
     end
 
     def show
-        @posts = Post.where(poster_id: params[:id])
+        ownPosts = Post.where(poster_id: params[:id])
+        messages = Post.where(messaged_user_id: params[:id])
+        @posts = ownPosts + messages
+        @posts.sort_by &:created_at
         render :index
     end
 
@@ -42,6 +48,6 @@ class Api::PostsController < ApplicationController
     private
 
     def post_params
-        params.require(:post).permit(:body, :poster_id, :photo, :remove_photo)
+        params.require(:post).permit(:body, :poster_id, :photo, :remove_photo, :messaged_user_id)
       end
 end

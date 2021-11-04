@@ -20,6 +20,7 @@ class PostIndexItem extends React.Component {
         this.hideBody = this.hideBody.bind(this);
         this.revealBody = this.revealBody.bind(this);
         this.showOptionsModal = this.showOptionsModal.bind(this);
+        this.showOptionsModal2 = this.showOptionsModal2.bind(this);
         this.formatDate = this.formatDate.bind(this)
         this.handleCreateComment = this.handleCreateComment.bind(this)
     }
@@ -29,14 +30,17 @@ class PostIndexItem extends React.Component {
 
         //this.props.fetchCommentsForPost(this.props.post.id)
         this.menu = document.getElementById(`options-dropdown${this.props.post.id}`);
+        this.menu2 = document.getElementById(`other-options-dropdown${this.props.post.id}`);
+
         const that = this;
 
         document.addEventListener("click", (event) => { 
         if(that.firstPass){
             that.firstPass = false;
-        }else if(that.menu !== event.target){
+        }else if(that.menu !== event.target && that.menu2 !== event.target  ){
             that.menu.style.display = "none"; 
-        }
+            that.menu2.style.display = "none"; 
+        } 
         })
 
         const input = document.getElementById(`post-input-${this.props.post.id}`);
@@ -56,6 +60,14 @@ class PostIndexItem extends React.Component {
        this.menu.style.display = "flex";
        
     }
+
+    showOptionsModal2(){
+        this.firstPass = true;
+       this.menu2.style.display = "flex";
+       
+    }
+
+
 
     formatDate(){
         const date = new Date (this.props.post.createdAt);
@@ -128,9 +140,6 @@ class PostIndexItem extends React.Component {
     this.formatDate()
     let textBody = '';
 
-    //console.log(post.body.length)
-    console.log(firstRender)
-
     if(firstRender){
         if (post.body.length > 530){
             textBody = this.hideBody()
@@ -190,6 +199,12 @@ class PostIndexItem extends React.Component {
 
     ) : ""
 
+    const optionsModal = post.posterId === this.props.currentUser.id ? (<button onClick={this.showOptionsModal} className="post-options-button"></button>) :
+    (<button onClick={this.showOptionsModal2} className="post-options-button"></button>)
+
+
+    const postAuthorInfo = post.messagedUser ? (<div className="share-text"><Link to={`/user/${post.posterId}`} className="hover-underline">{`${post.firstName} ${post.lastName}`}</Link>  <div className="share-arrow">►</div> <Link to={`/user/${post.messagedUser.id}`} className="hover-underline">{`${post.messagedUser.firstName} ${post.messagedUser.lastName}`}</Link></div>) 
+    : <Link to={`/user/${post.posterId}`} className="hover-underline">{`${post.firstName} ${post.lastName}`}</Link>
 
     return (
         <div className="post-block">
@@ -197,13 +212,13 @@ class PostIndexItem extends React.Component {
                 <img src={avatar} className="post-profile-image"></img>
                 <div className="post-info">
                     <div className="post-author">
-                        {`${post.firstName} ${post.lastName}`}
+                        {postAuthorInfo}
                     </div>
                     <div className="post-date">
                         {this.formatDate()}
                     </div>
                 </div>
-                <button onClick={this.showOptionsModal} className="post-options-button"></button>
+                {optionsModal}
             </div>
             <div className="post-block-main">
                 {textBody}

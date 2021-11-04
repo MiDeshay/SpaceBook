@@ -46,6 +46,10 @@ class User < ApplicationRecord
     foreign_key: :poster_id,
     class_name: :Post
 
+    has_many :messages,
+    foreign_key: :messaged_user_id,
+    class_name: :Post
+
     has_many :sent_friend_requests,
     foreign_key: :user_id,
     class_name: :FriendRequest

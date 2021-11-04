@@ -52,6 +52,16 @@ class NewsFeedIndex extends React.Component {
 
                         </div>
                     </div>
+
+                    <div className="post-options-dropdown-2" id={`other-options-dropdown${post.id}`}>
+                        <div className="options-buttons-container">
+                            <div className="single-option-button">
+                                <div className="symbol delete-symbol"></div>
+                                <button className="post-options-dropdown-button post-options-delete" id={`${post.id}1`} onClick={() => this.handleDeletePost(post.id)}>Delete Post</button>
+                            </div>
+
+                        </div>
+                    </div>
     
                     <PostIndexItem 
                     currentUser={this.props.currentUser} 

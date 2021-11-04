@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_07_024913) do
+ActiveRecord::Schema.define(version: 2021_11_04_172119) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(version: 2021_10_07_024913) do
     t.integer "poster_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "messaged_user_id"
     t.index ["poster_id"], name: "index_posts_on_poster_id"
   end
 

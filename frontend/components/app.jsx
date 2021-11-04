@@ -18,12 +18,12 @@ const App = (props) => (
             <div id="nav-spacer"></div>
         </header>
                 
-                    <HomeAuthRoute path="/everyone" component={AllUsersIndexContainer}/>
-                    <HomeAuthRoute path="/user/:userId/edit_post/:postId" component={EditPostContainer}/>
-                    <HomeAuthRoute path="/user/:userId" component={ProfileContainer}/>
-                    <HomeAuthRoute path="/newsfeed/edit_post/:postId" component={EditPostContainer}/>
-                    <HomeAuthRoute path="/newsfeed" component={NewsFeedContainer}/>
-                    <AuthRoute path="/login" component={LoginFormContainer}/>
+                <HomeAuthRoute path="/everyone" component={AllUsersIndexContainer}/>
+                <HomeAuthRoute path="/user/:userId/edit_post/:postId" component={EditPostContainer}/>
+                <HomeAuthRoute path="/user/:userId" component={ProfileContainer}/>
+                <HomeAuthRoute path="/newsfeed/edit_post/:postId" component={EditPostContainer}/>
+                <HomeAuthRoute path="/newsfeed" component={NewsFeedContainer}/>
+                <AuthRoute path="/login" component={LoginFormContainer}/>
                     <Redirect from="*" to="/login" />
                
        
