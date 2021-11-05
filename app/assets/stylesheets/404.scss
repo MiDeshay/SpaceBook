@@ -1,0 +1,29 @@
+#error-page {
+    font-family: "klavika_bold";
+    color: #166fe5;
+    font-size: 400px;
+    width: fit-content;
+    height: 400px;
+    margin: 0 auto;
+}
+
+#error-page-text{
+    font-family: "klavika_bold";
+    color: black;
+    font-size: 50px;
+    width: fit-content;
+    margin: 0 auto;
+}
+
+#error-redirect{
+    font-family: "klavika_bold";
+    color: #166fe5;
+    font-size: 50px;
+    margin: 0 auto;
+    margin-top: 20px;
+    width: fit-content;
+}
+
+#error-redirect:hover{
+    text-decoration: underline;
+}

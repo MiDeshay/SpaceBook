@@ -78,6 +78,7 @@ class SessionForm extends React.Component{
         const errors = this.props.errors ? this.props.errors[0] : ""
         const form =
         <div>
+            <div id="page-validator"></div>
             <header id="app-header">
             <div id="logo">
                 <Link id="logo-text" to="/">Spacebook</Link>

@@ -32,7 +32,6 @@ class Profile extends React.Component{
 
         const coverPic = document.getElementById("cover-photo-box");
         if (coverPic){
-
             coverPic.scrollTop = 100
         }
 
@@ -43,7 +42,9 @@ class Profile extends React.Component{
        
         document.addEventListener("click", (e)=> {
           if(that.editContainer === e.target){
-                that.editContainer.style.display = "none"
+              if( that.editContainer){
+                  that.editContainer.style.display = "none"
+              }
             }
             
 
@@ -84,19 +85,37 @@ class Profile extends React.Component{
             this.props.friends.map((relation) => {
                 if (relation.userId == this.user.id && relation.friendId ==  this.props.currentUser.id ||
                     relation.userId == this.props.currentUser.id && relation.friendId ==  this.user.id){
-                    document.getElementById("remove-friend").style.display = "block";
-                    document.getElementById("add-friend").style.display = "none";
+                    if(document.getElementById("remove-friend")){
+                        document.getElementById("remove-friend").style.display = "block";
+                    }
+                    if(document.getElementById("add-friend")){
+                        document.getElementById("add-friend").style.display = "none";
+                    }
                     swtiched = true
                 } 
             })
 
             if (!swtiched && this.user.id != this.props.currentUser.id) {
+                if(document.getElementById("add-friend")){
                     document.getElementById("add-friend").style.display = "block"
+                }
+
+                if(document.getElementById("remove-friend")){
                     document.getElementById("remove-friend").style.display = "none";
+                }
             }else if (this.user.id == this.props.currentUser.id){
-                document.getElementById("remove-friend").style.display = "none";
-                document.getElementById("add-friend").style.display = "none";
-                document.getElementById("edit-profile").style.display = "block"
+
+                if(document.getElementById("remove-friend")){
+                    document.getElementById("remove-friend").style.display = "none";
+                }
+
+                if(document.getElementById("add-friend")){
+                    document.getElementById("add-friend").style.display = "none";
+                }
+
+                if( document.getElementById("edit-profile")){
+                    document.getElementById("edit-profile").style.display = "block"
+                }
             }
         }
     }
@@ -135,12 +154,6 @@ class Profile extends React.Component{
                 addFriend.style.left = "39px";
                 removeFriend.style.left= "39px"
              
-               
-            
-
-              
-                
-
             } else{
                 lowerProfileHeader.style.width = "720px"
                 editButton.style.left ="255px";
@@ -188,11 +201,29 @@ class Profile extends React.Component{
 
     render(){
         this.user = this.props.users[this.props.match.params.userId]
+
+       
+        const posts = Object.values(this.props.posts)
+
+        let postsWithPics = []
+        posts.map(post => {
+            if(post.photoUrl){
+                postsWithPics.push(post)
+            }
+        })
+
         let friends = []
         if(this.user && this.user.friends){
             friends = Object.values(this.user.friends)
         }
     
+        if(document.getElementById("text-prompt")){
+            if(this.user && this.user.id !== this.props.currentUser.id){
+                document.getElementById("text-prompt").textContent = `Say something to ${this.user.firstName}...`
+            }else{
+                document.getElementById("text-prompt").textContent = "What's on your mind?"
+            }
+        }
         
         if (this.props.currentUser.id != this.props.match.params.userId){
            const edit = document.getElementById("edit-profile")
@@ -205,6 +236,8 @@ class Profile extends React.Component{
                 edit.style.display = "block"
             }
         }
+    
+
         let inputPlaceholder = "What's on your mind?"
         
         if (this.user){
@@ -217,6 +250,7 @@ class Profile extends React.Component{
         const display = this.user ? (
 
             <div> 
+                <div id="page-validator"></div>
                 <div id="profile-header"> 
                     <div id="upper-profile-header">
                         <div id="cover">
@@ -280,6 +314,12 @@ class Profile extends React.Component{
 
                         <div id="Photos"  className="profile-side-panel">
                             <div className="panel-title" id="photos-title">Photos</div>
+                            <ul id="photos-display">
+                                {
+                                    postsWithPics.map((post, i) => 
+                                    <img className="photos-block" src={post.photoUrl} key={i}/>)
+                                }
+                            </ul>
                         </div>
 
                         <div id="Friends"  className="profile-side-panel">
@@ -301,7 +341,7 @@ class Profile extends React.Component{
                     <div id="profile-posts-content">
                         <div id="post-bar">
                             <div id="post-bar-main">
-                                <img src={this.props.user.avatarUrl} id="post-image"></img>
+                                <Link to={`/user/${this.props.currentUser.id}`} ><img src={this.props.currentUser.avatarUrl} id="post-image"></img> </Link>
                                 <div onClick={this.revealCreatePost}id="post-text-button">
                                 <div id="text-prompt"> {inputPlaceholder}</div>
                                     

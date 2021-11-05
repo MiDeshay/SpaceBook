@@ -14,13 +14,15 @@ class EditProfileModal extends React.Component{
 
     componentDidMount(){
         const introModalContainer = document.getElementById('intro-modal-container')
-        introModalContainer.addEventListener("click", (e) => {
-            
-                if (e.target === introModalContainer){
-                    this.hideIntroChange()
-                }
-           
-        })
+        if(introModalContainer){
+            introModalContainer.addEventListener("click", (e) => {
+                
+                    if (e.target === introModalContainer){
+                        this.hideIntroChange()
+                    }
+               
+            })
+        }
     }
 
     updateUser(){

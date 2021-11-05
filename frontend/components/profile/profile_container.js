@@ -9,7 +9,8 @@ const mSTP = (state, ownProps) => ({
     currentUser: state.entities.users[state.session.id],
     user: state.entities.users[ownProps.match.params.userId],
     friends: Object.values(state.entities.friends),
-    users: state.entities.users
+    users: state.entities.users,
+    posts: state.entities.posts
 
 })
 

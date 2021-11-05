@@ -8,14 +8,19 @@ class Newsfeed extends React.Component{
 
     revealCreatePost(){
         const createPost = document.getElementById('post-container');
-        document.getElementById("post-modal-contianer").style.display = "block";
-        createPost.style.display = "block"
+        if( document.getElementById("post-modal-contianer")){
+            document.getElementById("post-modal-contianer").style.display = "block";
+        }
+
+        if(createPost){
+            createPost.style.display = "block"
+        }
      }
 
     render(){
         const display = this.props.currentUser ? (
             <div id="all-newsfeed-content">
-
+                 <div id="page-validator"></div>
                 <div id="newsfeed-left">
                     <div className="left-block" id="user-profile-block">
                         <Link id="left-newsfeed-profile" to={`/user/${this.props.currentUser.id}`}>
@@ -56,7 +61,7 @@ class Newsfeed extends React.Component{
                     <div id="profile-posts-content">
                             <div id="post-bar">
                                 <div id="post-bar-main">
-                                    <img src={this.props.currentUser.avatarUrl} id="post-image"></img>
+                                    <Link to={`/user/${this.props.currentUser.id}`}><img src={this.props.currentUser.avatarUrl} id="post-image"></img></Link>
                                     <div onClick={this.revealCreatePost}id="post-text-button">
                                     <div id="text-prompt"> What's on your mind?</div>
                                         
@@ -70,7 +75,6 @@ class Newsfeed extends React.Component{
                             </div>
                             <NewsFeedIndexContainer/>
                             
-                            {/* <PostIndexContainer/> */}
                         </div>
                 </div>
             </div>
@@ -80,7 +84,7 @@ class Newsfeed extends React.Component{
             </div>
 
         </div>
-        ) : ("bang")
+        ) : ( <div id="page-validator"></div>)
 
         return(
             <>

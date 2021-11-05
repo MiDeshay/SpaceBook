@@ -310,6 +310,23 @@
     padding-left: 14px;
 }
 
+#Photos{
+    padding-bottom: 1px;
+}
+
+.photos-block{
+    height: 120px;
+    width: 120px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+}
+
+#photos-display{
+    display: flex;
+    flex-wrap: wrap;
+    padding-left: 14px;
+}
+
 #check-img{
     background-image: image-url('check.png');
     position: absolute;
