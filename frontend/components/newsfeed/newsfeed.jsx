@@ -6,6 +6,12 @@ import NewsFeedIndexContainer from "./news_feed_index_container";
 
 class Newsfeed extends React.Component{
 
+    constructor(props){
+        super(props)
+
+        this.resizePage = this.resizePage.bind(this)
+    }
+
     revealCreatePost(){
         const createPost = document.getElementById('post-container');
         if( document.getElementById("post-modal-contianer")){
@@ -14,6 +20,33 @@ class Newsfeed extends React.Component{
 
         if(createPost){
             createPost.style.display = "block"
+        }
+     }
+
+     componentDidMount(){
+         this.resizePage()
+        window.addEventListener('resize', () => {
+            this.resizePage()
+           
+        })
+     }
+
+     resizePage(){
+        const width = window.innerWidth;
+        const newsFeedLeft = document.getElementById("newsfeed-left")
+        const newsFeedRight = document.getElementById("newsfeed-right")
+        if(width < 780){
+            if(newsFeedLeft){
+                
+                newsFeedLeft.style.display = "none";
+                newsFeedRight.style.display = "none";
+            }
+        }else{
+            if(newsFeedLeft){
+               
+                newsFeedLeft.style.display = "block";
+                newsFeedRight.style.display = "block";
+            }
         }
      }
 
@@ -80,7 +113,33 @@ class Newsfeed extends React.Component{
             </div>
 
             <div id="newsfeed-right">
+            <div id="right-shortcuts">
+                        <div className="sp-title" id="shortcuts-header"> Sponsored </div>
+                                
+                            <a href="https://www.appacademy.io/course/app-academy-open">
+                                <div className="ad">
+                                <img src="https://assets-global.website-files.com/5dcc7f8c449e597ed83356b8/603820afd31232aab368ea6f_New%20Red-logo-emblem.png" className="ad-picture"/>
 
+                                <div className="ad-text-container">
+                                    <div className="title-add">App Academy</div>
+                                    <div className="ad-description">Learn to Code for Free!</div>
+                                </div>
+
+                                </div>
+                            </a>
+
+                                
+                            <a href="https://www.facebook.com">
+                                <div className="ad">
+                                        <img src="https://www.teahub.io/photos/full/172-1725552_facebook-logo-png.png" className="ad-picture"/>
+
+                                    <div className="ad-text-container">
+                                        <div className="title-add">Facebook</div>
+                                        <div className="ad-description">See the Original</div>
+                                    </div>
+                                </div>
+                            </a>
+                    </div>    
             </div>
 
         </div>

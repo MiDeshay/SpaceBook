@@ -20,7 +20,17 @@
 
 #newsfeed-right{
     min-width: 300px;
-    margin-top: 20px;
+    margin-right: 15px;
+}
+
+.sp-title{
+    color: #7a7a7a;
+    font-size: 35px;
+    width: fit-content;
+    margin: 0 auto;
+    font-weight: 600;
+    margin-top: 10px;
+    margin-bottom: 20px;
 }
 
 .left-profile-image{
@@ -84,4 +94,41 @@
     background-size: 100%;
     border-radius: 0px;
 }
+
+.ad{
+    padding: 7px;
+    width: 300px;
+    display: flex;
+    margin-bottom: 15px;
+    border-radius: 6px;
+    border: none;
+}
+
+.ad:hover{
+    background-color: #dee0e4;
+}
+
+.ad-text-container{
+    height: fit-content;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 19px;
+}
+
+.ad-description{
+    color: #7a7a7a;
+}
+
+.ad-picture{
+    width: 120px;
+    height: 120px;
+}
+
+.title-add{
+    font-size: 25px;
+}
+
+
+
+
 
