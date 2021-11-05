@@ -26,6 +26,14 @@ class PageValidator extends React.Component{
 
        let validUserRoutes = []
        validUserRoutes.push("/newsfeed")
+       
+       Object.values(this.props.posts).map(post => {
+            validUserRoutes.push(`/newsfeed/edit_post/${post.id}`)
+            userIds.map(userId => {
+                validUserRoutes.push(`/user/${userId}/edit_post/${post.id}`)
+            })
+        })
+
        validUserRoutes.push("/login")
 
        userIds.map(id => {
@@ -54,7 +62,7 @@ class PageValidator extends React.Component{
                     <Link to="/login" id="error-link"><div id="error-redirect">Back to Spacebook</div></Link>
                 </div>
 
-            if (this.props.location.pathname === "/")
+            if (this.props.location.pathname === "/" || this.props.location.pathname)
             {
                 display= <Redirect to="/login"/>
             }

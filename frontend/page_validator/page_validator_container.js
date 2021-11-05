@@ -4,7 +4,8 @@ import { fetchAllUsers } from "../actions/user_actions";
 
 const mSTP = (state) => ({
     currentUser: state.entities.users[state.session.id],
-    users: state.entities.users
+    users: state.entities.users,
+    posts: state.entities.posts
 })
 
 const mDTP = (dispatch) => ({
