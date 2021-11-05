@@ -44,11 +44,13 @@ class PostIndexItem extends React.Component {
         })
 
         const input = document.getElementById(`post-input-${this.props.post.id}`);
-        input.addEventListener("keyup", function(event) {
-        if (event.key === "Enter") {
-            that.handleCreateComment()
+        if(input){
+            input.addEventListener("keyup", function(event) {
+            if (event.key === "Enter") {
+                that.handleCreateComment()
+            }
+            });
         }
-        });
 
         if(this.props.post.id !== this.state.post_id){
             this.setState({post_id: this.props.post.id})
@@ -209,7 +211,7 @@ class PostIndexItem extends React.Component {
     return (
         <div className="post-block">
             <div className="post-block-header">
-                <img src={avatar} className="post-profile-image"></img>
+                <Link to={`/user/${post.posterId}`}><img src={avatar} className="post-profile-image"></img></Link>
                 <div className="post-info">
                     <div className="post-author">
                         {postAuthorInfo}
@@ -232,7 +234,7 @@ class PostIndexItem extends React.Component {
             </div>
             <div className="post-block-footer">
                 <div className="post-comment-block">
-                    <img src={this.props.currentUser.avatarUrl} className="post-comment-user"></img>
+                    <Link to={`/user/${this.props.currentUser.id}`}><img src={this.props.currentUser.avatarUrl} className="post-comment-user"></img></Link>
                     <input className="post-comment-input" value={this.state.body} onChange={this.handleCommentInput.bind(this)} id={`post-input-${post.id}`} placeholder="Write a comment..." type="text"/>
                 </div>
             </div>

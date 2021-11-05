@@ -32,7 +32,7 @@
         json.commenters do
             post.comments.each do |comment|
                 json.set! comment.commenter.id do
-                    json.extract! comment.commenter, :first_name, :last_name
+                    json.extract! comment.commenter, :id, :first_name, :last_name
                     json.avatarUrl url_for(comment.commenter.avatar) if comment.commenter.avatar.attached?
 
                 end

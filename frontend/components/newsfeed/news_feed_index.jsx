@@ -33,6 +33,7 @@ class NewsFeedIndex extends React.Component {
         
         return (
             <div id="all-posts-container">
+                <div id="page-validator"></div>
                  <ul id="all-posts">
                     
                 {posts.map((post, i) => 

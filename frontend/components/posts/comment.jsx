@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 import Reply from "./reply";
 
 class Comment extends React.Component{
@@ -80,7 +81,6 @@ class Comment extends React.Component{
         const userPic = commenter.avatarUrl ? (commenter.avatarUrl) : ("#")
         const commentDropdownButton = comment.commenter_id === this.props.currentUser.id ? (<button className="comment-dropdown-reveal" onClick={this.showCommentDropdown.bind(this)}></button>) : ""        
          
-       
                 
         return(
         <div>
@@ -88,7 +88,7 @@ class Comment extends React.Component{
                 
 
                 <div className="comment-content">
-                <img src={`${userPic}`} className="comment-picture"></img>
+                <Link to={`/user/${commenter.id}`}><img src={`${userPic}`} className="comment-picture"></img></Link>
                     <div className="comment-user-text" id={`comment-user-text-${this.props.comment.id}`}>
                         <div className="comment-user-name"> {`${commenter.firstName} ${commenter.lastName}`}</div>
                         <div className="comment-text">{comment.body}</div>

@@ -69,9 +69,15 @@ class NavBar extends React.Component{
                 mainButtons.style.left = "55%";
                 
               }else{
-                gamePic.style.left = "30px";
-                  profileButton.style.display = "flex";
-                  mainButtons.style.left = "50%";
+                  if(gamePic){
+                      gamePic.style.left = "30px";
+                  }
+                if(profileButton){
+                    profileButton.style.display = "flex";
+                }
+                if(mainButtons){
+                    mainButtons.style.left = "50%";
+                }
               }
             }   
       
@@ -88,6 +94,9 @@ class NavBar extends React.Component{
     }
 
     render(){
+       
+
+
         const display = this.props.currentUser ? (
            
         <div id="main-nav-bar">

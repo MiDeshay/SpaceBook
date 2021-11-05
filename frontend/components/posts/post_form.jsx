@@ -30,14 +30,16 @@ class PostForm extends React.Component{
 
     toggleSubmitButton(action){
         const button = document.getElementById("post-submit-button");
-        if(action === "on" ){
-            button.style.pointerEvents = "auto"
-            button.style.color = "#fff"
-            button.style.backgroundColor = "#1877f2"
-        }else if (action === "off"){
-            button.style.pointerEvents = "none"
-            button.style.color = "#bcc0c4"
-            button.style.backgroundColor = "#e4e6eb"
+        if(button){
+            if(action === "on" ){
+                button.style.pointerEvents = "auto"
+                button.style.color = "#fff"
+                button.style.backgroundColor = "#1877f2"
+            }else if (action === "off"){
+                button.style.pointerEvents = "none"
+                button.style.color = "#bcc0c4"
+                button.style.backgroundColor = "#e4e6eb"
+            }
         }
     }
 
@@ -61,7 +63,6 @@ class PostForm extends React.Component{
         const formData = new FormData();
         if(this.user){
             if(this.user.id !== this.props.currentUser.id){
-                console.log("its a message")
                 formData.append("post[messaged_user_id]", this.user.id);
             }
         }
@@ -80,7 +81,13 @@ class PostForm extends React.Component{
         this.hideModal();
         this.toggleSubmitButton("off");
         this.showSubmit = false;
-        document.getElementById("text-prompt").textContent = "What's on your mind?"
+
+        if(this.user.id !== this.props.currentUser.id){
+            document.getElementById("text-prompt").textContent = `Say something to ${this.user.firstName}...`
+        }else{
+            document.getElementById("text-prompt").textContent = "What's on your mind?"
+        }
+
         document.getElementById("hidden-file-input").value = ""
         document.getElementById("post-modal").style.marginTop = "120px";
         document.getElementById("remove-picture-button").style.display = "none";
@@ -104,7 +111,11 @@ class PostForm extends React.Component{
         }else{
             this.toggleSubmitButton("off");
             this.showSubmit = false;
+            if(this.user.id !== this.props.currentUser.id){
+            document.getElementById("text-prompt").textContent = `Say something to ${this.user.firstName}...`
+            }else{
             document.getElementById("text-prompt").textContent = "What's on your mind?"
+            }
         }
 
     }

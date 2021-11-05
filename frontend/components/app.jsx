@@ -8,6 +8,7 @@ import EditPostContainer from './posts/edit_post_container';
 import NewsFeedContainer from './newsfeed/newsfeed_container';
 import AllUsersIndexContainer from './all_users/all_users_index_container';
 import { Switch } from 'react-router';
+import PageValidatorContainer from '../page_validator/page_validator_container';
 
 
 
@@ -24,7 +25,7 @@ const App = (props) => (
                 <HomeAuthRoute path="/newsfeed/edit_post/:postId" component={EditPostContainer}/>
                 <HomeAuthRoute path="/newsfeed" component={NewsFeedContainer}/>
                 <AuthRoute path="/login" component={LoginFormContainer}/>
-                    <Redirect from="*" to="/login" />
+                <Route path="/" component={PageValidatorContainer} />
                
        
     </div>
