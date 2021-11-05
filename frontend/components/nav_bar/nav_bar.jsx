@@ -112,13 +112,13 @@ class NavBar extends React.Component{
                 <Link to="/newsfeed"> <button id="nav-home-button" className="nav-button"><div className="nav-pic" id="home-nav-pic"></div></button></Link>
             </div>
             <div className="nav-container" id="nav-game-button-container">
-                <a href="https://mideshay.github.io/Picross/"> <button id="nav-game-button" className="nav-button"><div className="nav-pic" id="game-nav-pic"></div></button></a>
+                <a href="https://mideshay.github.io/Picross/" target="_blank"> <button id="nav-game-button" className="nav-button"><div className="nav-pic" id="game-nav-pic"></div></button></a>
             </div>
             <div className="nav-container" id="nav-linkedin-button-container">
-                <a href="https://www.linkedin.com/in/michael-deshay-a76472220/"> <button id="nav-linkedin-button" className="nav-button"><div className="nav-pic" id="linkedin-nav-pic"></div></button></a>  
+                <a href="https://www.linkedin.com/in/michael-deshay-a76472220/" target="_blank"> <button id="nav-linkedin-button" className="nav-button"><div className="nav-pic" id="linkedin-nav-pic"></div></button></a>  
             </div>
             <div className="nav-container" id="nav-github-button-container">
-                <a href="https://github.com/MiDeshay/SpaceBook"> <button id="nav-github-button" className="nav-button"> <div className="nav-pic" id="github-nav-pic"></div></button></a>
+                <a href="https://github.com/MiDeshay/SpaceBook" target="_blank"> <button id="nav-github-button" className="nav-button"> <div className="nav-pic" id="github-nav-pic"></div></button></a>
             </div>
         </div>
 

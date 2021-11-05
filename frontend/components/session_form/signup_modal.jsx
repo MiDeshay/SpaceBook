@@ -136,7 +136,7 @@ class SignUpModal extends React.Component{
                     </div>
                     
                     <br/>
-                    <input className="signup-input" placeholder="Email" className="signup-input" type="text" value={this.state.email} onChange={this.handleInput('email')}/>
+                    <input className="signup-input" placeholder="Email" className="signup-input" type="email" value={this.state.email} onChange={this.handleInput('email')}/>
                     <br/>
                     <input className="signup-input" placeholder="New Password" id="signup-password" className="signup-input" type="password" value={this.state.password} onChange={this.handleInput('password')}/>
 

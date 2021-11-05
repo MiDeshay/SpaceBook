@@ -76,7 +76,7 @@ class Newsfeed extends React.Component{
 
                     <div id="left-shortcuts">
                         <h2 id="shortcuts-header"> Your Shortcuts</h2>
-                        <a href="https://mideshay.github.io/Picross/">
+                        <a href="https://mideshay.github.io/Picross/" target="_blank">
                             <button className="left-block-button">
                                 <div className="left-profile-image" id="left-game-pic"></div>
                                 <div className="left-block-text"> Picross!</div>
@@ -116,7 +116,7 @@ class Newsfeed extends React.Component{
             <div id="right-shortcuts">
                         <div className="sp-title" id="shortcuts-header"> Sponsored </div>
                                 
-                            <a href="https://www.appacademy.io/course/app-academy-open">
+                            <a href="https://www.appacademy.io/course/app-academy-open" target="_blank">
                                 <div className="ad">
                                 <img src="https://assets-global.website-files.com/5dcc7f8c449e597ed83356b8/603820afd31232aab368ea6f_New%20Red-logo-emblem.png" className="ad-picture"/>
 
@@ -129,7 +129,7 @@ class Newsfeed extends React.Component{
                             </a>
 
                                 
-                            <a href="https://www.facebook.com">
+                            <a href="https://www.facebook.com" target="_blank">
                                 <div className="ad">
                                         <img src="https://www.teahub.io/photos/full/172-1725552_facebook-logo-png.png" className="ad-picture"/>
 
