@@ -25,6 +25,7 @@ class PageValidator extends React.Component{
 
        let validUserRoutes = []
        validUserRoutes.push("/newsfeed")
+       validUserRoutes.push("/login")
 
        userIds.map(id => {
             validUserRoutes.push(`/user/${id}`)
