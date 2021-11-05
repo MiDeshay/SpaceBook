@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { withRouter } from "react-router";
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 
 class PageValidator extends React.Component{
 
@@ -52,6 +53,11 @@ class PageValidator extends React.Component{
                     <div id="error-page-text">The page you're looking for doesn't exist!</div>
                     <Link to="/login" id="error-link"><div id="error-redirect">Back to Spacebook</div></Link>
                 </div>
+
+            if (this.props.location.pathname === "/")
+            {
+                display= <Redirect to="/login"/>
+            }
         
 
         return (
