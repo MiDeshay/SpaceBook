@@ -202,7 +202,7 @@ class PostIndexItem extends React.Component {
     ) : ""
 
     const optionsModal = post.posterId === this.props.currentUser.id ? (<button onClick={this.showOptionsModal} className="post-options-button"></button>) :
-    (<button onClick={this.showOptionsModal2} className="post-options-button"></button>)
+    ("")
 
 
     const postAuthorInfo = post.messagedUser ? (<div className="share-text"><Link to={`/user/${post.posterId}`} className="hover-underline">{`${post.firstName} ${post.lastName}`}</Link>  <div className="share-arrow">►</div> <Link to={`/user/${post.messagedUser.id}`} className="hover-underline">{`${post.messagedUser.firstName} ${post.messagedUser.lastName}`}</Link></div>) 
