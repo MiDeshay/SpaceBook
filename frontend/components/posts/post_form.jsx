@@ -82,7 +82,7 @@ class PostForm extends React.Component{
         this.toggleSubmitButton("off");
         this.showSubmit = false;
 
-        if(this.user.id !== this.props.currentUser.id){
+        if(this.user && this.user.id !== this.props.currentUser.id){
             document.getElementById("text-prompt").textContent = `Say something to ${this.user.firstName}...`
         }else{
             document.getElementById("text-prompt").textContent = "What's on your mind?"
