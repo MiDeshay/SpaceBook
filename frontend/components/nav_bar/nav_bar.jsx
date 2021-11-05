@@ -64,9 +64,15 @@ class NavBar extends React.Component{
             }
 
               if(width < 670){
-                profileButton.style.display = "none";
-                gamePic.style.left = "15px";
-                mainButtons.style.left = "55%";
+                if(profileButton){
+                    profileButton.style.display = "none";
+                }
+                if(gamePic){
+                    gamePic.style.left = "15px";
+                }
+                if(mainButtons){
+                    mainButtons.style.left = "55%";
+                }
                 
               }else{
                   if(gamePic){

@@ -27,12 +27,12 @@ class PageValidator extends React.Component{
        let validUserRoutes = []
        validUserRoutes.push("/newsfeed")
 
-    //    Object.values(this.props.posts).map(post => {
-    //         validUserRoutes.push(`/newsfeed/edit_post/${post.id}`)
-    //         userIds.map(userId => {
-    //             validUserRoutes.push(`/user/${userId}/edit_post/${post.id}`)
-    //         })
-    //     })
+       Object.values(this.props.posts).map(post => {
+            validUserRoutes.push(`/newsfeed/edit_post/${post.id}`)
+            userIds.map(userId => {
+                validUserRoutes.push(`/user/${userId}/edit_post/${post.id}`)
+            })
+        })
 
        validUserRoutes.push("/login")
 
